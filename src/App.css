@@ -1,41 +1,46 @@
 @import "css/Home.css";
 @import "css/About.css";
+@import "css/Experience.css";
 :root {
-    --primary-color: #1c1f25;
-    --secondary-color: rgba(18, 47, 89, 1);
+  --primary-color: #1c1f25;
+  --secondary-color: rgba(18, 47, 89, 1);
 }
 
 nav.headerBar {
-    display: flex;
-    background-color: var(--primary-color);
-
+  display: flex;
+  background-color: var(--primary-color);
 }
 
 .headerBar .headerSection {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .headerBar .headerSection > .headerTextSection {
-    display: flex;
-    align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
 }
 
 .headerSection > .headerTextSection .headingText {
-    align-self: center;
-    width: 10em;
+  align-self: center;
+  font-family: monospace;
+  width: 15em;
 }
 
 .headerBar .headerButtons {
-    display: flex;
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 }
 
 .headerBar .headerButtons .headerNavButton {
-    color: white;
-    text-transform: none;
+  color: white;
+  text-transform: none;
 }
 
 .headerBar .headerButtons .headerNavButton:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
+}
+
+.headerBar .headerButtons .active .headerNavButton {
+  background-color: darkslategray;
 }

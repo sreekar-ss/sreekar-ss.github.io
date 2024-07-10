@@ -1,5 +1,114 @@
 div.homeContainer {
-    display: flex; 
-    width: 100%;
-    margin-top: 4em;
+  display: flex;
+  width: 100%;
+  margin-top: 5em;
+  flex-direction: column;
+}
+
+div.homeContainer .section {
+  display: flex;
+  height: 100vh;
+}
+
+div.section .informationCardContainer {
+  display: flex;
+  width: 90%;
+  height: fit-content;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 1em;
+  border-radius: 0.7em;
+}
+
+div.section .informationCardContainer .informationCard {
+  display: flex;
+  height: fit-content;
+  flex-flow: column;
+  width: 100%;
+  border-radius: 0.7em;
+}
+
+div.section .informationCardContainer .informationCard .informationCardTitle {
+  display: flex;
+  background-color: darkslategray;
+  color: white;
+  box-shadow:
+    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
+    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
+    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
+  border-radius: 0.5em;
+}
+
+div.section
+  .informationCardContainer
+  .informationCard
+  .informationCardTitle.active {
+  border-bottom-left-radius: 0em;
+  border-bottom-right-radius: 0em;
+}
+
+div.section .informationCardContainer .informationCard .informationCardDetails {
+  display: flex;
+  color: white;
+  background-color: darkslategray;
+  opacity: 0.8;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  flex-direction: column;
+}
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  div.cardHighlights {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  div.cardHighlights
+  > div {
+  display: flex;
+  flex-direction: row;
+  font-style: italic;
+  height: 3em;
+  align-items: center;
+}
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  div.cardHighlights
+  > div
+  > h6,
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  div.cardHighlights
+  > div
+  > p {
+  display: flex;
+  font-weight: 800;
+  align-self: center;
+  margin: 0.3em;
+}
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  .bulletPoint {
+  width: 0.4m;
+  height: 0.4em;
+  align-self: center;
+}
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  div.cardHighlights
+  img {
+  border-radius: 0.5em;
 }
