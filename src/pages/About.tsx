@@ -11,9 +11,9 @@ function About() {
       <Box className="aboutText">
         <Typography variant="h3">Hi, I am Sreekar!</Typography>
         <Typography variant="body1">
-          I am a developer by the day and photographer by the night. I
-          specialize in creating websites. You can find more about my work by
-          scrolling below.
+          By day, I’m a coding wizard crafting amazing websites. When I’m not
+          coding, I’m out capturing the world through my lens. Dive in below to
+          explore my work and see how I blend tech and creativity!
         </Typography>
       </Box>
     </div>

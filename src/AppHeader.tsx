@@ -43,24 +43,38 @@ function AppHeader() {
                 Work Experience
               </Button>
             </Link>
-            <Button
-              className="headerNavButton"
-              sx={{ display: { xs: "none", md: "block" } }}
-            >
-              Education
-            </Button>
-            <Button
-              className="headerNavButton"
-              sx={{ display: { xs: "none", md: "block" } }}
-            >
-              Projects and Publications
-            </Button>
-            <Button
-              className="headerNavButton"
-              sx={{ display: { xs: "none", md: "block" } }}
-            >
-              Hobbies
-            </Button>
+            <Link to="education" activeClass="active" smooth spy>
+              <Button
+                className="headerNavButton"
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
+                Education
+              </Button>
+            </Link>
+            <Link to="projects" activeClass="active" smooth spy>
+              <Button
+                className="headerNavButton"
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
+                Projects
+              </Button>
+            </Link>
+            <Link to="publications" activeClass="active" smooth spy>
+              <Button
+                className="headerNavButton"
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
+                Publications
+              </Button>
+            </Link>
+            <Link to="hobbies" activeClass="active" smooth spy>
+              <Button
+                className="headerNavButton"
+                sx={{ display: { xs: "none", md: "block" } }}
+              >
+                Hobbies
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>
