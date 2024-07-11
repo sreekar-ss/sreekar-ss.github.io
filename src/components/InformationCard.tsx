@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Button,
   List,
   ListItem,
   Paper,
@@ -10,11 +11,13 @@ import {
 import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CircleIcon from "@mui/icons-material/Circle";
+import githubIcon from "../images/github.png";
 
 export interface BulletPointsType {
   gpa?: string;
   details: Array<string>;
   links?: Map<string, string>;
+  githubLink?: string;
 }
 
 export interface InformatinCardProps {
@@ -76,6 +79,19 @@ function InformationCard({
               <></>
             )}
           </List>
+          {bulletPoints?.githubLink?.length ? (
+            <a href={bulletPoints.githubLink} target="_blank" rel="noreferrer">
+              <Button
+                variant="contained"
+                className="githubButton"
+                endIcon={<img src={githubIcon} alt="githubicon" />}
+              >
+                Open in Github
+              </Button>
+            </a>
+          ) : (
+            <></>
+          )}
         </AccordionDetails>
       </Accordion>
     </Paper>

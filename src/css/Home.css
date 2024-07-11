@@ -152,3 +152,19 @@ div.section .informationCardContainer .informationCard .informationCardDetails {
   margin-left: 2em;
   font-weight: 600;
 }
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  .githubButton {
+  border-radius: 1.5em;
+  margin-left: 2em;
+  background-color: var(--primary-color);
+}
+
+.informationCardContainer
+  .informationCard
+  .informationCardDetails
+  .githubButton:hover {
+  background-color: var(--secondary-color);
+}
