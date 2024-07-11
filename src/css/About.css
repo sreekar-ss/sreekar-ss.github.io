@@ -1,4 +1,4 @@
-div.aboutSection {
+div.homeContainer div.aboutSection {
   display: flex;
   width: 100%;
   align-items: center;

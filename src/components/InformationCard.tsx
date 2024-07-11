@@ -11,12 +11,18 @@ import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CircleIcon from "@mui/icons-material/Circle";
 
+export interface BulletPointsType {
+  gpa?: string;
+  details: Array<string>;
+  links?: Map<string, string>;
+}
+
 export interface InformatinCardProps {
   title: string;
   organization: string;
   location: string;
   duration: string;
-  bulletPoints?: Array<string>;
+  bulletPoints?: BulletPointsType;
   orgIcon?: string;
   expanded?: boolean;
 }
@@ -53,9 +59,14 @@ function InformationCard({
             </div>
             <div>{duration}</div>
           </div>
+          {bulletPoints?.gpa ? (
+            <Typography className="gpa">GPA: {bulletPoints?.gpa}</Typography>
+          ) : (
+            <></>
+          )}
           <List>
-            {bulletPoints?.length ? (
-              bulletPoints?.map((point) => (
+            {bulletPoints?.details.length ? (
+              bulletPoints?.details.map((point) => (
                 <ListItem key={Math.random()}>
                   <CircleIcon className="bulletPoint" />
                   {point}
