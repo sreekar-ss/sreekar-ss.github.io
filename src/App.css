@@ -35,12 +35,14 @@ nav.headerBar {
 .headerBar .headerButtons .headerNavButton {
   color: white;
   text-transform: none;
+  margin: 0.5em;
 }
 
 .headerBar .headerButtons .headerNavButton:hover {
   background-color: var(--secondary-color);
+  opacity: 0.8;
 }
 
 .headerBar .headerButtons .active .headerNavButton {
-  background-color: darkslategray;
+  background-color: var(--secondary-color);
 }

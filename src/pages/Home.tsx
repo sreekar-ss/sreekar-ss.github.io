@@ -3,6 +3,7 @@ import About from "./About";
 import Experience from "./Experience";
 import Education from "./Education";
 import Projects from "./Projects";
+import Publications from "./Publications";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <Experience />
       <Education />
       <Projects />
+      <Publications />
     </div>
   );
 }
