@@ -1,17 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.28e1ef51.css",
-    "main.js": "/static/js/main.b1ec43c9.js",
+    "main.css": "/static/css/main.4084021d.css",
+    "main.js": "/static/js/main.ca817228.js",
     "static/js/453.aa7fae89.chunk.js": "/static/js/453.aa7fae89.chunk.js",
+    "static/media/milkyway.jpeg": "/static/media/milkyway.c63674b97d2ac51404ff.jpeg",
+    "static/media/lighthouse.jpeg": "/static/media/lighthouse.4a0673926a9ea9945645.jpeg",
+    "static/media/dawn.jpeg": "/static/media/dawn.3ee9d77528337c2c0435.jpeg",
+    "static/media/train.jpeg": "/static/media/train.3ca1d8e1de7059538313.jpeg",
+    "static/media/bikes.jpeg": "/static/media/bikes.74e08ee1a2643d4a41c8.jpeg",
+    "static/media/aurora.jpeg": "/static/media/aurora.b9ff474189059359578b.jpeg",
+    "static/media/skyline.jpeg": "/static/media/skyline.d947afc217ae348251f1.jpeg",
+    "static/media/pier.jpeg": "/static/media/pier.172dd55171a27a10fd87.jpeg",
+    "static/media/flower.jpeg": "/static/media/flower.183f4d9e2ac327e42b13.jpeg",
+    "static/media/bridge.jpeg": "/static/media/bridge.ebbaa6f59a4a0374a7c0.jpeg",
+    "static/media/fog.jpeg": "/static/media/fog.320d1b1fc4e36eb46717.jpeg",
+    "static/media/dusk.jpeg": "/static/media/dusk.c89b6dfadef60189a900.jpeg",
     "static/media/sreekar.jpeg": "/static/media/sreekar.fe10d04044681a3dd8c0.jpeg",
     "static/media/ieee.png": "/static/media/ieee.926439b2d98a94f16cd7.png",
     "index.html": "/index.html",
-    "main.28e1ef51.css.map": "/static/css/main.28e1ef51.css.map",
-    "main.b1ec43c9.js.map": "/static/js/main.b1ec43c9.js.map",
+    "main.4084021d.css.map": "/static/css/main.4084021d.css.map",
+    "main.ca817228.js.map": "/static/js/main.ca817228.js.map",
     "453.aa7fae89.chunk.js.map": "/static/js/453.aa7fae89.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.28e1ef51.css",
-    "static/js/main.b1ec43c9.js"
+    "static/css/main.4084021d.css",
+    "static/js/main.ca817228.js"
   ]
 }
