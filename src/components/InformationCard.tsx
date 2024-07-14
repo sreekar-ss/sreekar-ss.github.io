@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CircleIcon from "@mui/icons-material/Circle";
-import githubIcon from "../images/github.png";
+import githubIcon from "../icons/github.png";
 
 export interface BulletPointsType {
   gpa?: string;

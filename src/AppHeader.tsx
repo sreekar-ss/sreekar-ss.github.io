@@ -67,12 +67,12 @@ function AppHeader() {
                 Publications
               </Button>
             </Link>
-            <Link to="hobbies" activeClass="active" smooth spy>
+            <Link to="photography" activeClass="active" smooth spy>
               <Button
                 className="headerNavButton"
                 sx={{ display: { xs: "none", md: "block" } }}
               >
-                Hobbies
+                Photography
               </Button>
             </Link>
           </Box>
