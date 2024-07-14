@@ -39,8 +39,8 @@ nav.headerBar {
 }
 
 .headerBar .headerButtons .headerNavButton:hover {
-  background-color: var(--secondary-color);
-  opacity: 0.8;
+  background-color: var(--primary-color);
+  opacity: 0.6;
 }
 
 .headerBar .headerButtons .active .headerNavButton {

@@ -1,8 +1,14 @@
 div.homeContainer {
   display: flex;
   width: 100%;
-  margin-top: 5em;
+  /* margin-top: 5em; */
   flex-direction: column;
+}
+
+div.homeContainer .quickLinks {
+  position: fixed;
+  top: 70%;
+  left: 95%;
 }
 
 div.homeContainer .section {
