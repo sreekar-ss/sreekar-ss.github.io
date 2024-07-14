@@ -1,9 +1,9 @@
 import React from "react";
 import InformationCard from "../components/InformationCard";
 import { Paper, Typography } from "@mui/material";
-import ddIcon from "../images/ddicon.png";
-import northeasternIcon from "../images/northeastern.png";
-import smartprixIcon from "../images/smartprix.png";
+import ddIcon from "../icons/ddicon.png";
+import northeasternIcon from "../icons/northeastern.png";
+import smartprixIcon from "../icons/smartprix.png";
 
 function Experience() {
   return (

@@ -1,7 +1,7 @@
 import { Paper, Typography } from "@mui/material";
 import React from "react";
 import InformationCard from "../components/InformationCard";
-import northeasternIcon from "../images/northeastern.png";
+import northeasternIcon from "../icons/northeastern.png";
 
 function Projects() {
   return (

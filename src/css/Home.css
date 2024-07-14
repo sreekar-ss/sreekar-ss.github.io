@@ -231,3 +231,21 @@ div.section
   img {
   max-width: 5em;
 }
+
+div.section .sectionContainer .imageContainer {
+  display: flex;
+  width: 80%;
+  align-content: center;
+}
+
+div.section .sectionContainer .imageContainer img {
+  cursor: pointer;
+}
+
+div.section .sectionContainer .imageContainer .imageTitle {
+  opacity: 0;
+}
+
+div.section .sectionContainer .imageContainer .imageTitle:hover {
+  opacity: 1;
+}

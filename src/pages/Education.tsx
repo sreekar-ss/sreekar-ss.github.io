@@ -1,8 +1,8 @@
 import { Paper, Typography } from "@mui/material";
 import React from "react";
 import InformationCard from "../components/InformationCard";
-import northeastenIcon from "../images/northeastern.png";
-import snuIcon from "../images/snu.png";
+import northeastenIcon from "../icons/northeastern.png";
+import snuIcon from "../icons/snu.png";
 
 function Education() {
   return (

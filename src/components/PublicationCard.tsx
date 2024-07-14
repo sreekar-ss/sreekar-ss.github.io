@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import React from "react";
-import ieeeIcon from "../images/ieee.png";
+import ieeeIcon from "../icons/ieee.png";
 
 export interface PublicationCardProps {
   title: string;

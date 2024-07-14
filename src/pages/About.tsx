@@ -1,6 +1,6 @@
 import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
-import photo from "../images/sreekar.jpeg";
+import photo from "../icons/sreekar.jpeg";
 
 function About() {
   return (
