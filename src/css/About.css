@@ -54,55 +54,6 @@ div.aboutSection .aboutText p {
   color: white;
 }
 
-@media screen and (max-width: 900px) {
-  div.homeContainer div.aboutSection > div.heroContent {
-    display: flex;
-    height: 50vh;
-    width: 50%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  div.aboutSection .imageContainer {
-    display: flex;
-    width: 15em;
-    justify-content: center;
-  }
-  div.aboutSection .imageContainer img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  div.aboutSection .aboutText {
-    width: 15em;
-  }
-
-  div.aboutSection .aboutText h3 {
-    font-size: x-large;
-    white-space: nowrap;
-    margin-top: 2em;
-    margin-bottom: 1em;
-    animation:
-      typing 3s steps(15, end),
-      blink-caret 0.5s step-end infinite;
-  }
-
-  div.aboutSection .aboutText p {
-    font-size: medium;
-    align-self: center;
-  }
-
-  div.homeContainer .section .scroll {
-    top: 8%;
-  }
-
-  div.homeContainer .quickLinks {
-    left: 80%;
-  }
-}
-
 /* The typing effect */
 @keyframes typing {
   from {
@@ -167,5 +118,50 @@ div.homeContainer .section .scroll {
   }
   40% {
     transform: translate(0);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  div.homeContainer div.aboutSection > div.heroContent {
+    display: flex;
+    height: 50vh;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  div.aboutSection .imageContainer {
+    display: flex;
+    width: 15em;
+    justify-content: center;
+  }
+  div.aboutSection .imageContainer img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  div.aboutSection .aboutText {
+    width: 15em;
+  }
+
+  div.aboutSection .aboutText h3 {
+    font-size: x-large;
+    white-space: nowrap;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    animation:
+      typing 3s steps(15, end),
+      blink-caret 0.5s step-end infinite;
+  }
+
+  div.aboutSection .aboutText p {
+    font-size: medium;
+    align-self: center;
+  }
+
+  div.homeContainer .section .scroll {
+    display: none;
   }
 }

@@ -295,4 +295,9 @@ div.section .sectionContainer .imageContainer .imageTitle:hover {
     column-count: 2 !important;
     column-gap: 0.5em !important;
   }
+
+  div.homeContainer .quickLinks {
+    left: 80%;
+    top: 55%;
+  }
 }
