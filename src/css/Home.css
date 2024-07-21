@@ -243,11 +243,6 @@ div.section .sectionContainer .imageContainer {
   align-content: center;
 }
 
-div.section .sectionContainer .imageContainer > ul {
-  column-count: 5;
-  column-gap: 2em;
-}
-
 div.section .sectionContainer .imageContainer img {
   cursor: pointer;
   border-radius: 1em;
@@ -297,7 +292,7 @@ div.section .sectionContainer .imageContainer .imageTitle:hover {
   }
 
   div.section .sectionContainer .imageContainer > ul {
-    column-count: 2;
-    column-gap: 1em;
+    column-count: 2 !important;
+    column-gap: 0.5em !important;
   }
 }
