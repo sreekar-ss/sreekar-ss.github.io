@@ -79,14 +79,14 @@ function Photography() {
           Photography
         </Typography>
         <Box className="imageContainer">
-          <ImageList variant="masonry" cols={5} gap={10}>
+          <ImageList variant="masonry">
             {imageData.map((item) => (
               <ImageListItem key={item.img}>
                 <img
                   srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                   src={`${item.img}?w=248&fit=crop&auto=format`}
                   alt={item.title}
-                  loading="eager"
+                  loading="lazy"
                 />
                 <ImageListItemBar title={item.title} className="imageTitle" />
               </ImageListItem>

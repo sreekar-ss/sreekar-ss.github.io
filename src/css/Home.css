@@ -1,8 +1,13 @@
 div.homeContainer {
   display: flex;
   width: 100%;
-  margin-top: 5em;
   flex-direction: column;
+}
+
+div.homeContainer .quickLinks {
+  position: fixed;
+  top: 70%;
+  left: 95%;
 }
 
 div.homeContainer .section {
@@ -159,7 +164,7 @@ div.section .informationCardContainer .informationCard .informationCardDetails {
   .githubButton {
   border-radius: 1.5em;
   margin-left: 2em;
-  background-color: var(--primary-color);
+  background-color: black;
 }
 
 .informationCardContainer
@@ -238,8 +243,14 @@ div.section .sectionContainer .imageContainer {
   align-content: center;
 }
 
+div.section .sectionContainer .imageContainer > ul {
+  column-count: 5;
+  column-gap: 2em;
+}
+
 div.section .sectionContainer .imageContainer img {
   cursor: pointer;
+  border-radius: 1em;
 }
 
 div.section .sectionContainer .imageContainer .imageTitle {
@@ -248,4 +259,45 @@ div.section .sectionContainer .imageContainer .imageTitle {
 
 div.section .sectionContainer .imageContainer .imageTitle:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 900px) {
+  div.section h3 {
+    font-size: x-large;
+  }
+
+  div.section h5 {
+    font-size: medium;
+  }
+
+  div.section h6 {
+    font-size: small;
+    white-space: nowrap;
+  }
+
+  div.section p {
+    font-size: x-small;
+  }
+
+  div.section .informationCardContainer div {
+    font-size: x-small;
+  }
+
+  div.section ul li {
+    font-size: x-small;
+  }
+
+  div.section .sectionContainer .publicationCard .publicationCardHeader span {
+    font-size: small;
+  }
+
+  div.section .sectionContainer .publicationCard .publicationCardContent {
+    font-size: x-small;
+    overflow-y: auto;
+  }
+
+  div.section .sectionContainer .imageContainer > ul {
+    column-count: 2;
+    column-gap: 1em;
+  }
 }

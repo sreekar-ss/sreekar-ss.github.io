@@ -4,6 +4,17 @@ div.homeContainer div.aboutSection {
   align-items: center;
   justify-content: space-evenly;
   margin-top: -2em;
+  flex-direction: column;
+}
+
+div.homeContainer div.aboutSection > div.heroContent {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  margin-top: 2em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 div.aboutSection .imageContainer {
@@ -32,6 +43,7 @@ div.aboutSection .aboutText h3 {
   font-family: monospace;
   color: white;
   padding-bottom: 0.5em;
+  align-self: center;
   animation:
     typing 2s steps(40, end),
     blink-caret 0.5s step-end infinite;
@@ -40,6 +52,55 @@ div.aboutSection .aboutText h3 {
 div.aboutSection .aboutText p {
   font-family: monospace;
   color: white;
+}
+
+@media screen and (max-width: 900px) {
+  div.homeContainer div.aboutSection > div.heroContent {
+    display: flex;
+    height: 50vh;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  div.aboutSection .imageContainer {
+    display: flex;
+    width: 15em;
+    justify-content: center;
+  }
+  div.aboutSection .imageContainer img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  div.aboutSection .aboutText {
+    width: 15em;
+  }
+
+  div.aboutSection .aboutText h3 {
+    font-size: x-large;
+    white-space: nowrap;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    animation:
+      typing 3s steps(15, end),
+      blink-caret 0.5s step-end infinite;
+  }
+
+  div.aboutSection .aboutText p {
+    font-size: medium;
+    align-self: center;
+  }
+
+  div.homeContainer .section .scroll {
+    top: 8%;
+  }
+
+  div.homeContainer .quickLinks {
+    left: 80%;
+  }
 }
 
 /* The typing effect */
@@ -60,5 +121,51 @@ div.aboutSection .aboutText p {
   }
   50% {
     border-color: orange;
+  }
+}
+
+div.homeContainer .section .scroll {
+  display: flex;
+  width: 3.5em;
+  height: 3.5em;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: relative;
+  animation: down 1.5s infinite;
+  -webkit-animation: down 1.5s infinite;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    width: 18px;
+    height: 18px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes down {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
+  }
+}
+
+@-webkit-keyframes down {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
   }
 }
