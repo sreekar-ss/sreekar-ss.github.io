@@ -1,4 +1,7 @@
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   ImageList,
   ImageListItem,
@@ -75,24 +78,33 @@ function Photography() {
   return (
     <div id="photography" className="section photographySection">
       <Paper className="photographyContainer sectionContainer">
-        <Typography variant="h3" className="sectionHeading">
-          Photography
-        </Typography>
-        <Box className="imageContainer">
-          <ImageList variant="masonry" cols={5} gap={10}>
-            {imageData.map((item) => (
-              <ImageListItem key={item.img}>
-                <img
-                  srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
-                  alt={item.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar title={item.title} className="imageTitle" />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Box>
+        <Accordion className="sectionAccordion" expanded={true}>
+          <AccordionSummary className="sectionHeader">
+            <Typography variant="h6" className="sectionHeading">
+              Photography
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails className="sectionAccordionDetails">
+            <Box className="imageContainer">
+              <ImageList variant="masonry" cols={5} gap={10}>
+                {imageData.map((item) => (
+                  <ImageListItem key={item.img}>
+                    <img
+                      srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      src={`${item.img}?w=248&fit=crop&auto=format`}
+                      alt={item.title}
+                      loading="lazy"
+                    />
+                    <ImageListItemBar
+                      title={item.title}
+                      className="imageTitle"
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
+            </Box>
+          </AccordionDetails>
+        </Accordion>
       </Paper>
     </div>
   );

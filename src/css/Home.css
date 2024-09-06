@@ -6,7 +6,7 @@ div.homeContainer {
 
 div.homeContainer .quickLinks {
   position: fixed;
-  top: 70%;
+  top: 65%;
   left: 95%;
 }
 
@@ -31,6 +31,48 @@ div.homeContainer .section .sectionContainer {
   background-color: #122f5947;
   margin-top: 4em;
   backdrop-filter: blur(10px);
+}
+
+div.homeContainer .section .sectionContainer .sectionAccordion {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #122f5947;
+  opacity: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: normal;
+  overflow: auto;
+}
+
+div.homeContainer .section .sectionContainer .sectionAccordion .sectionHeader {
+  background-color: var(--primary-color);
+  box-shadow:
+    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
+    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
+    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
+  border-radius: 0.5em;
+}
+
+div.homeContainer
+  .section
+  .sectionContainer
+  .sectionAccordion
+  .sectionHeader
+  h6 {
+  white-space: wrap;
+}
+
+div.homeContainer
+  .section
+  .sectionContainer
+  .sectionAccordion
+  .sectionAccordionDetails {
+  display: flex;
+  max-height: 36em;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
 }
 
 div.homeContainer .section .sectionContainer .sectionHeading {
@@ -196,6 +238,7 @@ div.section .sectionContainer .publicationCard .publicationCardHeader span {
 div.section .sectionContainer .publicationCard .publicationCardContent {
   background-color: #525252;
   padding: 1.5em;
+  overflow-y: auto;
 }
 
 div.section
@@ -267,7 +310,7 @@ div.section .sectionContainer .imageContainer .imageTitle:hover {
 
   div.section h6 {
     font-size: small;
-    white-space: nowrap;
+    /* white-space: nowrap; */
   }
 
   div.section p {

@@ -51,7 +51,7 @@ function InformationCard({
           className={`${expandCard ? "active informationCardTitle" : "informationCardTitle"}`}
           expandIcon={<ExpandMoreIcon />}
         >
-          <Typography variant="h5">{title}</Typography>
+          <Typography variant="h6">{title}</Typography>
         </AccordionSummary>
         <AccordionDetails className="informationCardDetails">
           <div className="cardHighlights">
