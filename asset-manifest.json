@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b811b92c.css",
-    "main.js": "/static/js/main.dbaa1b87.js",
+    "main.css": "/static/css/main.521f6c1b.css",
+    "main.js": "/static/js/main.968bdeb2.js",
     "static/js/453.aa7fae89.chunk.js": "/static/js/453.aa7fae89.chunk.js",
     "static/media/milkyway.jpeg": "/static/media/milkyway.c63674b97d2ac51404ff.jpeg",
     "static/media/lighthouse.jpeg": "/static/media/lighthouse.4a0673926a9ea9945645.jpeg",
@@ -15,16 +15,16 @@
     "static/media/bridge.jpeg": "/static/media/bridge.ebbaa6f59a4a0374a7c0.jpeg",
     "static/media/fog.jpeg": "/static/media/fog.320d1b1fc4e36eb46717.jpeg",
     "static/media/dusk.jpeg": "/static/media/dusk.c89b6dfadef60189a900.jpeg",
-    "static/media/Sreekar-Resume.pdf": "/static/media/Sreekar-Resume.f590903911f2b2b8cd1a.pdf",
+    "static/media/Sreekar-Resume.pdf": "/static/media/Sreekar-Resume.03952cdabc47210ea337.pdf",
     "static/media/sreekar.jpeg": "/static/media/sreekar.fe10d04044681a3dd8c0.jpeg",
     "static/media/ieee.png": "/static/media/ieee.926439b2d98a94f16cd7.png",
     "index.html": "/index.html",
-    "main.b811b92c.css.map": "/static/css/main.b811b92c.css.map",
-    "main.dbaa1b87.js.map": "/static/js/main.dbaa1b87.js.map",
+    "main.521f6c1b.css.map": "/static/css/main.521f6c1b.css.map",
+    "main.968bdeb2.js.map": "/static/js/main.968bdeb2.js.map",
     "453.aa7fae89.chunk.js.map": "/static/js/453.aa7fae89.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b811b92c.css",
-    "static/js/main.dbaa1b87.js"
+    "static/css/main.521f6c1b.css",
+    "static/js/main.968bdeb2.js"
   ]
 }
