@@ -28,9 +28,9 @@ div.homeContainer .section .sectionContainer {
   overflow: auto;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #122f5947;
+  background-color: rgba(19, 26, 42, 0.6);
   margin-top: 4em;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px) saturate(120%);
 }
 
 div.homeContainer .section .sectionContainer .sectionAccordion {
@@ -46,7 +46,7 @@ div.homeContainer .section .sectionContainer .sectionAccordion {
 }
 
 div.homeContainer .section .sectionContainer .sectionAccordion .sectionHeader {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   box-shadow:
     0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
     0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
@@ -104,7 +104,7 @@ div.section .informationCardContainer .informationCard {
 
 div.section .informationCardContainer .informationCard .informationCardTitle {
   display: flex;
-  background-color: #1b1b1b;
+  background-color: var(--secondary-color);
   color: white;
   box-shadow:
     0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
@@ -132,7 +132,7 @@ div.section
 div.section .informationCardContainer .informationCard .informationCardDetails {
   display: flex;
   color: white;
-  background-color: #1b1b1b;
+  background-color: rgba(19, 26, 42, 0.9);
   opacity: 0.8;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
@@ -200,20 +200,14 @@ div.section .informationCardContainer .informationCard .informationCardDetails {
   font-weight: 600;
 }
 
-.informationCardContainer
-  .informationCard
-  .informationCardDetails
-  .githubButton {
+.informationCardContainer .informationCard .informationCardDetails .githubButton {
   border-radius: 1.5em;
   margin-left: 2em;
-  background-color: black;
+  background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
 }
 
-.informationCardContainer
-  .informationCard
-  .informationCardDetails
-  .githubButton:hover {
-  background-color: var(--secondary-color);
+.informationCardContainer .informationCard .informationCardDetails .githubButton:hover {
+  filter: brightness(1.1);
 }
 
 div.section .sectionContainer .publicationCard {
@@ -222,7 +216,7 @@ div.section .sectionContainer .publicationCard {
   margin: 1em;
   width: 80%;
   flex-direction: column;
-  background-color: #1b1b1b;
+  background-color: var(--secondary-color);
   color: white;
   border-radius: 1em;
   box-shadow:

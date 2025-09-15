@@ -2,8 +2,10 @@
 @import "css/About.css";
 
 :root {
-  --primary-color: #1c1f25;
-  --secondary-color: rgba(18, 47, 89, 1);
+  --primary-color: #0b1020; /* header bg */
+  --secondary-color: #131a2a; /* cards bg */
+  --accent-color: #6ee7f2; /* cyan */
+  --accent-secondary: #a78bfa; /* purple */
 }
 
 nav.headerBar {
@@ -39,10 +41,10 @@ nav.headerBar {
 }
 
 .headerBar .headerButtons .headerNavButton:hover {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   opacity: 0.6;
 }
 
 .headerBar .headerButtons .active .headerNavButton {
-  background-color: var(--secondary-color);
+  background-color: var(--accent-secondary);
 }
