@@ -1,85 +1,238 @@
-import React from "react";
-import InformationCard from "../components/InformationCard";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+  Box,
   Paper,
   Typography,
+  Chip,
+  Stack,
+  Avatar,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
 import ddIcon from "../icons/ddicon.png";
-import northeasternIcon from "../icons/northeastern.png";
+import cvsIcon from "../icons/cvs.png";
 import smartprixIcon from "../icons/smartprix.png";
 
+type Job = {
+  title: string;
+  organization: string;
+  location: string;
+  period: string;
+  icon: string;
+  bullets?: string[];
+  tags?: string[];
+};
+
+const JOBS: Job[] = [
+  {
+    title: "Senior Software Engineer",
+    organization: "Branding Brand Inc.",
+    location: "Boston, MA",
+    period: "Jan 2025 - Present",
+    icon: cvsIcon,
+    bullets: [
+      "Contributing to the modernization of CVS Health's legacy Java-based pharmacy application—used across 10,000 stores nationwide—by helping rebuild core workflows in React, enhancing usability and performance.",
+      "Collaborated with a team of senior engineers to architect scalable solutions, reducing component re-renders and improving workflow efficiency by ~30% in high-traffic areas of the app.",
+      "Partnered with cross-functional teams (UX, product, backend) to deliver features impacting millions of prescriptions processed daily, while adapting to shifting requirements under tight deadlines.",
+      "Mentored 2 - 3 junior developers weekly, providing guidance on architecture, code quality, and best practices",
+      "Spearheaded reusable component patterns and accessibility improvements, directly reducing duplicate UI logic by 40% across prescriber flows.",
+    ],
+    tags: ["React", "UX", "Accessibility", "Mentorship", "Scalability"],
+  },
+  {
+    title: "Software Engineer II",
+    organization: "Ductus Inc.",
+    location: "Maynard, MA",
+    period: "June 2021 - August 2024",
+    icon: ddIcon,
+    bullets: [
+      "Delivered 10+ projects in React and Angular for a client to help with network automation",
+      "Collaborated with cross-functional teams to plan and design applications, providing frontend insights and translating requirements into Figma wireframes",
+      "Advocated for and integrated the UX design lifecycle, ensuring user-friendly applications and optimizing development time through better requirements gathering, user flows, and usability testing",
+      "Spearheaded discussions to determine frontend architecture, select optimal patterns and libraries for efficient development, and improve testing standards",
+      "Advocated for better testing practices and trained new developers in utilizing frameworks such as Testing Library, Enzyme, Jest",
+      "Trained and onboarded new team members, integrating them into projects and sharing knowledge through code reviews and pair programming to enhance code quality",
+      "Proactively updated our development lifecycle with tools like Swagger mock server, GitHub Copilot, and Figma developer mode, reducing development time, and trained teammates on their use",
+    ],
+    tags: ["React", "Angular", "Testing", "UX"],
+  },
+  {
+    title: "Software Engineer Co-Op",
+    organization: "Ductus Inc.",
+    location: "Maynard, MA",
+    period: "May 2020 - December 2020",
+    icon: ddIcon,
+    bullets: [
+      "Built an internal CLI tool aimed at automating generation of CloudFormation templates utilized for deploying AWS cloud resources efficiently",
+      "Engaged in feature development with frontend team on multiple Angular projects, contributing to the creation of various components with Bootstrap for enhanced user experience",
+      "Developed reusable web components in VanillaJS tailored to meet client requirements, ensuring compatibility and versatility across different application frameworks",
+    ],
+    tags: ["AWS", "CLI", "Angular"],
+  },
+  {
+    title: "Technical Writer",
+    organization: "Smartprix Pvt. Ltd",
+    location: "Noida, Uttar Pradesh",
+    period: "Sep 2018 - Jan 2019",
+    icon: smartprixIcon,
+    bullets: [
+      "Covered the latest happenings and trends in the Tech Industry through news articles",
+      "Provided detailed reviews about the latest Tech products to help users make a purchase decision",
+      `Links to a few blogs: \n 1. "https://www.smartprix.com/bytes/what-is-5g-here-is-what-to-expect-from-the-next-decade-of-wireless-communication/"> \n 2. https://www.smartprix.com/bytes/wifi-6-everything-you-should-know/ \n 3. https://www.smartprix.com/bytes/top-10-noise-cancelling-wireless-headphones-available-in-the-market/ \n`,
+    ],
+    tags: ["Writing", "Reviews", "Research"],
+  },
+];
+
 function Experience() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const scrollToIndex = (idx: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+    const targetTop = idx * window.innerHeight;
+    container.scrollTo({ top: targetTop, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const onScroll = () => {
+      const idx = Math.round(container.scrollTop / window.innerHeight);
+      setCurrentIndex(Math.min(Math.max(idx, 0), JOBS.length - 1));
+    };
+    container.addEventListener("scroll", onScroll, { passive: true });
+    return () => container.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const getYear = (period: string) => {
+    const match = period.match(/\b(\d{4})\b/);
+    return match ? match[1] : period;
+  };
+
   return (
     <div id="experience" className="section experienceSection">
-      <Paper className="experienceContainer sectionContainer" elevation={8}>
-        <Accordion className="sectionAccordion" expanded={true}>
-          <AccordionSummary className="sectionHeader">
-            <Typography variant="h6" className="sectionHeading">
-              Work Experience
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails className="sectionAccordionDetails">
-            <InformationCard
-              title="Software Engineer II"
-              organization="Ductus Inc."
-              location="Maynard, MA"
-              duration="June 2021 - Present"
-              bulletPoints={{
-                details: [
-                  "Delivered 10+ projects in React and Angular for a client to help with network automation",
-                  "Collaborated with cross-functional teams to plan and design applications, providing frontend insights and translating requirements into Figma wireframes",
-                  "Advocated for and integrated the UX design lifecycle, ensuring user-friendly applications and optimizing development time through better requirements gathering, user flows, and usability testing",
-                  "Spearheaded discussions to determine frontend architecture, select optimal patterns and libraries for efficient development, and improve testing standards",
-                  "Advocated for better testing practices and trained new developers in utilizing frameworks such as Testing Library, Enzyme, Jest",
-                  "Trained and onboarded new team members, integrating them into projects and sharing knowledge through code reviews and pair programming to enhance code quality",
-                  "Proactively updated our development lifecycle with tools like Swagger mock server, GitHub Copilot, and Figma developer mode, reducing development time, and trained teammates on their use",
-                ],
+      <div className="experienceFull" ref={containerRef}>
+        {/* Progress dots with active year badge */}
+        <div className="experienceDots">
+          {JOBS.map((job, i) => (
+            <div key={i} className="dotRow">
+              {i === currentIndex ? (
+                <button className="yearPill" onClick={() => scrollToIndex(i)}>
+                  <span className="yearText">{getYear(job.period)}</span>
+                </button>
+              ) : (
+                <Tooltip title={job.title} placement="left">
+                  <IconButton
+                    size="small"
+                    onClick={() => scrollToIndex(i)}
+                    className="dot"
+                  >
+                    <CircleIcon fontSize="inherit" />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {JOBS.map((job, index) => (
+          <section className="experienceSlide" key={`${job.title}-${index}`}>
+            <Paper
+              elevation={8}
+              className="experienceSlideCard"
+              sx={{
+                opacity: currentIndex === index ? 1 : 0.4,
+                transform:
+                  currentIndex === index
+                    ? "translateY(0px) scale(1)"
+                    : index < currentIndex
+                      ? "translateY(-20px) scale(0.95)"
+                      : "translateY(20px) scale(0.97)",
+                transition: "opacity 600ms ease, transform 600ms ease",
               }}
-              orgIcon={ddIcon}
-              expanded={true}
-            />
-            <InformationCard
-              title="Software Engineer Co-Op"
-              organization="Ductus Inc."
-              location="Maynard, MA"
-              duration="May 2020 - December 2020"
-              bulletPoints={{
-                details: [
-                  "Built an internal CLI tool aimed at automating generation of CloudFormation templates utilized for deploying AWS cloud resources efficiently",
-                  "Engaged in feature development with frontend team on multiple Angular projects, contributing to the creation of various components with Bootstrap for enhanced user experience",
-                  "Developed reusable web components in VanillaJS tailored to meet client requirements, ensuring compatibility and versatility across different application frameworks",
-                ],
-              }}
-              orgIcon={ddIcon}
-              expanded={false}
-            />
-            <InformationCard
-              title="Graduate Student Ambassador"
-              organization="Northeastern University"
-              location="Boston, MA"
-              duration="Jan 2020 - May 2021"
-              orgIcon={northeasternIcon}
-            />
-            <InformationCard
-              title="Technical Writer"
-              organization="Smartprix Pvt. Ltd"
-              location="Noida, Uttar Pradesh"
-              duration="Sep 2018 - Jan 2019"
-              bulletPoints={{
-                details: [
-                  "Covered the latest happenings and trends in the Tech Industry through news articles",
-                  "Provided detailed reviews about the latest Tech products to help users make a purchase decision",
-                  `Links to a few blogs: \n 1. "https://www.smartprix.com/bytes/what-is-5g-here-is-what-to-expect-from-the-next-decade-of-wireless-communication/"> \n 2. https://www.smartprix.com/bytes/wifi-6-everything-you-should-know/ \n 3. https://www.smartprix.com/bytes/top-10-noise-cancelling-wireless-headphones-available-in-the-market/ \n`,
-                ],
-              }}
-              orgIcon={smartprixIcon}
-            />
-          </AccordionDetails>
-        </Accordion>
-      </Paper>
+            >
+              <Stack
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                sx={{ mb: 1 }}
+              >
+                <Avatar
+                  src={job.icon}
+                  alt={job.organization}
+                  sx={{
+                    width: 48,
+                    height: 48,
+                    border: "1px solid rgba(255,255,255,0.2)",
+                  }}
+                />
+                <Box>
+                  <Typography variant="h4" sx={{ fontWeight: 800 }}>
+                    {job.title}
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary">
+                    {job.organization}
+                  </Typography>
+                </Box>
+              </Stack>
+              <Typography
+                variant="subtitle2"
+                color="text.secondary"
+                sx={{
+                  mb: 2,
+                  opacity: currentIndex === index ? 1 : 0,
+                  transform:
+                    currentIndex === index
+                      ? "translateY(0px)"
+                      : "translateY(8px)",
+                  transition: "opacity 400ms ease, transform 400ms ease",
+                }}
+              >
+                {job.location} • {job.period}
+              </Typography>
+              {job.bullets && (
+                <ul
+                  className={
+                    currentIndex === index
+                      ? "experienceBullets visible"
+                      : "experienceBullets"
+                  }
+                >
+                  {job.bullets.map((b, i) => (
+                    <li key={i}>
+                      <Typography variant="body1">{b}</Typography>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {job.tags && job.tags.length ? (
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{
+                    mt: 2,
+                    flexWrap: "wrap",
+                    opacity: currentIndex === index ? 1 : 0,
+                    transform:
+                      currentIndex === index
+                        ? "translateY(0px)"
+                        : "translateY(8px)",
+                    transition:
+                      "opacity 450ms ease 100ms, transform 450ms ease 100ms",
+                  }}
+                >
+                  {job.tags.map((t) => (
+                    <Chip key={t} label={t} size="small" />
+                  ))}
+                </Stack>
+              ) : null}
+            </Paper>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }
