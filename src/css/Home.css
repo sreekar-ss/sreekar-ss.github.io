@@ -19,6 +19,139 @@ div.homeContainer .section {
   justify-content: center;
 }
 
+/* Experience full-viewport slides */
+div.experienceSection .experienceFull {
+  display: block;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior: contain;
+}
+
+div.experienceSection .experienceFull .experienceSlide {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  padding: 2em 0;
+}
+
+div.experienceSection .experienceFull .experienceSlide .experienceSlideCard {
+  width: min(1100px, 92%);
+  height: 80vh;
+  background-color: var(--secondary-color);
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow:
+    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
+    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
+    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
+}
+
+div.experienceSection
+  .experienceFull
+  .experienceSlide
+  .experienceSlideCard
+  .experienceBullets {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+/* Bullets fade-in */
+div.experienceSection
+  .experienceFull
+  .experienceSlide
+  .experienceSlideCard
+  .experienceBullets {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+
+div.experienceSection
+  .experienceFull
+  .experienceSlide
+  .experienceSlideCard
+  .experienceBullets.visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/* Sticky year marker */
+/* Progress dots */
+div.experienceSection .experienceDots {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 2em;
+  right: 1.5em;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  align-items: flex-end;
+  z-index: 6;
+}
+
+div.experienceSection .experienceDots .dot {
+  color: rgba(255, 255, 255, 0.4);
+  transition:
+    transform 200ms ease,
+    color 200ms ease;
+}
+
+div.experienceSection .experienceDots .dot:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+div.experienceSection .experienceDots .dotRow {
+  display: flex;
+  align-items: center;
+}
+
+div.experienceSection .experienceDots .yearPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  min-width: 60px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    45deg,
+    rgba(110, 231, 242, 0.15),
+    rgba(167, 139, 250, 0.15)
+  );
+  color: white;
+  cursor: pointer;
+  transition:
+    filter 200ms ease,
+    transform 200ms ease;
+}
+
+div.experienceSection .experienceDots .yearPill:hover {
+  filter: brightness(1.2);
+  transform: translateX(-2px);
+}
+
+div.experienceSection .experienceDots .yearText {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 900px) {
+  div.experienceSection .experienceFull .experienceSlide .experienceSlideCard {
+    height: auto;
+    min-height: 75vh;
+  }
+}
+
 div.homeContainer .section .sectionContainer {
   display: flex;
   height: 87%;
@@ -28,9 +161,9 @@ div.homeContainer .section .sectionContainer {
   overflow: auto;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #122f5947;
+  background-color: rgba(19, 26, 42, 0.6);
   margin-top: 4em;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px) saturate(120%);
 }
 
 div.homeContainer .section .sectionContainer .sectionAccordion {
@@ -46,7 +179,7 @@ div.homeContainer .section .sectionContainer .sectionAccordion {
 }
 
 div.homeContainer .section .sectionContainer .sectionAccordion .sectionHeader {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   box-shadow:
     0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
     0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
@@ -104,7 +237,7 @@ div.section .informationCardContainer .informationCard {
 
 div.section .informationCardContainer .informationCard .informationCardTitle {
   display: flex;
-  background-color: #1b1b1b;
+  background-color: var(--secondary-color);
   color: white;
   box-shadow:
     0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
@@ -132,7 +265,7 @@ div.section
 div.section .informationCardContainer .informationCard .informationCardDetails {
   display: flex;
   color: white;
-  background-color: #1b1b1b;
+  background-color: rgba(19, 26, 42, 0.9);
   opacity: 0.8;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
@@ -206,14 +339,18 @@ div.section .informationCardContainer .informationCard .informationCardDetails {
   .githubButton {
   border-radius: 1.5em;
   margin-left: 2em;
-  background-color: black;
+  background: linear-gradient(
+    45deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
 }
 
 .informationCardContainer
   .informationCard
   .informationCardDetails
   .githubButton:hover {
-  background-color: var(--secondary-color);
+  filter: brightness(1.1);
 }
 
 div.section .sectionContainer .publicationCard {
@@ -222,7 +359,7 @@ div.section .sectionContainer .publicationCard {
   margin: 1em;
   width: 80%;
   flex-direction: column;
-  background-color: #1b1b1b;
+  background-color: var(--secondary-color);
   color: white;
   border-radius: 1em;
   box-shadow:

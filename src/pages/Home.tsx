@@ -5,6 +5,7 @@ import Education from "./Education";
 import Projects from "./Projects";
 import Publications from "./Publications";
 import Photography from "./Photography";
+import Contact from "./Contact";
 import { SpeedDial, SpeedDialAction } from "@mui/material";
 import ContactIcon from "@mui/icons-material/ContactPage";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -20,6 +21,7 @@ function Home() {
       <Projects />
       <Publications />
       <Photography />
+      <Contact />
       <SpeedDial
         ariaLabel="Quick Links"
         className="quickLinks"
