@@ -52,6 +52,20 @@ div.aboutSection .aboutText h3 {
 div.aboutSection .aboutText p {
   font-family: monospace;
   color: white;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+div.aboutSection .aboutText p .highlight {
+  background: linear-gradient(
+    45deg,
+    rgba(110, 231, 242, 0.2),
+    rgba(167, 139, 251, 0.2)
+  );
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--accent-color);
 }
 
 /* The typing effect */

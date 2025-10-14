@@ -12,6 +12,7 @@ import {
 import CircleIcon from "@mui/icons-material/Circle";
 import ddIcon from "../icons/ddicon.png";
 import cvsIcon from "../icons/cvs.png";
+import northeasternIcon from "../icons/northeastern.png";
 import smartprixIcon from "../icons/smartprix.png";
 
 type Job = {
@@ -87,7 +88,9 @@ const JOBS: Job[] = [
 
 function Experience() {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isInView, setIsInView] = useState(false);
 
   const scrollToIndex = (idx: number) => {
     const container = containerRef.current;
@@ -97,15 +100,79 @@ function Experience() {
   };
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.intersectionRatio >= 0.95);
+      },
+      { threshold: [0, 0.95, 1] }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    
     const onScroll = () => {
       const idx = Math.round(container.scrollTop / window.innerHeight);
       setCurrentIndex(Math.min(Math.max(idx, 0), JOBS.length - 1));
     };
+    
+    const onWheel = (e: WheelEvent) => {
+      // If scrolling down at the last slide
+      if (currentIndex === JOBS.length - 1 && e.deltaY > 0) {
+        const isAtBottom = 
+          container.scrollHeight - container.scrollTop <= container.clientHeight + 10;
+        
+        if (isAtBottom) {
+          // Don't prevent default - let it scroll the main page
+          // Disable the experience scroll container
+          container.style.overflowY = 'hidden';
+          setIsInView(false);
+          
+          // Re-enable after the scroll completes
+          setTimeout(() => {
+            const nextSection = sectionRef.current?.nextElementSibling;
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 50);
+        }
+      }
+      
+      // If scrolling up at the first slide
+      if (currentIndex === 0 && e.deltaY < 0) {
+        const isAtTop = container.scrollTop <= 10;
+        
+        if (isAtTop) {
+          // Don't prevent default - let it scroll the main page
+          // Disable the experience scroll container
+          container.style.overflowY = 'hidden';
+          setIsInView(false);
+          
+          // Re-enable after the scroll completes
+          setTimeout(() => {
+            const prevSection = sectionRef.current?.previousElementSibling;
+            if (prevSection) {
+              prevSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 50);
+        }
+      }
+    };
+    
     container.addEventListener("scroll", onScroll, { passive: true });
-    return () => container.removeEventListener("scroll", onScroll);
-  }, []);
+    container.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      container.removeEventListener("scroll", onScroll);
+      container.removeEventListener("wheel", onWheel);
+    };
+  }, [currentIndex]);
 
   const getYear = (period: string) => {
     const match = period.match(/\b(\d{4})\b/);
@@ -113,8 +180,15 @@ function Experience() {
   };
 
   return (
-    <div id="experience" className="section experienceSection">
-      <div className="experienceFull" ref={containerRef}>
+    <div id="experience" className="section experienceSection" ref={sectionRef}>
+      <div 
+        className="experienceFull" 
+        ref={containerRef}
+        style={{
+          overflowY: isInView ? 'scroll' : 'hidden',
+          pointerEvents: isInView ? 'auto' : 'none'
+        }}
+      >
         {/* Progress dots with active year badge */}
         <div className="experienceDots">
           {JOBS.map((job, i) => (
@@ -232,6 +306,11 @@ function Experience() {
             </Paper>
           </section>
         ))}
+        {/* Buffer section to allow scrolling out */}
+        <section
+          className="experienceSlide"
+          style={{ height: "10vh", scrollSnapAlign: "end" }}
+        />
       </div>
     </div>
   );
