@@ -1,0 +1,140 @@
+/* Experience page styles */
+
+.experienceDots {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.5em;
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  align-items: flex-end;
+  z-index: 6;
+}
+
+.experienceDots .dot {
+  color: rgba(255, 255, 255, 0.4);
+  transition:
+    transform 200ms ease,
+    color 200ms ease;
+}
+
+.experienceDots .dot:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+.experienceDots .dotRow {
+  display: flex;
+  align-items: center;
+}
+
+.experienceDots .yearPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  min-width: 60px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    45deg,
+    rgba(110, 231, 242, 0.15),
+    rgba(167, 139, 250, 0.15)
+  );
+  color: white;
+  cursor: pointer;
+  transition:
+    filter 200ms ease,
+    transform 200ms ease;
+}
+
+.experienceDots .yearPill:hover {
+  filter: brightness(1.2);
+  transform: translateX(-2px);
+}
+
+.experienceDots .yearText {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+/* Experience card animations */
+.experienceSlideCard {
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.experienceSlideCard.active {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+}
+
+.experienceSlideCard.previous {
+  opacity: 0.4;
+  transform: translateY(-20px) scale(0.95);
+}
+
+.experienceSlideCard.next {
+  opacity: 0.4;
+  transform: translateY(20px) scale(0.97);
+}
+
+.experienceSlideCard .experienceHeader {
+  margin-bottom: 1em;
+}
+
+.experienceSlideCard .experienceAvatar {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.experienceSlideCard .experienceTitle {
+  font-weight: 800;
+}
+
+.experienceSlideCard .experienceLocation {
+  margin-bottom: 2em;
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+
+.experienceSlideCard .experienceLocation.visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.experienceSlideCard .experienceLocation.hidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.experienceSlideCard .experienceTags {
+  margin-top: 2em;
+  flex-wrap: wrap;
+  transition:
+    opacity 450ms ease 100ms,
+    transform 450ms ease 100ms;
+}
+
+.experienceSlideCard .experienceTags.visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.experienceSlideCard .experienceTags.hidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media screen and (max-width: 900px) {
+  .experienceDots {
+    right: 1em;
+    margin-right: 1em;
+  }
+}

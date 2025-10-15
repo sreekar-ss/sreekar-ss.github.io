@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Box, Paper, Typography, Chip, Stack, Button, Grid, Collapse, IconButton } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Typography,
+  Chip,
+  Stack,
+  Button,
+  Grid,
+  Collapse,
+  IconButton,
+} from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -39,8 +49,18 @@ const PROJECTS: Project[] = [
       "MQTT protocol is used on all Gateways to listen for actuation and forward the necessary commands to the Devices. SMTP is used to send regular updates to the users",
       "Concepts: Raspberry Pi, Python, Java, Sensors, Actuators, RedisDB, MQTT, CoAP, I2C, SMTP, Ubidots",
     ],
-    tech: ["Python", "Java", "Raspberry Pi", "MQTT", "CoAP", "IoT", "RedisDB", "Ubidots"],
-    githubLink: "https://bitbucket.org/sreekar_ss/iot-device/src/master/apps/project/",
+    tech: [
+      "Python",
+      "Java",
+      "Raspberry Pi",
+      "MQTT",
+      "CoAP",
+      "IoT",
+      "RedisDB",
+      "Ubidots",
+    ],
+    githubLink:
+      "https://bitbucket.org/sreekar_ss/iot-device/src/master/apps/project/",
   },
   {
     title: "Web Application for a Learning Management System",
@@ -53,7 +73,17 @@ const PROJECTS: Project[] = [
       "On the Student side of the application, Angular is used to render UI dynamically. Node.js and Express are used for REST controllers and services for server data access. MongoDB is used as the NoSQL database. Mongoose is used for the JavaScript data access layer",
       "Concepts: React, Redux, Spring, Node.js, Express, REST, Angular, MySQL, MongoDB, Mongoose, Heroku, Bootstrap",
     ],
-    tech: ["React", "Redux", "Angular", "Node.js", "Spring Boot", "MySQL", "MongoDB", "Heroku", "Bootstrap"],
+    tech: [
+      "React",
+      "Redux",
+      "Angular",
+      "Node.js",
+      "Spring Boot",
+      "MySQL",
+      "MongoDB",
+      "Heroku",
+      "Bootstrap",
+    ],
     githubLink: "https://github.com/sreekar-ss",
   },
   {
@@ -81,59 +111,49 @@ const PROJECTS: Project[] = [
       "RSTP and HSRP were implemented to add redundancy and increase fault tolerance",
       "Concepts: TCP/IP, OSPF, HSRP, Frame Relay, DHCP, RSTP, VLAN, ARP, Access Lists",
     ],
-    tech: ["Cisco", "TCP/IP", "OSPF", "HSRP", "VLAN", "DHCP", "Frame Relay", "RSTP", "ARP"],
+    tech: [
+      "Cisco",
+      "TCP/IP",
+      "OSPF",
+      "HSRP",
+      "VLAN",
+      "DHCP",
+      "Frame Relay",
+      "RSTP",
+      "ARP",
+    ],
   },
 ];
 
-const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+const ProjectCard: React.FC<{ project: Project; index: number }> = ({
+  project,
+  index,
+}) => {
   const [expanded, setExpanded] = useState(index === 0);
 
   return (
-    <Grid item xs={12} md={6} sx={{ display: "flex" }}>
-      <Paper
-        elevation={4}
-        sx={{
-          width: "100%",
-          backgroundColor: "var(--secondary-color)",
-          borderRadius: "12px",
-          overflow: "hidden",
-          transition: "transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease",
-          border: "1px solid rgba(255,255,255,0.08)",
-          "&:hover": {
-            transform: "translateY(-4px)",
-            boxShadow: "0 12px 32px rgba(110, 231, 242, 0.15)",
-            borderColor: "rgba(110, 231, 242, 0.3)",
-          },
-        }}
-      >
+    <Grid item xs={12} md={6} className="projectGridItem">
+      <Paper elevation={4} className="projectCard">
         {/* Card Header - Always Visible */}
         <Box
-          sx={{
-            p: 2.5,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            background: expanded ? "rgba(110, 231, 242, 0.05)" : "transparent",
-            borderBottom: expanded ? "1px solid rgba(255,255,255,0.08)" : "none",
-          }}
+          className={`projectCardHeader ${expanded ? "expanded" : ""}`}
           onClick={() => setExpanded(!expanded)}
         >
-          <Box sx={{ flex: 1 }}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
+          <Box className="projectCardInfo">
+            <Typography variant="h6" className="projectCardTitle">
               {project.title}
             </Typography>
-            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              className="projectCardMeta"
+            >
               {project.organization} • {project.period}
             </Typography>
           </Box>
           <IconButton
             size="small"
-            sx={{
-              transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 300ms ease",
-              color: "var(--accent-color)",
-            }}
+            className={`projectExpandIcon ${expanded ? "expanded" : ""}`}
           >
             <ExpandMoreIcon />
           </IconButton>
@@ -141,32 +161,26 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
         {/* Tech Stack - Collapses when expanded */}
         <Collapse in={!expanded} timeout={300}>
-          <Box sx={{ px: 2.5, pb: 2 }}>
-            <Stack direction="row" spacing={0.5} sx={{ flexWrap: "wrap" }}>
+          <Box className="projectPreviewTech">
+            <Stack
+              direction="row"
+              spacing={0.5}
+              className="projectPreviewTechStack"
+            >
               {project.tech.slice(0, 4).map((t) => (
                 <Chip
                   key={t}
                   label={t}
                   size="small"
-                  sx={{
-                    mb: 0.5,
-                    backgroundColor: "rgba(110, 231, 242, 0.1)",
-                    color: "var(--accent-color)",
-                    border: "1px solid rgba(110, 231, 242, 0.25)",
-                    fontSize: "0.75rem",
-                  }}
+                  className="projectTechChip"
                 />
               ))}
               {project.tech.length > 4 && (
                 <Chip
                   label={`+${project.tech.length - 4} more`}
                   size="small"
-                  sx={{
-                    mb: 0.5,
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    color: "text.secondary",
-                    fontSize: "0.75rem",
-                  }}
+                  className="projectTechChipMore"
+                  color="default"
                 />
               )}
             </Stack>
@@ -175,37 +189,38 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
         {/* Expandable Details */}
         <Collapse in={expanded} timeout={300}>
-          <Box sx={{ px: 2.5, pb: 2.5 }}>
+          <Box className="projectExpandedContent">
             {/* Full Details */}
-            <Box sx={{ mb: 2 }}>
-              <ul style={{ margin: 0, paddingLeft: "1.2em" }}>
+            <Box className="projectDetailsList">
+              <ul>
                 {project.details.map((detail, i) => (
                   <li key={i}>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>
-                      {detail}
-                    </Typography>
+                    <Typography variant="body2">{detail}</Typography>
                   </li>
                 ))}
               </ul>
             </Box>
 
             {/* All Tech Stack - Swooshes to bottom */}
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 700, display: "block", mb: 1 }}>
+            <Box className="projectFullTech">
+              <Typography
+                variant="overline"
+                color="text.secondary"
+                className="projectFullTechLabel"
+              >
                 Technologies
               </Typography>
-              <Stack direction="row" spacing={0.5} sx={{ flexWrap: "wrap" }}>
+              <Stack
+                direction="row"
+                spacing={0.5}
+                className="projectFullTechStack"
+              >
                 {project.tech.map((t) => (
                   <Chip
                     key={t}
                     label={t}
                     size="small"
-                    sx={{
-                      mb: 0.5,
-                      backgroundColor: "rgba(110, 231, 242, 0.1)",
-                      color: "var(--accent-color)",
-                      border: "1px solid rgba(110, 231, 242, 0.3)",
-                    }}
+                    className="projectFullTechChip"
                   />
                 ))}
               </Stack>
@@ -220,15 +235,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
                 target="_blank"
                 rel="noopener noreferrer"
                 fullWidth
-                sx={{
-                  background: "linear-gradient(45deg, var(--accent-color), var(--accent-secondary))",
-                  color: "white",
-                  fontWeight: 600,
-                  textTransform: "none",
-                  "&:hover": {
-                    filter: "brightness(1.1)",
-                  },
-                }}
+                className="projectGithubButton"
               >
                 Open in GitHub
               </Button>
@@ -244,13 +251,13 @@ function Projects() {
   return (
     <div id="projects" className="section projectSection">
       <Paper className="projectContainer sectionContainer" elevation={8}>
-        <Box className="sectionHeader" sx={{ mb: 2, p: 2, borderRadius: "8px" }}>
+        <Box className="sectionHeader">
           <Typography variant="h6" className="sectionHeading">
             Projects
           </Typography>
         </Box>
 
-        <Grid container spacing={3} sx={{ px: 2, alignItems: "flex-start" }}>
+        <Grid container spacing={3} className="projectGrid">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}

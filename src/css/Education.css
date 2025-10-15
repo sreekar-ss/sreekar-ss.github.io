@@ -1,0 +1,83 @@
+/* Education page styles */
+
+.educationSection .sectionHeader {
+  padding: 2em;
+  border-radius: 8px;
+}
+
+.educationSection .educationCard {
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.educationSection .educationCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.educationSection .educationHeader {
+  margin-bottom: 1em;
+}
+
+.educationSection .educationAvatar {
+  width: 56px;
+  height: 56px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.educationSection .educationInfo {
+  flex: 1;
+}
+
+.educationSection .degreeTitle {
+  font-weight: 700;
+}
+
+.educationSection .degreeLocation {
+  margin-top: 0.5em;
+}
+
+.educationSection .gpaContainer {
+  text-align: right;
+}
+
+.educationSection .gpaValue {
+  font-weight: 800;
+  color: var(--accent-color);
+}
+
+.educationSection .periodText {
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+.educationSection .detailsList {
+  margin-bottom: 1em;
+}
+
+.educationSection .detailsList ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.educationSection .courseworkSection {
+}
+
+.educationSection .courseworkLabel {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 1em;
+}
+
+.educationSection .courseworkChips {
+  flex-wrap: wrap;
+}
+
+.educationSection .courseworkChips .MuiChip-root {
+  margin-bottom: 1em;
+}

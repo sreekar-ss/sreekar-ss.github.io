@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Box, Paper, Typography, Button, Stack, TextField, Divider, Alert, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Typography,
+  Button,
+  Stack,
+  TextField,
+  Divider,
+  Alert,
+  CircularProgress,
+} from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
@@ -14,7 +24,10 @@ function Contact() {
     message: "",
   });
   const [sending, setSending] = useState(false);
-  const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,23 +38,32 @@ function Contact() {
       const form = e.target as HTMLFormElement;
       const formDataObj = new FormData(form);
 
-      const response = await fetch('https://formsubmit.co/68940ffd0dadda96d449f53a3c233d38', {
-        method: 'POST',
-        body: formDataObj,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const response = await fetch(
+        "https://formsubmit.co/68940ffd0dadda96d449f53a3c233d38",
+        {
+          method: "POST",
+          body: formDataObj,
+          headers: {
+            Accept: "application/json",
+          },
+        },
+      );
 
       if (response.ok) {
-        setStatus({ type: 'success', message: 'Message sent successfully! I\'ll get back to you soon.' });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setStatus({
+          type: "success",
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
     } catch (error) {
-      console.error('FormSubmit Error:', error);
-      setStatus({ type: 'error', message: 'Failed to send message. Please try emailing me directly.' });
+      console.error("FormSubmit Error:", error);
+      setStatus({
+        type: "error",
+        message: "Failed to send message. Please try emailing me directly.",
+      });
     } finally {
       setSending(false);
     }
@@ -50,74 +72,47 @@ function Contact() {
   return (
     <div id="contact" className="section contactSection">
       <Paper className="contactContainer sectionContainer" elevation={8}>
-        <Box className="sectionHeader" sx={{ mb: 3, p: 2, borderRadius: "8px", textAlign: "center" }}>
+        <Box className="sectionHeader">
           <Typography variant="h6" className="sectionHeading">
             Get In Touch
           </Typography>
         </Box>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1.2fr" },
-            gap: 3,
-            px: 3,
-            pb: 3,
-          }}
-        >
+        <Box className="contactLayout">
           {/* Left Side - Contact Info */}
-          <Box>
-            <Typography variant="h4" sx={{ fontWeight: 700, mb: 1.5 }}>
+          <Box className="contactIntro">
+            <Typography variant="h4" className="contactTitle">
               Let's Connect
             </Typography>
-            <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6, color: "text.secondary" }}>
-              I'm always open to discussing new opportunities, collaborations, or just having a 
-              chat about tech and photography. Feel free to reach out!
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              className="contactDescription"
+            >
+              I'm always open to discussing new opportunities, collaborations,
+              or just having a chat about tech and photography. Feel free to
+              reach out!
             </Typography>
 
-            <Stack spacing={2}>
+            <Stack spacing={2} className="contactLinks">
               {/* Email */}
               <Box
                 component="a"
                 href="mailto:ssiddula.jobs@gmail.com"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  p: 1.5,
-                  backgroundColor: "rgba(110, 231, 242, 0.05)",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(110, 231, 242, 0.2)",
-                  textDecoration: "none",
-                  color: "inherit",
-                  cursor: "pointer",
-                  transition: "all 300ms ease",
-                  "&:hover": {
-                    backgroundColor: "rgba(110, 231, 242, 0.15)",
-                    borderColor: "var(--accent-color)",
-                    transform: "translateX(8px)",
-                    boxShadow: "0 4px 12px rgba(110, 231, 242, 0.2)",
-                  },
-                }}
+                className="contactCard"
               >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "8px",
-                    backgroundColor: "var(--accent-color)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <EmailIcon sx={{ color: "white", fontSize: "1.2rem" }} />
+                <Box className="contactCardIcon">
+                  <EmailIcon />
                 </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                <Box className="contactCardInfo">
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    className="contactCardLabel"
+                  >
                     Email
                   </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body2" className="contactCardValue">
                     ssiddula.jobs@gmail.com
                   </Typography>
                 </Box>
@@ -129,44 +124,20 @@ function Contact() {
                 href="https://linkedin.com/in/sreekarsiddula"
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  p: 1.5,
-                  backgroundColor: "rgba(110, 231, 242, 0.05)",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(110, 231, 242, 0.2)",
-                  textDecoration: "none",
-                  color: "inherit",
-                  cursor: "pointer",
-                  transition: "all 300ms ease",
-                  "&:hover": {
-                    backgroundColor: "rgba(110, 231, 242, 0.15)",
-                    borderColor: "var(--accent-color)",
-                    transform: "translateX(8px)",
-                    boxShadow: "0 4px 12px rgba(110, 231, 242, 0.2)",
-                  },
-                }}
+                className="contactCard"
               >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "8px",
-                    backgroundColor: "var(--accent-color)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <LinkedInIcon sx={{ color: "white", fontSize: "1.2rem" }} />
+                <Box className="contactCardIcon">
+                  <LinkedInIcon />
                 </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                <Box className="contactCardInfo">
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    className="contactCardLabel"
+                  >
                     LinkedIn
                   </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body2" className="contactCardValue">
                     sreekarsiddula
                   </Typography>
                 </Box>
@@ -178,79 +149,39 @@ function Contact() {
                 href="https://github.com/sreekar-ss"
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  p: 1.5,
-                  backgroundColor: "rgba(110, 231, 242, 0.05)",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(110, 231, 242, 0.2)",
-                  textDecoration: "none",
-                  color: "inherit",
-                  cursor: "pointer",
-                  transition: "all 300ms ease",
-                  "&:hover": {
-                    backgroundColor: "rgba(110, 231, 242, 0.15)",
-                    borderColor: "var(--accent-color)",
-                    transform: "translateX(8px)",
-                    boxShadow: "0 4px 12px rgba(110, 231, 242, 0.2)",
-                  },
-                }}
+                className="contactCard"
               >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "8px",
-                    backgroundColor: "var(--accent-color)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <GitHubIcon sx={{ color: "white", fontSize: "1.2rem" }} />
+                <Box className="contactCardIcon">
+                  <GitHubIcon />
                 </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                <Box className="contactCardInfo">
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    className="contactCardLabel"
+                  >
                     GitHub
                   </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body2" className="contactCardValue">
                     sreekar-ss
                   </Typography>
                 </Box>
               </Box>
 
               {/* Location */}
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  p: 1.5,
-                  backgroundColor: "rgba(110, 231, 242, 0.05)",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(110, 231, 242, 0.2)",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "8px",
-                    backgroundColor: "var(--accent-color)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <LocationOnIcon sx={{ color: "white", fontSize: "1.2rem" }} />
+              <Box className="contactCard">
+                <Box className="contactCardIcon">
+                  <LocationOnIcon />
                 </Box>
-                <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>
+                <Box className="contactCardInfo">
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    className="contactCardLabel"
+                  >
                     Location
                   </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body2" className="contactCardValue">
                     Boston, MA, USA
                   </Typography>
                 </Box>
@@ -259,37 +190,29 @@ function Contact() {
           </Box>
 
           {/* Right Side - Contact Form */}
-          <Paper
-            elevation={4}
-            sx={{
-              p: 2.5,
-              backgroundColor: "rgba(110, 231, 242, 0.03)",
-              border: "1px solid rgba(110, 231, 242, 0.2)",
-              borderRadius: "12px",
-            }}
-          >
-            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+          <Paper elevation={4} className="contactFormContainer">
+            <Typography variant="h5" className="contactFormTitle">
               Send a Message
             </Typography>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="contactForm">
               <Stack spacing={2}>
                 {status && (
-                  <Alert 
+                  <Alert
                     severity={status.type}
                     onClose={() => setStatus(null)}
-                    sx={{ borderRadius: "8px" }}
+                    className="contactAlert"
                   >
                     {status.message}
                   </Alert>
                 )}
-                
+
                 {/* Hidden fields for FormSubmit configuration */}
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="box" />
-                
-                <Box>
-                  <Typography variant="body2" sx={{ mb: 1, fontWeight: 600 }}>
+
+                <Box className="contactFormGroup">
+                  <Typography variant="body2" className="contactFormLabel">
                     Name
                   </Typography>
                   <TextField
@@ -298,23 +221,15 @@ function Contact() {
                     placeholder="Your full name"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        backgroundColor: "var(--secondary-color)",
-                        "&:hover fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                      },
-                    }}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    className="contactFormField"
                   />
                 </Box>
 
-                <Box>
-                  <Typography variant="body2" sx={{ mb: 1, fontWeight: 600 }}>
+                <Box className="contactFormGroup">
+                  <Typography variant="body2" className="contactFormLabel">
                     Email
                   </Typography>
                   <TextField
@@ -324,23 +239,15 @@ function Contact() {
                     placeholder="your.email@example.com"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        backgroundColor: "var(--secondary-color)",
-                        "&:hover fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                      },
-                    }}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    className="contactFormField"
                   />
                 </Box>
 
-                <Box>
-                  <Typography variant="body2" sx={{ mb: 1, fontWeight: 600 }}>
+                <Box className="contactFormGroup">
+                  <Typography variant="body2" className="contactFormLabel">
                     Subject
                   </Typography>
                   <TextField
@@ -349,23 +256,15 @@ function Contact() {
                     placeholder="What's this about?"
                     required
                     value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        backgroundColor: "var(--secondary-color)",
-                        "&:hover fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                      },
-                    }}
+                    onChange={(e) =>
+                      setFormData({ ...formData, subject: e.target.value })
+                    }
+                    className="contactFormField"
                   />
                 </Box>
 
-                <Box>
-                  <Typography variant="body2" sx={{ mb: 1, fontWeight: 600 }}>
+                <Box className="contactFormGroup">
+                  <Typography variant="body2" className="contactFormLabel">
                     Message
                   </Typography>
                   <TextField
@@ -376,18 +275,10 @@ function Contact() {
                     placeholder="Tell me about your project or question..."
                     required
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        backgroundColor: "var(--secondary-color)",
-                        "&:hover fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "var(--accent-color)",
-                        },
-                      },
-                    }}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
+                    className="contactFormField"
                   />
                 </Box>
 
@@ -395,43 +286,31 @@ function Contact() {
                   type="submit"
                   variant="contained"
                   size="large"
-                  endIcon={sending ? <CircularProgress size={20} sx={{ color: "white" }} /> : <SendIcon />}
+                  endIcon={
+                    sending ? (
+                      <CircularProgress size={20} sx={{ color: "white" }} />
+                    ) : (
+                      <SendIcon />
+                    )
+                  }
                   fullWidth
                   disabled={sending}
-                  sx={{
-                    py: 1.2,
-                    background: "linear-gradient(45deg, var(--accent-color), var(--accent-secondary))",
-                    color: "white",
-                    fontWeight: 600,
-                    fontSize: "0.95rem",
-                    textTransform: "none",
-                    "&:hover": {
-                      filter: "brightness(1.15)",
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 6px 20px rgba(110, 231, 242, 0.3)",
-                    },
-                    "&:disabled": {
-                      background: "linear-gradient(45deg, var(--accent-color), var(--accent-secondary))",
-                      opacity: 0.7,
-                      color: "white",
-                    },
-                    transition: "all 300ms ease",
-                  }}
+                  className="contactSubmitButton"
                 >
-                  {sending ? 'Sending...' : 'Send Message'}
+                  {sending ? "Sending..." : "Send Message"}
                 </Button>
               </Stack>
             </form>
           </Paper>
         </Box>
 
-        <Divider sx={{ mt: 3, borderColor: "rgba(255,255,255,0.1)" }} />
+        <Divider className="contactDivider" />
 
         {/* Footer */}
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ mt: 2, mb: 2, textAlign: "center" }}
+          className="contactFooter"
         >
           © {new Date().getFullYear()} Sreekar Siddula. Built with React & ❤️
         </Typography>
@@ -441,4 +320,3 @@ function Contact() {
 }
 
 export default Contact;
-

@@ -1,5 +1,11 @@
 @import "css/Home.css";
 @import "css/About.css";
+@import "css/Experience.css";
+@import "css/Education.css";
+@import "css/Projects.css";
+@import "css/Publications.css";
+@import "css/Photography.css";
+@import "css/Contact.css";
 
 :root {
   --primary-color: #0b1020; /* header bg */
@@ -8,6 +14,38 @@
   --accent-secondary: #a78bfa; /* purple */
 }
 
+/* Notice Banner */
+.noticeBanner {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  display: flex;
+  justify-content: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+}
+
+.noticeAlert {
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(110, 231, 242, 0.15);
+  color: white;
+  border-radius: 8px;
+  border: 1px solid rgba(110, 231, 242, 0.3);
+}
+
+.noticeAlert .MuiAlert-icon {
+  color: var(--accent-color);
+}
+
+.noticeAlert .MuiAlert-message {
+  font-weight: 500;
+}
+
+/* Header */
 nav.headerBar {
   display: flex;
   background-color: var(--primary-color);

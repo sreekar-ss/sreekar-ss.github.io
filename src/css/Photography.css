@@ -1,0 +1,37 @@
+/* Photography page styles */
+
+.photographySection .sectionHeader {
+  padding: 2em;
+  border-radius: 8px;
+}
+
+.photographySection .imageListItem {
+  overflow: hidden;
+  border-radius: 8px;
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.photographySection .imageListItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(110, 231, 242, 0.2);
+}
+
+.photographySection .imageListItem img {
+  display: block;
+  width: 100%;
+}
+
+.photographySection .imageListItemBar {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.photographySection .imageListItemBar .MuiImageListItemBar-title {
+  font-weight: 600;
+}

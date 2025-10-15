@@ -1,0 +1,147 @@
+/* Projects page styles */
+
+.projectSection .sectionHeader {
+  padding: 2em;
+  border-radius: 8px;
+}
+
+.projectSection .projectGrid {
+  padding-left: 2em;
+  padding-right: 2em;
+  align-items: flex-start;
+}
+
+.projectSection .projectGridItem {
+  display: flex;
+}
+
+.projectSection .projectCard {
+  width: 100%;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.projectSection .projectCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(110, 231, 242, 0.15);
+  border-color: rgba(110, 231, 242, 0.3);
+}
+
+.projectSection .projectCardHeader {
+  padding: 1.5em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projectSection .projectCardHeader.expanded {
+  background: rgba(110, 231, 242, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.projectSection .projectCardHeader .projectCardInfo {
+  flex: 1;
+}
+
+.projectSection .projectCardTitle {
+  font-weight: 700;
+}
+
+.projectSection .projectCardMeta {
+  font-weight: 600;
+}
+
+.projectSection .projectExpandIcon {
+  transition: transform 300ms ease;
+  color: var(--accent-color);
+}
+
+.projectSection .projectExpandIcon.expanded {
+  transform: rotate(180deg);
+}
+
+.projectSection .projectPreviewTech {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: 1em;
+}
+
+.projectSection .projectPreviewTechStack {
+  flex-wrap: wrap;
+}
+
+.projectSection .projectTechChip {
+  margin-bottom: 0.5em;
+  background-color: rgba(110, 231, 242, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(110, 231, 242, 0.25);
+  font-size: 0.75rem;
+}
+
+.projectSection .projectTechChipMore {
+  margin-bottom: 0.5em;
+  background-color: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+}
+
+.projectSection .projectExpandedContent {
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  padding-bottom: 2.5em;
+}
+
+.projectSection .projectDetailsList {
+  margin-bottom: 1em;
+}
+
+.projectSection .projectDetailsList ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.projectSection .projectDetailsList li {
+  margin-bottom: 0.5em;
+}
+
+.projectSection .projectFullTech {
+  margin-bottom: 2em;
+}
+
+.projectSection .projectFullTechLabel {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 1em;
+}
+
+.projectSection .projectFullTechStack {
+  flex-wrap: wrap;
+}
+
+.projectSection .projectFullTechChip {
+  margin-bottom: 0.5em;
+  background-color: rgba(110, 231, 242, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(110, 231, 242, 0.3);
+}
+
+.projectSection .projectGithubButton {
+  background: linear-gradient(
+    45deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+  color: white;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.projectSection .projectGithubButton:hover {
+  filter: brightness(1.1);
+}

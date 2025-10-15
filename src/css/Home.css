@@ -353,70 +353,6 @@ div.section .informationCardContainer .informationCard .informationCardDetails {
   filter: brightness(1.1);
 }
 
-div.section .sectionContainer .publicationCard {
-  display: flex;
-  align-self: center;
-  margin: 1em;
-  width: 80%;
-  flex-direction: column;
-  background-color: var(--secondary-color);
-  color: white;
-  border-radius: 1em;
-  box-shadow:
-    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
-    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
-    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
-}
-
-div.section .sectionContainer .publicationCard .publicationCardHeader span {
-  color: white;
-}
-
-div.section .sectionContainer .publicationCard .publicationCardContent {
-  background-color: #525252;
-  padding: 1.5em;
-  overflow-y: auto;
-}
-
-div.section
-  .sectionContainer
-  .publicationCard
-  .publicationCardContent
-  .subHeading2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-div.section .sectionContainer .publicationCard .publicationCardContent > div {
-  display: flex;
-  align-items: center;
-}
-
-div.section
-  .sectionContainer
-  .publicationCard
-  .publicationCardContent
-  .subHeading2
-  > div {
-  display: flex;
-  align-items: center;
-  margin-right: 1em;
-}
-div.section .sectionContainer .publicationCard .publicationCardContent p {
-  font-weight: 600;
-  margin-right: 0.5em;
-}
-
-div.section
-  .sectionContainer
-  .publicationCard
-  .publicationCardContent
-  .subHeading2
-  img {
-  max-width: 5em;
-}
-
 div.section .sectionContainer .imageContainer {
   display: flex;
   width: 80%;
@@ -460,15 +396,6 @@ div.section .sectionContainer .imageContainer .imageTitle:hover {
 
   div.section ul li {
     font-size: x-small;
-  }
-
-  div.section .sectionContainer .publicationCard .publicationCardHeader span {
-    font-size: small;
-  }
-
-  div.section .sectionContainer .publicationCard .publicationCardContent {
-    font-size: x-small;
-    overflow-y: auto;
   }
 
   div.section .sectionContainer .imageContainer > ul {

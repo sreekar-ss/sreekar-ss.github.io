@@ -65,7 +65,7 @@ function Education() {
   return (
     <div id="education" className="section educationSection">
       <Paper className="educationContainer sectionContainer" elevation={8}>
-        <Box className="sectionHeader" sx={{ mb: 2, p: 2, borderRadius: "8px" }}>
+        <Box className="sectionHeader">
           <Typography variant="h6" className="sectionHeading">
             Education
           </Typography>
@@ -77,54 +77,56 @@ function Education() {
               key={`${deg.title}-${index}`}
               elevation={4}
               className="educationCard"
-              sx={{
-                p: 3,
-                mb: 3,
-                backgroundColor: "var(--secondary-color)",
-                borderRadius: "12px",
-                transition: "transform 300ms ease, box-shadow 300ms ease",
-                "&:hover": {
-                  transform: "translateY(-4px)",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
-                },
-              }}
             >
-              <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+              <Stack
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                className="educationHeader"
+              >
                 <Avatar
                   src={deg.icon}
                   alt={deg.school}
-                  sx={{ width: 56, height: 56, border: "2px solid rgba(255,255,255,0.2)" }}
+                  className="educationAvatar"
                 />
-                <Box sx={{ flex: 1 }}>
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                <Box className="educationInfo">
+                  <Typography variant="h5" className="degreeTitle">
                     {deg.title}
                   </Typography>
                   <Typography variant="h6" color="text.secondary">
                     {deg.degree}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    className="degreeLocation"
+                  >
                     {deg.school} • {deg.location}
                   </Typography>
                 </Box>
                 {deg.gpa && (
-                  <Box sx={{ textAlign: "right" }}>
+                  <Box className="gpaContainer">
                     <Typography variant="overline" color="text.secondary">
                       GPA
                     </Typography>
-                    <Typography variant="h5" sx={{ fontWeight: 800, color: "var(--accent-color)" }}>
+                    <Typography variant="h5" className="gpaValue">
                       {deg.gpa}
                     </Typography>
                   </Box>
                 )}
               </Stack>
 
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: 600 }}>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                className="periodText"
+              >
                 {deg.period}
               </Typography>
 
               {deg.details && deg.details.length > 0 && (
-                <Box sx={{ mb: 2 }}>
-                  <ul style={{ margin: 0, paddingLeft: "1.2em" }}>
+                <Box className="detailsList">
+                  <ul>
                     {deg.details.map((d, i) => (
                       <li key={i}>
                         <Typography variant="body1">{d}</Typography>
@@ -135,13 +137,21 @@ function Education() {
               )}
 
               {deg.coursework && deg.coursework.length > 0 && (
-                <Box>
-                  <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 700, display: "block", mb: 1 }}>
+                <Box className="courseworkSection">
+                  <Typography
+                    variant="overline"
+                    color="text.secondary"
+                    className="courseworkLabel"
+                  >
                     Coursework
                   </Typography>
-                  <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    className="courseworkChips"
+                  >
                     {deg.coursework.map((c) => (
-                      <Chip key={c} label={c} size="small" sx={{ mb: 1 }} />
+                      <Chip key={c} label={c} size="small" />
                     ))}
                   </Stack>
                 </Box>

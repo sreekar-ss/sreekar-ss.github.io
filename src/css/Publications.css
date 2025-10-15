@@ -1,0 +1,106 @@
+/* Publications page styles */
+
+.publicationsSection .sectionHeader {
+  padding: 2em;
+  border-radius: 8px;
+}
+
+.publicationsSection .publicationsContent {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.publicationsSection .publicationCard {
+  padding: 1.5em;
+  margin-bottom: 3em;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 300ms ease;
+}
+
+.publicationsSection .publicationCard:hover {
+  border-color: rgba(110, 231, 242, 0.3);
+  box-shadow: 0 8px 24px rgba(110, 231, 242, 0.15);
+}
+
+.publicationsSection .publicationTitle {
+  font-weight: 700;
+  margin-bottom: 1.5em;
+  color: var(--accent-color);
+  line-height: 1.3;
+}
+
+.publicationsSection .publicationLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3em;
+}
+
+@media screen and (min-width: 900px) {
+  .publicationsSection .publicationLayout {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+.publicationsSection .publicationAuthors {
+  margin-bottom: 1em;
+}
+
+.publicationsSection .publicationAuthors .label {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.publicationsSection .publicationConference {
+  margin-bottom: 1em;
+  font-style: italic;
+}
+
+.publicationsSection .publicationConference .label {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.publicationsSection .publicationDivider {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.publicationsSection .publicationStats {
+  display: flex;
+  gap: 3em;
+  align-items: flex-end;
+}
+
+.publicationsSection .statValue {
+  font-weight: 700;
+}
+
+.publicationsSection .citationsValue {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.publicationsSection .publisherLabel {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.publicationsSection .publisherIcon {
+  height: 24px;
+  display: block;
+}
+
+.publicationsSection .abstractLabel {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 1em;
+}
+
+.publicationsSection .abstractText {
+  line-height: 1.8;
+  text-align: justify;
+}

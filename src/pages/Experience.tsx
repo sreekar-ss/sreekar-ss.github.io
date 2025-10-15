@@ -107,7 +107,7 @@ function Experience() {
       ([entry]) => {
         setIsInView(entry.intersectionRatio >= 0.95);
       },
-      { threshold: [0, 0.95, 1] }
+      { threshold: [0, 0.95, 1] },
     );
 
     observer.observe(section);
@@ -117,55 +117,56 @@ function Experience() {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    
+
     const onScroll = () => {
       const idx = Math.round(container.scrollTop / window.innerHeight);
       setCurrentIndex(Math.min(Math.max(idx, 0), JOBS.length - 1));
     };
-    
+
     const onWheel = (e: WheelEvent) => {
       // If scrolling down at the last slide
       if (currentIndex === JOBS.length - 1 && e.deltaY > 0) {
-        const isAtBottom = 
-          container.scrollHeight - container.scrollTop <= container.clientHeight + 10;
-        
+        const isAtBottom =
+          container.scrollHeight - container.scrollTop <=
+          container.clientHeight + 10;
+
         if (isAtBottom) {
           // Don't prevent default - let it scroll the main page
           // Disable the experience scroll container
-          container.style.overflowY = 'hidden';
+          container.style.overflowY = "hidden";
           setIsInView(false);
-          
+
           // Re-enable after the scroll completes
           setTimeout(() => {
             const nextSection = sectionRef.current?.nextElementSibling;
             if (nextSection) {
-              nextSection.scrollIntoView({ behavior: 'smooth' });
+              nextSection.scrollIntoView({ behavior: "smooth" });
             }
           }, 50);
         }
       }
-      
+
       // If scrolling up at the first slide
       if (currentIndex === 0 && e.deltaY < 0) {
         const isAtTop = container.scrollTop <= 10;
-        
+
         if (isAtTop) {
           // Don't prevent default - let it scroll the main page
           // Disable the experience scroll container
-          container.style.overflowY = 'hidden';
+          container.style.overflowY = "hidden";
           setIsInView(false);
-          
+
           // Re-enable after the scroll completes
           setTimeout(() => {
             const prevSection = sectionRef.current?.previousElementSibling;
             if (prevSection) {
-              prevSection.scrollIntoView({ behavior: 'smooth' });
+              prevSection.scrollIntoView({ behavior: "smooth" });
             }
           }, 50);
         }
       }
     };
-    
+
     container.addEventListener("scroll", onScroll, { passive: true });
     container.addEventListener("wheel", onWheel, { passive: false });
     return () => {
@@ -181,12 +182,12 @@ function Experience() {
 
   return (
     <div id="experience" className="section experienceSection" ref={sectionRef}>
-      <div 
-        className="experienceFull" 
+      <div
+        className="experienceFull"
         ref={containerRef}
         style={{
-          overflowY: isInView ? 'scroll' : 'hidden',
-          pointerEvents: isInView ? 'auto' : 'none'
+          overflowY: isInView ? "scroll" : "hidden",
+          pointerEvents: isInView ? "auto" : "none",
         }}
       >
         {/* Progress dots with active year badge */}
@@ -216,35 +217,27 @@ function Experience() {
           <section className="experienceSlide" key={`${job.title}-${index}`}>
             <Paper
               elevation={8}
-              className="experienceSlideCard"
-              sx={{
-                opacity: currentIndex === index ? 1 : 0.4,
-                transform:
-                  currentIndex === index
-                    ? "translateY(0px) scale(1)"
-                    : index < currentIndex
-                      ? "translateY(-20px) scale(0.95)"
-                      : "translateY(20px) scale(0.97)",
-                transition: "opacity 600ms ease, transform 600ms ease",
-              }}
+              className={`experienceSlideCard ${
+                currentIndex === index
+                  ? "active"
+                  : index < currentIndex
+                    ? "previous"
+                    : "next"
+              }`}
             >
               <Stack
                 direction="row"
                 spacing={2}
                 alignItems="center"
-                sx={{ mb: 1 }}
+                className="experienceHeader"
               >
                 <Avatar
                   src={job.icon}
                   alt={job.organization}
-                  sx={{
-                    width: 48,
-                    height: 48,
-                    border: "1px solid rgba(255,255,255,0.2)",
-                  }}
+                  className="experienceAvatar"
                 />
                 <Box>
-                  <Typography variant="h4" sx={{ fontWeight: 800 }}>
+                  <Typography variant="h4" className="experienceTitle">
                     {job.title}
                   </Typography>
                   <Typography variant="h6" color="text.secondary">
@@ -255,15 +248,7 @@ function Experience() {
               <Typography
                 variant="subtitle2"
                 color="text.secondary"
-                sx={{
-                  mb: 2,
-                  opacity: currentIndex === index ? 1 : 0,
-                  transform:
-                    currentIndex === index
-                      ? "translateY(0px)"
-                      : "translateY(8px)",
-                  transition: "opacity 400ms ease, transform 400ms ease",
-                }}
+                className={`experienceLocation ${currentIndex === index ? "visible" : "hidden"}`}
               >
                 {job.location} • {job.period}
               </Typography>
@@ -286,17 +271,7 @@ function Experience() {
                 <Stack
                   direction="row"
                   spacing={1}
-                  sx={{
-                    mt: 2,
-                    flexWrap: "wrap",
-                    opacity: currentIndex === index ? 1 : 0,
-                    transform:
-                      currentIndex === index
-                        ? "translateY(0px)"
-                        : "translateY(8px)",
-                    transition:
-                      "opacity 450ms ease 100ms, transform 450ms ease 100ms",
-                  }}
+                  className={`experienceTags ${currentIndex === index ? "visible" : "hidden"}`}
                 >
                   {job.tags.map((t) => (
                     <Chip key={t} label={t} size="small" />
