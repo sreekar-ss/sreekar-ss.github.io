@@ -1,18 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Box,
-  Paper,
-  Typography,
-  Chip,
-  Stack,
-  Avatar,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
+import React from "react";
+import { Box, Paper, Typography, Chip, Stack, Avatar } from "@mui/material";
 import ddIcon from "../icons/ddicon.png";
 import cvsIcon from "../icons/cvs.png";
-import northeasternIcon from "../icons/northeastern.png";
 import smartprixIcon from "../icons/smartprix.png";
 
 type Job = {
@@ -86,207 +75,91 @@ const JOBS: Job[] = [
   },
 ];
 
+const getYear = (period: string) => {
+  const match = period.match(/\b(\d{4})\b/);
+  return match ? match[1] : "";
+};
+
 function Experience() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-
-  const scrollToIndex = (idx: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const targetTop = idx * window.innerHeight;
-    container.scrollTo({ top: targetTop, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.intersectionRatio >= 0.95);
-      },
-      { threshold: [0, 0.95, 1] },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const onScroll = () => {
-      const idx = Math.round(container.scrollTop / window.innerHeight);
-      setCurrentIndex(Math.min(Math.max(idx, 0), JOBS.length - 1));
-    };
-
-    const onWheel = (e: WheelEvent) => {
-      // If scrolling down at the last slide
-      if (currentIndex === JOBS.length - 1 && e.deltaY > 0) {
-        const isAtBottom =
-          container.scrollHeight - container.scrollTop <=
-          container.clientHeight + 10;
-
-        if (isAtBottom) {
-          // Don't prevent default - let it scroll the main page
-          // Disable the experience scroll container
-          container.style.overflowY = "hidden";
-          setIsInView(false);
-
-          // Re-enable after the scroll completes
-          setTimeout(() => {
-            const nextSection = sectionRef.current?.nextElementSibling;
-            if (nextSection) {
-              nextSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }, 50);
-        }
-      }
-
-      // If scrolling up at the first slide
-      if (currentIndex === 0 && e.deltaY < 0) {
-        const isAtTop = container.scrollTop <= 10;
-
-        if (isAtTop) {
-          // Don't prevent default - let it scroll the main page
-          // Disable the experience scroll container
-          container.style.overflowY = "hidden";
-          setIsInView(false);
-
-          // Re-enable after the scroll completes
-          setTimeout(() => {
-            const prevSection = sectionRef.current?.previousElementSibling;
-            if (prevSection) {
-              prevSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }, 50);
-        }
-      }
-    };
-
-    container.addEventListener("scroll", onScroll, { passive: true });
-    container.addEventListener("wheel", onWheel, { passive: false });
-    return () => {
-      container.removeEventListener("scroll", onScroll);
-      container.removeEventListener("wheel", onWheel);
-    };
-  }, [currentIndex]);
-
-  const getYear = (period: string) => {
-    const match = period.match(/\b(\d{4})\b/);
-    return match ? match[1] : period;
-  };
-
   return (
-    <div id="experience" className="section experienceSection" ref={sectionRef}>
-      <div
-        className="experienceFull"
-        ref={containerRef}
-        style={{
-          overflowY: isInView ? "scroll" : "hidden",
-          pointerEvents: isInView ? "auto" : "none",
-        }}
-      >
-        {/* Progress dots with active year badge */}
-        <div className="experienceDots">
-          {JOBS.map((job, i) => (
-            <div key={i} className="dotRow">
-              {i === currentIndex ? (
-                <button className="yearPill" onClick={() => scrollToIndex(i)}>
-                  <span className="yearText">{getYear(job.period)}</span>
-                </button>
-              ) : (
-                <Tooltip title={job.title} placement="left">
-                  <IconButton
-                    size="small"
-                    onClick={() => scrollToIndex(i)}
-                    className="dot"
-                  >
-                    <CircleIcon fontSize="inherit" />
-                  </IconButton>
-                </Tooltip>
-              )}
-            </div>
-          ))}
-        </div>
+    <div id="experience" className="section experienceSection">
+      <Paper className="experienceContainer sectionContainer" elevation={8}>
+        <Box className="sectionHeader">
+          <Typography variant="h6" className="sectionHeading">
+            Experience
+          </Typography>
+        </Box>
 
-        {JOBS.map((job, index) => (
-          <section className="experienceSlide" key={`${job.title}-${index}`}>
-            <Paper
-              elevation={8}
-              className={`experienceSlideCard ${
-                currentIndex === index
-                  ? "active"
-                  : index < currentIndex
-                    ? "previous"
-                    : "next"
-              }`}
-            >
-              <Stack
-                direction="row"
-                spacing={2}
-                alignItems="center"
-                className="experienceHeader"
-              >
-                <Avatar
-                  src={job.icon}
-                  alt={job.organization}
-                  className="experienceAvatar"
-                />
-                <Box>
-                  <Typography variant="h4" className="experienceTitle">
-                    {job.title}
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary">
-                    {job.organization}
-                  </Typography>
+        <Box className="timelineContainer">
+          {JOBS.map((job, index) => (
+            <Box key={index} className="timelineItem">
+              {/* Timeline Line and Dot */}
+              <Box className="timelineLine">
+                <Box className="timelineDot">
+                  <Avatar
+                    src={job.icon}
+                    alt={job.organization}
+                    className="timelineAvatar"
+                  />
                 </Box>
-              </Stack>
-              <Typography
-                variant="subtitle2"
-                color="text.secondary"
-                className={`experienceLocation ${currentIndex === index ? "visible" : "hidden"}`}
-              >
-                {job.location} • {job.period}
-              </Typography>
-              {job.bullets && (
-                <ul
-                  className={
-                    currentIndex === index
-                      ? "experienceBullets visible"
-                      : "experienceBullets"
-                  }
-                >
-                  {job.bullets.map((b, i) => (
-                    <li key={i}>
-                      <Typography variant="body1">{b}</Typography>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {job.tags && job.tags.length ? (
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  className={`experienceTags ${currentIndex === index ? "visible" : "hidden"}`}
-                >
-                  {job.tags.map((t) => (
-                    <Chip key={t} label={t} size="small" />
-                  ))}
-                </Stack>
-              ) : null}
-            </Paper>
-          </section>
-        ))}
-        {/* Buffer section to allow scrolling out */}
-        <section
-          className="experienceSlide"
-          style={{ height: "10vh", scrollSnapAlign: "end" }}
-        />
-      </div>
+                {index !== JOBS.length - 1 && (
+                  <Box className="timelineConnector" />
+                )}
+              </Box>
+
+              {/* Timeline Content */}
+              <Box className="timelineContent">
+                <Paper elevation={3} className="experienceCard">
+                  {/* Year Badge */}
+                  <Box className="yearBadge">{getYear(job.period)}</Box>
+
+                  {/* Header */}
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    alignItems="flex-start"
+                    className="experienceCardHeader"
+                  >
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="h5" className="jobTitle">
+                        {job.title}
+                      </Typography>
+                      <Typography variant="h6" className="jobOrganization">
+                        {job.organization}
+                      </Typography>
+                      <Typography variant="body2" className="jobLocation">
+                        {job.location} • {job.period}
+                      </Typography>
+                    </Box>
+                  </Stack>
+
+                  {/* Bullets */}
+                  {job.bullets && job.bullets.length > 0 && (
+                    <Box className="jobDetails">
+                      <ul>
+                        {job.bullets.map((bullet, i) => (
+                          <li key={i}>
+                            <Typography variant="body2">{bullet}</Typography>
+                          </li>
+                        ))}
+                      </ul>
+                    </Box>
+                  )}
+
+                  {/* Tags */}
+                  {job.tags && job.tags.length > 0 && (
+                    <Stack direction="row" spacing={1} className="jobTags">
+                      {job.tags.map((tag) => (
+                        <Chip key={tag} label={tag} size="small" />
+                      ))}
+                    </Stack>
+                  )}
+                </Paper>
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      </Paper>
     </div>
   );
 }

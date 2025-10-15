@@ -1,14 +1,18 @@
 /* Projects page styles */
 
 .projectSection .sectionHeader {
-  padding: 2em;
-  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .projectSection .projectGrid {
   padding-left: 2em;
   padding-right: 2em;
   align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .projectSection .projectGridItem {
@@ -17,20 +21,21 @@
 
 .projectSection .projectCard {
   width: 100%;
-  background-color: var(--secondary-color);
+  background: rgba(19, 26, 42, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
   border-radius: 12px;
   overflow: hidden;
   transition:
     transform 300ms ease,
     box-shadow 300ms ease,
     border-color 300ms ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .projectSection .projectCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(110, 231, 242, 0.15);
-  border-color: rgba(110, 231, 242, 0.3);
+  box-shadow: 0 12px 32px rgba(110, 231, 242, 0.2);
+  border-color: rgba(110, 231, 242, 0.4);
 }
 
 .projectSection .projectCardHeader {

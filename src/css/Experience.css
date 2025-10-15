@@ -1,140 +1,200 @@
-/* Experience page styles */
+/* Experience page styles - Timeline Layout */
 
-.experienceDots {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1.5em;
-  margin-right: 2em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6em;
-  align-items: flex-end;
-  z-index: 6;
-}
-
-.experienceDots .dot {
-  color: rgba(255, 255, 255, 0.4);
-  transition:
-    transform 200ms ease,
-    color 200ms ease;
-}
-
-.experienceDots .dot:hover {
-  color: var(--accent-color);
-  transform: scale(1.1);
-}
-
-.experienceDots .dotRow {
-  display: flex;
-  align-items: center;
-}
-
-.experienceDots .yearPill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  min-width: 60px;
-  padding: 0 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: linear-gradient(
-    45deg,
-    rgba(110, 231, 242, 0.15),
-    rgba(167, 139, 250, 0.15)
-  );
-  color: white;
-  cursor: pointer;
-  transition:
-    filter 200ms ease,
-    transform 200ms ease;
-}
-
-.experienceDots .yearPill:hover {
-  filter: brightness(1.2);
-  transform: translateX(-2px);
-}
-
-.experienceDots .yearText {
-  font-family: monospace;
-  font-weight: 700;
-}
-
-/* Experience card animations */
-.experienceSlideCard {
-  transition:
-    opacity 600ms ease,
-    transform 600ms ease;
-}
-
-.experienceSlideCard.active {
-  opacity: 1;
-  transform: translateY(0px) scale(1);
-}
-
-.experienceSlideCard.previous {
-  opacity: 0.4;
-  transform: translateY(-20px) scale(0.95);
-}
-
-.experienceSlideCard.next {
-  opacity: 0.4;
-  transform: translateY(20px) scale(0.97);
-}
-
-.experienceSlideCard .experienceHeader {
+.experienceSection .sectionHeader {
+  width: 100%;
+  text-align: center;
   margin-bottom: 1em;
 }
 
-.experienceSlideCard .experienceAvatar {
+.experienceSection .timelineContainer {
+  padding: 0 2em 2em 2em;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Timeline Item */
+.experienceSection .timelineItem {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2em;
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.experienceSection .timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline Line Column */
+.experienceSection .timelineLine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.experienceSection .timelineDot {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(110, 231, 242, 0.2),
+    rgba(167, 139, 250, 0.2)
+  );
+  border: 3px solid var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(110, 231, 242, 0.3);
+  transition: all 300ms ease;
+}
+
+.experienceSection .timelineItem:hover .timelineDot {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(110, 231, 242, 0.5);
+}
+
+.experienceSection .timelineAvatar {
   width: 48px;
   height: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.experienceSlideCard .experienceTitle {
-  font-weight: 800;
+.experienceSection .timelineConnector {
+  width: 3px;
+  flex: 1;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-color),
+    rgba(110, 231, 242, 0.3)
+  );
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-.experienceSlideCard .experienceLocation {
-  margin-bottom: 2em;
-  transition:
-    opacity 400ms ease,
-    transform 400ms ease;
+/* Timeline Content */
+.experienceSection .timelineContent {
+  padding-bottom: 1em;
 }
 
-.experienceSlideCard .experienceLocation.visible {
-  opacity: 1;
-  transform: translateY(0px);
+.experienceSection .experienceCard {
+  background: rgba(19, 26, 42, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 2em;
+  position: relative;
+  transition: all 300ms ease;
 }
 
-.experienceSlideCard .experienceLocation.hidden {
-  opacity: 0;
-  transform: translateY(8px);
+.experienceSection .experienceCard:hover {
+  transform: translateX(8px);
+  border-color: rgba(110, 231, 242, 0.4);
+  box-shadow: 0 8px 32px rgba(110, 231, 242, 0.2);
 }
 
-.experienceSlideCard .experienceTags {
-  margin-top: 2em;
+/* Year Badge */
+.experienceSection .yearBadge {
+  position: absolute;
+  top: -12px;
+  right: 2em;
+  background: linear-gradient(
+    135deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+  color: white;
+  padding: 0.4em 1.2em;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 12px rgba(110, 231, 242, 0.3);
+}
+
+/* Card Header */
+.experienceSection .experienceCardHeader {
+  margin-bottom: 1.5em;
+}
+
+.experienceSection .jobTitle {
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 0.3em;
+}
+
+.experienceSection .jobOrganization {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+.experienceSection .jobLocation {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* Job Details */
+.experienceSection .jobDetails {
+  margin-bottom: 1.5em;
+}
+
+.experienceSection .jobDetails ul {
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.experienceSection .jobDetails li {
+  margin-bottom: 0.8em;
+  line-height: 1.6;
+}
+
+.experienceSection .jobDetails li:last-child {
+  margin-bottom: 0;
+}
+
+/* Job Tags */
+.experienceSection .jobTags {
   flex-wrap: wrap;
-  transition:
-    opacity 450ms ease 100ms,
-    transform 450ms ease 100ms;
 }
 
-.experienceSlideCard .experienceTags.visible {
-  opacity: 1;
-  transform: translateY(0px);
+.experienceSection .jobTags .MuiChip-root {
+  background-color: rgba(110, 231, 242, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(110, 231, 242, 0.3);
+  margin-bottom: 0.5em;
 }
 
-.experienceSlideCard .experienceTags.hidden {
-  opacity: 0;
-  transform: translateY(8px);
-}
-
+/* Responsive Design */
 @media screen and (max-width: 900px) {
-  .experienceDots {
+  .experienceSection .timelineItem {
+    grid-template-columns: 60px 1fr;
+    gap: 1em;
+  }
+
+  .experienceSection .timelineDot {
+    width: 48px;
+    height: 48px;
+  }
+
+  .experienceSection .timelineAvatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .experienceSection .experienceCard {
+    padding: 1.5em;
+  }
+
+  .experienceSection .yearBadge {
     right: 1em;
-    margin-right: 1em;
+    font-size: 0.75rem;
+    padding: 0.3em 1em;
+  }
+
+  .experienceSection .experienceCard:hover {
+    transform: translateX(4px);
   }
 }

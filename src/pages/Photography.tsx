@@ -82,7 +82,7 @@ function Photography() {
         </Box>
 
         <Box className="imageContainer">
-          <ImageList variant="masonry" cols={6} gap={10}>
+          <ImageList variant="masonry" cols={5} gap={10}>
             {imageData.map((item) => (
               <ImageListItem key={item.img} className="imageListItem">
                 <img src={item.img} alt={item.title} loading="lazy" />

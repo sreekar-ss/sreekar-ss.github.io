@@ -12,11 +12,68 @@ div.homeContainer .quickLinks {
 
 div.homeContainer .section {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   align-items: center;
   align-self: center;
   justify-content: center;
+  padding: 2em 2em;
+  position: relative;
+}
+
+/* Section-specific gradient backgrounds */
+div.homeContainer .experienceSection {
+  background: linear-gradient(
+    135deg,
+    rgba(110, 231, 242, 0.05) 0%,
+    rgba(11, 16, 32, 0.8) 50%,
+    rgba(167, 139, 250, 0.05) 100%
+  );
+}
+
+div.homeContainer .educationSection {
+  background: linear-gradient(
+    -135deg,
+    rgba(167, 139, 250, 0.05) 0%,
+    rgba(11, 16, 32, 0.8) 50%,
+    rgba(110, 231, 242, 0.05) 100%
+  );
+}
+
+div.homeContainer .projectSection {
+  background: linear-gradient(
+    135deg,
+    rgba(110, 231, 242, 0.08) 0%,
+    rgba(11, 16, 32, 0.8) 30%,
+    rgba(167, 139, 250, 0.08) 100%
+  );
+}
+
+div.homeContainer .publicationsSection {
+  background: linear-gradient(
+    -135deg,
+    rgba(167, 139, 250, 0.08) 0%,
+    rgba(11, 16, 32, 0.8) 30%,
+    rgba(110, 231, 242, 0.08) 100%
+  );
+}
+
+div.homeContainer .photographySection {
+  background: linear-gradient(
+    135deg,
+    rgba(110, 231, 242, 0.06) 0%,
+    rgba(11, 16, 32, 0.8) 50%,
+    rgba(167, 139, 250, 0.06) 100%
+  );
+}
+
+div.homeContainer .contactSection {
+  background: linear-gradient(
+    -135deg,
+    rgba(167, 139, 250, 0.1) 0%,
+    rgba(11, 16, 32, 0.8) 40%,
+    rgba(110, 231, 242, 0.1) 100%
+  );
 }
 
 /* Experience full-viewport slides */
@@ -41,13 +98,12 @@ div.experienceSection .experienceFull .experienceSlide {
 div.experienceSection .experienceFull .experienceSlide .experienceSlideCard {
   width: min(1100px, 92%);
   height: 80vh;
-  background-color: var(--secondary-color);
+  background: rgba(19, 26, 42, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 2em;
   border-radius: 1em;
-  box-shadow:
-    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
-    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
-    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 div.experienceSection
@@ -154,16 +210,13 @@ div.experienceSection .experienceDots .yearText {
 
 div.homeContainer .section .sectionContainer {
   display: flex;
-  height: 87%;
-  width: 95%;
+  width: 100%;
+  max-width: 1400px;
   align-items: center;
   align-self: center;
-  overflow: auto;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: rgba(19, 26, 42, 0.6);
-  margin-top: 4em;
-  backdrop-filter: blur(12px) saturate(120%);
+  padding: 0;
 }
 
 div.homeContainer .section .sectionContainer .sectionAccordion {
@@ -210,11 +263,14 @@ div.homeContainer
 
 div.homeContainer .section .sectionContainer .sectionHeading {
   display: flex;
-  align-self: flex-start;
-  color: white;
-  margin: 0.3em;
+  align-self: center;
+  color: var(--accent-color);
   font-family: monospace;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-shadow: 0 0 20px rgba(110, 231, 242, 0.3);
+  width: 100%;
+  justify-content: center;
 }
 
 div.section .informationCardContainer {

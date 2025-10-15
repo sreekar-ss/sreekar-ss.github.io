@@ -1,23 +1,35 @@
 /* Education page styles */
 
 .educationSection .sectionHeader {
-  padding: 2em;
-  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.educationSection .educationGrid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2em;
 }
 
 .educationSection .educationCard {
   padding: 1em;
   margin-bottom: 2em;
-  background-color: var(--secondary-color);
+  background: rgba(19, 26, 42, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   transition:
     transform 300ms ease,
-    box-shadow 300ms ease;
+    box-shadow 300ms ease,
+    border-color 300ms ease;
 }
 
 .educationSection .educationCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(110, 231, 242, 0.2);
+  border-color: rgba(110, 231, 242, 0.3);
 }
 
 .educationSection .educationHeader {
