@@ -11,11 +11,18 @@ import ContactIcon from "@mui/icons-material/ContactPage";
 import DownloadIcon from "@mui/icons-material/Download";
 import { GitHub, LinkedIn } from "@mui/icons-material";
 import resume from "../resume/Sreekar-Resume.pdf";
+import { motion } from "framer-motion";
 
 function Home() {
   return (
     <div className="homeContainer">
-      <About />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <About />
+      </motion.div>
       <Experience />
       <Education />
       <Projects />

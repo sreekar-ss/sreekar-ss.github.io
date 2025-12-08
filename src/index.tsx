@@ -5,6 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
+import "@fontsource/outfit/300.css";
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/700.css";
+import "@fontsource/space-grotesk/300.css";
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/700.css";
+
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -14,16 +23,32 @@ const theme = createTheme({
     text: { primary: "#f8fafc", secondary: "#cbd5e1" },
   },
   typography: {
-    fontFamily: ["Inter", "SF Pro Text", "system-ui", "monospace"].join(","),
-    h1: { fontWeight: 800 },
-    h2: { fontWeight: 800 },
-    h3: { fontWeight: 700 },
-    h4: { fontWeight: 700 },
-    h5: { fontWeight: 600 },
-    h6: { fontWeight: 600 },
+    fontFamily: "'Outfit', sans-serif",
+    h1: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 },
+    h2: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 },
+    h3: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 },
+    h4: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 },
+    h5: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 },
+    h6: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 },
     button: { textTransform: "none", fontWeight: 600 },
   },
-  shape: { borderRadius: 14 },
+  shape: { borderRadius: 16 },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 50,
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: "none",
+        },
+      },
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(

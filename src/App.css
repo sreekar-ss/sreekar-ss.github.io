@@ -28,6 +28,11 @@
   padding-top: 1em;
 }
 
+.section {
+  padding: 2rem 0;
+  margin-bottom: 8rem;
+}
+
 .noticeAlert {
   width: 100%;
   max-width: 800px;
