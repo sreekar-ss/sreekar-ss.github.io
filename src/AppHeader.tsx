@@ -44,6 +44,7 @@ function AppHeader() {
               activeClass="active"
               smooth
               spy
+              offset={-100}
               onClick={handleDrawerToggle}
               style={{ width: "100%", textDecoration: "none", color: "inherit" }}
             >
@@ -78,7 +79,13 @@ function AppHeader() {
           </Box>
           <Box className="headerButtons" sx={{ display: { xs: "none !important", md: "block !important" } }}>
             {NAV_ITEMS.map((item) => (
-              <Link key={item.to} to={item.to} activeClass="active" smooth spy>
+              <Link
+                key={item.to}
+                to={item.to}
+                activeClass="active"
+                smooth
+                spy
+              >
                 <Button className="headerNavButton">{item.label}</Button>
               </Link>
             ))}

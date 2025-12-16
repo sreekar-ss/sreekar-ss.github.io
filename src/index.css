@@ -5,7 +5,14 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(4 11 21 / 92%);
+  background-color: #0b1020;
+  background-image: radial-gradient(circle at 15% 50%,
+      rgba(110, 231, 242, 0.08),
+      transparent 25%),
+    radial-gradient(circle at 85% 30%,
+      rgba(167, 139, 250, 0.08),
+      transparent 25%);
+  background-attachment: fixed;
 }
 
 code {

@@ -8,10 +8,14 @@
 @import "css/Contact.css";
 
 :root {
-  --primary-color: #0b1020; /* header bg */
-  --secondary-color: #131a2a; /* cards bg */
-  --accent-color: #6ee7f2; /* cyan */
-  --accent-secondary: #a78bfa; /* purple */
+  --primary-color: #0b1020;
+  /* header bg */
+  --secondary-color: #131a2a;
+  /* cards bg */
+  --accent-color: #6ee7f2;
+  /* cyan */
+  --accent-secondary: #a78bfa;
+  /* purple */
 }
 
 /* Notice Banner */
@@ -31,6 +35,7 @@
 .section {
   padding: 2rem 0;
   margin-bottom: 8rem;
+  scroll-margin-top: 100px;
 }
 
 .noticeAlert {
@@ -61,12 +66,12 @@ nav.headerBar {
   justify-content: space-between;
 }
 
-.headerBar .headerSection > .headerTextSection {
+.headerBar .headerSection>.headerTextSection {
   display: flex;
   align-items: flex-start;
 }
 
-.headerSection > .headerTextSection .headingText {
+.headerSection>.headerTextSection .headingText {
   align-self: center;
   font-family: monospace;
   width: 15em;

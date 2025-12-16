@@ -3,19 +3,22 @@
 .educationSection .sectionHeader {
   width: 100%;
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+  /* Reduced from 1em */
 }
 
 .educationSection .educationGrid {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2em;
+  padding: 0 1em;
+  /* Reduced */
 }
 
 .educationSection .educationCard {
   padding: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  /* Reduced from 2em */
   background: rgba(19, 26, 42, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -77,8 +80,7 @@
   padding-left: 1.2em;
 }
 
-.educationSection .courseworkSection {
-}
+.educationSection .courseworkSection {}
 
 .educationSection .courseworkLabel {
   font-weight: 700;
