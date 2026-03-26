@@ -3,7 +3,7 @@ div.homeContainer div.aboutSection {
   min-height: 100vh;
   width: 100%;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-direction: column;
   padding-top: 80px;
 }
@@ -12,87 +12,102 @@ div.homeContainer div.aboutSection > div.heroContent {
   display: flex;
   width: 100%;
   max-width: 1200px;
-  height: 80vh;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 5rem;
+  padding: 0 2rem;
 }
 
-div.aboutSection .imageContainer {
-  display: flex;
-  border-color: white;
-  height: 24em;
-  width: 16em;
-  background-color: #1b1b1b;
+/* Photo with glow ring */
+.aboutSection .heroImageWrap {
+  position: relative;
+  flex-shrink: 0;
 }
 
-div.aboutSection .imageContainer .personalImage {
-  border-radius: 0.25em;
+.aboutSection .heroImageGlow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(110, 231, 242, 0.25),
+    rgba(167, 139, 250, 0.25)
+  );
+  filter: blur(20px);
+  z-index: 0;
 }
 
-div.aboutSection .aboutText {
+.aboutSection .personalImage {
+  position: relative;
+  z-index: 1;
+  width: 280px;
+  height: 370px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Text content */
+.aboutSection .aboutText {
   display: flex;
   flex-direction: column;
-  width: 35em;
-  align-self: center;
+  max-width: 560px;
 }
 
-div.aboutSection .aboutText h3 {
-  overflow: hidden;
-  border-right: 0.1em solid orange;
-  white-space: nowrap;
-  font-family: monospace;
-  color: white;
-  padding-bottom: 0.5em;
-  align-self: center;
-  animation:
-    typing 3s steps(25, end),
-    blink-caret 0.4s step-end infinite;
+.aboutSection .heroGreeting {
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
-div.aboutSection .aboutText p {
-  font-family: monospace;
-  color: white;
-  text-align: justify;
+.aboutSection .heroName {
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.4em;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--accent-color) 50%,
+    var(--accent-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.aboutSection .heroRole {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.aboutSection .heroDescription {
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.8;
+  font-size: 1rem;
 }
 
-div.aboutSection .aboutText p .highlight {
+.aboutSection .heroDescription .highlight {
   background: linear-gradient(
     45deg,
-    rgba(110, 231, 242, 0.2),
-    rgba(167, 139, 251, 0.2)
+    rgba(110, 231, 242, 0.15),
+    rgba(167, 139, 251, 0.15)
   );
-  padding: 0.15em 0.4em;
+  padding: 0.1em 0.4em;
   border-radius: 4px;
   font-weight: 600;
   color: var(--accent-color);
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 90%;
-  }
-}
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: orange;
-  }
-}
-
+/* Scroll indicator */
 div.homeContainer .section .scroll {
   display: flex;
-  width: 3.5em;
-  height: 3.5em;
-  border: 2px solid white;
+  width: 3em;
+  height: 3em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   position: absolute;
   bottom: 2rem;
@@ -100,18 +115,17 @@ div.homeContainer .section .scroll {
   right: 0;
   margin: 0 auto;
   animation: down 1.5s infinite;
-  -webkit-animation: down 1.5s infinite;
   z-index: 10;
 
   &::before {
     content: "";
     position: absolute;
-    top: 15px;
-    left: 18px;
-    width: 18px;
-    height: 18px;
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
+    top: 12px;
+    left: 14px;
+    width: 16px;
+    height: 16px;
+    border-left: 2px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
     transform: rotate(-45deg);
   }
 }
@@ -121,64 +135,42 @@ div.homeContainer .section .scroll {
     transform: translate(0);
   }
   20% {
-    transform: translateY(15px);
+    transform: translateY(12px);
   }
   40% {
     transform: translate(0);
   }
 }
 
-@-webkit-keyframes down {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translateY(15px);
-  }
-  40% {
-    transform: translate(0);
-  }
-}
-
+/* Responsive */
 @media screen and (max-width: 900px) {
   div.homeContainer div.aboutSection > div.heroContent {
-    display: flex;
-    height: 50vh;
-    width: 50%;
     flex-direction: column;
+    gap: 2.5rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .aboutSection .personalImage {
+    width: 200px;
+    height: 260px;
+  }
+
+  .aboutSection .aboutText {
     align-items: center;
-    justify-content: space-between;
   }
 
-  div.aboutSection .imageContainer {
-    display: flex;
-    width: 15em;
-    justify-content: center;
+  .aboutSection .heroName {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
   }
 
-  div.aboutSection .imageContainer img {
-    display: block;
-    width: 100%;
-    height: auto;
+  .aboutSection .heroRole {
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
   }
 
-  div.aboutSection .aboutText {
-    width: 15em;
-  }
-
-  div.aboutSection .aboutText h3 {
-    font-size: x-large;
-    white-space: nowrap;
-    margin-top: 2em;
-    margin-bottom: 1em;
-    animation:
-      typing 3s steps(15, end),
-      blink-caret 0.5s step-end infinite;
-  }
-
-  div.aboutSection .aboutText p {
-    font-size: medium;
-    align-self: center;
+  .aboutSection .heroDescription {
+    text-align: center;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
   }
 
   div.homeContainer .section .scroll {

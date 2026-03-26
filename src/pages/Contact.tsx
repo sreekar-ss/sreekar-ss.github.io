@@ -15,6 +15,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SendIcon from "@mui/icons-material/Send";
+import { motion } from "framer-motion";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -71,15 +72,27 @@ function Contact() {
 
   return (
     <div id="contact" className="section contactSection">
-      <Box className="sectionHeader">
-        <Typography variant="h6" className="sectionHeading">
-          Get In Touch
-        </Typography>
-      </Box>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Box className="sectionHeader">
+          <Typography variant="h6" className="sectionHeading">
+            Get In Touch
+          </Typography>
+        </Box>
+      </motion.div>
 
       <Box className="contactLayout">
-          {/* Left Side - Contact Info */}
-          <Box className="contactIntro">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="contactIntro"
+          >
             <Typography variant="h4" className="contactTitle">
               Let's Connect
             </Typography>
@@ -186,9 +199,14 @@ function Contact() {
                 </Box>
               </Box>
             </Stack>
-          </Box>
+          </motion.div>
 
-          {/* Right Side - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
           <Paper elevation={4} className="contactFormContainer">
             <Typography variant="h5" className="contactFormTitle">
               Send a Message
@@ -301,6 +319,7 @@ function Contact() {
               </Stack>
             </form>
           </Paper>
+          </motion.div>
         </Box>
 
       <Divider className="contactDivider" />

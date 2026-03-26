@@ -17,11 +17,12 @@ import React, { useState } from "react";
 
 const NAV_ITEMS = [
   { label: "About", to: "about" },
-  { label: "Work Experience", to: "experience" },
+  { label: "Experience", to: "experience" },
   { label: "Education", to: "education" },
   { label: "Projects", to: "projects" },
   { label: "Publications", to: "publications" },
   { label: "Photography", to: "photography" },
+  { label: "Contact", to: "contact" },
 ];
 
 function AppHeader() {

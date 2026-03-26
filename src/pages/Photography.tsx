@@ -5,11 +5,13 @@ import {
   Typography,
   Modal,
   IconButton,
+  useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import React, { useState, useCallback } from "react";
+import { motion } from "framer-motion";
 import aurora from "../images/aurora.jpeg";
 import bikes from "../images/bikes.jpeg";
 import bridge from "../images/bridge.jpeg";
@@ -40,6 +42,9 @@ const imageData = [
 
 function Photography() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const isTablet = useMediaQuery("(max-width: 900px)");
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const cols = isMobile ? 2 : isTablet ? 3 : 5;
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
@@ -66,14 +71,21 @@ function Photography() {
 
   return (
     <div id="photography" className="section photographySection">
-      <Box className="sectionHeader">
-        <Typography variant="h6" className="sectionHeading">
-          Photography
-        </Typography>
-      </Box>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <Box className="sectionHeader">
+          <Typography variant="h6" className="sectionHeading">
+            Photography
+          </Typography>
+        </Box>
+      </motion.div>
 
       <Box className="masonryContainer">
-        <ImageList variant="masonry" cols={5} gap={10}>
+        <ImageList variant="masonry" cols={cols} gap={10}>
           {imageData.map((item, index) => (
             <ImageListItem
               key={item.title}

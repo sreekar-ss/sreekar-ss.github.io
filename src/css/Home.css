@@ -60,12 +60,12 @@ div.homeContainer .section .sectionHeader {
 div.homeContainer .section .sectionHeading {
   display: inline-block;
   color: var(--accent-color);
-  font-family: monospace;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   text-shadow: 0 0 20px rgba(110, 231, 242, 0.2);
   padding-bottom: 0.5rem;
   position: relative;
+  letter-spacing: -0.01em;
 }
 
 div.homeContainer .section .sectionHeading::after {
@@ -95,29 +95,31 @@ div.homeContainer .section .contactLayout {
   margin: 0 auto;
 }
 
+/* Fluid responsive typography */
+div.section h3 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+div.section h5 {
+  font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+}
+
+div.section h6 {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+div.section p,
+div.section ul li {
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+}
+
 @media screen and (max-width: 900px) {
-  div.section h3 {
-    font-size: x-large;
-  }
-
-  div.section h5 {
-    font-size: medium;
-  }
-
-  div.section h6 {
-    font-size: small;
-  }
-
-  div.section p {
-    font-size: x-small;
-  }
-
-  div.section ul li {
-    font-size: x-small;
-  }
-
   div.homeContainer .quickLinks {
     left: 80%;
     top: 55%;
+  }
+
+  div.homeContainer .section {
+    padding: 3rem 1.25rem;
   }
 }

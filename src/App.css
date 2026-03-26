@@ -57,7 +57,9 @@
 /* Header */
 nav.headerBar {
   display: flex;
-  background-color: var(--primary-color);
+  background-color: rgba(11, 16, 32, 0.85);
+  backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .headerBar .headerSection {
@@ -65,33 +67,61 @@ nav.headerBar {
   justify-content: space-between;
 }
 
-.headerBar .headerSection>.headerTextSection {
+.headerBar .headerSection > .headerTextSection {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.headerSection>.headerTextSection .headingText {
+.headerSection > .headerTextSection .headingText {
   align-self: center;
-  font-family: monospace;
-  width: 15em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .headerBar .headerButtons {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .headerBar .headerButtons .headerNavButton {
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: none;
-  margin: 0.5em;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  position: relative;
+  transition: color 250ms ease;
+}
+
+.headerBar .headerButtons .headerNavButton::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+  border-radius: 1px;
+  transition: width 250ms ease;
 }
 
 .headerBar .headerButtons .headerNavButton:hover {
-  background-color: var(--secondary-color);
-  opacity: 0.6;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .headerBar .headerButtons .active .headerNavButton {
-  background-color: var(--accent-secondary);
+  color: white;
+  background-color: transparent;
+}
+
+.headerBar .headerButtons .active .headerNavButton::after {
+  width: 70%;
 }
