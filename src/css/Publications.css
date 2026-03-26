@@ -1,27 +1,25 @@
 /* Publications page styles */
 
-.publicationsSection .sectionHeader {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 1em;
-}
-
 .publicationsSection .publicationsContent {
-  padding-left: 2em;
-  padding-right: 2em;
+  padding: 0;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .publicationsSection .publicationCard {
-  padding: 1.5em;
-  margin-bottom: 3em;
+  padding: 2em;
+  margin-bottom: 2em;
   background: rgba(19, 26, 42, 0.5);
   backdrop-filter: blur(16px) saturate(180%);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 300ms ease;
+}
+
+.publicationsSection .publicationCard:last-child {
+  margin-bottom: 0;
 }
 
 .publicationsSection .publicationCard:hover {
@@ -39,12 +37,12 @@
 .publicationsSection .publicationLayout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3em;
+  gap: 2em;
 }
 
 @media screen and (min-width: 900px) {
   .publicationsSection .publicationLayout {
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 380px 1fr;
   }
 }
 

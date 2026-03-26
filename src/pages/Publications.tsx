@@ -37,87 +37,83 @@ const PUBLICATIONS: Publication[] = [
 function Publications() {
   return (
     <div id="publications" className="section publicationsSection">
-      <Paper className="publicationContainer sectionContainer" elevation={8}>
-        <Box className="sectionHeader">
-          <Typography variant="h6" className="sectionHeading">
-            Publications
-          </Typography>
-        </Box>
+      <Box className="sectionHeader">
+        <Typography variant="h6" className="sectionHeading">
+          Publications
+        </Typography>
+      </Box>
 
-        <Box className="publicationsContent">
-          {PUBLICATIONS.map((pub, index) => (
-            <Paper key={index} elevation={3} className="publicationCard">
-              <Typography variant="h5" className="publicationTitle">
-                {pub.title}
-              </Typography>
+      <Box className="publicationsContent">
+        {PUBLICATIONS.map((pub, index) => (
+          <Paper key={index} elevation={3} className="publicationCard">
+            <Typography variant="h5" className="publicationTitle">
+              {pub.title}
+            </Typography>
 
-              <Box className="publicationLayout">
-                {/* Left Column - Metadata */}
-                <Box>
-                  <Typography variant="body2" className="publicationAuthors">
-                    <Box component="span" className="label">
-                      Authors:{" "}
-                    </Box>
-                    {pub.authors}
-                  </Typography>
+            <Box className="publicationLayout">
+              <Box>
+                <Typography variant="body2" className="publicationAuthors">
+                  <Box component="span" className="label">
+                    Authors:{" "}
+                  </Box>
+                  {pub.authors}
+                </Typography>
 
-                  <Typography variant="body2" className="publicationConference">
-                    <Box component="span" className="label">
-                      Conference:{" "}
-                    </Box>
-                    {pub.conference}
-                  </Typography>
+                <Typography variant="body2" className="publicationConference">
+                  <Box component="span" className="label">
+                    Conference:{" "}
+                  </Box>
+                  {pub.conference}
+                </Typography>
 
-                  <Divider className="publicationDivider" />
+                <Divider className="publicationDivider" />
 
-                  <Box className="publicationStats">
-                    <Box>
-                      <Typography variant="caption" color="text.secondary">
-                        Year
-                      </Typography>
-                      <Typography variant="h6" className="statValue">
-                        {pub.year}
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <Typography variant="caption" color="text.secondary">
-                        Citations
-                      </Typography>
-                      <Typography variant="h6" className="citationsValue">
-                        {pub.citedBy}
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        className="publisherLabel"
-                      >
-                        Publisher
-                      </Typography>
-                      <img
-                        src={ieeeIcon}
-                        alt="IEEE"
-                        className="publisherIcon"
-                      />
-                    </Box>
+                <Box className="publicationStats">
+                  <Box>
+                    <Typography variant="caption" color="text.secondary">
+                      Year
+                    </Typography>
+                    <Typography variant="h6" className="statValue">
+                      {pub.year}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="caption" color="text.secondary">
+                      Citations
+                    </Typography>
+                    <Typography variant="h6" className="citationsValue">
+                      {pub.citedBy}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      className="publisherLabel"
+                    >
+                      Publisher
+                    </Typography>
+                    <img
+                      src={ieeeIcon}
+                      alt="IEEE"
+                      className="publisherIcon"
+                    />
                   </Box>
                 </Box>
-
-                {/* Right Column - Abstract */}
-                <Box>
-                  <Typography variant="overline" className="abstractLabel">
-                    Abstract
-                  </Typography>
-                  <Typography variant="body2" className="abstractText">
-                    {pub.abstract}
-                  </Typography>
-                </Box>
               </Box>
-            </Paper>
-          ))}
-        </Box>
-      </Paper>
+
+              <Box>
+                <Typography variant="overline" className="abstractLabel">
+                  Abstract
+                </Typography>
+                <Typography variant="body2" className="abstractText">
+                  {pub.abstract}
+                </Typography>
+              </Box>
+            </Box>
+          </Paper>
+        ))}
+      </Box>
     </div>
   );
 }

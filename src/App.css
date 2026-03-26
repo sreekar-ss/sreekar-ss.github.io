@@ -33,9 +33,8 @@
 }
 
 .section {
-  padding: 2rem 0;
-  margin-bottom: 8rem;
-  scroll-margin-top: 100px;
+  padding: 4rem 0;
+  scroll-margin-top: 80px;
 }
 
 .noticeAlert {

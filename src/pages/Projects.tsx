@@ -162,19 +162,17 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
 function Projects() {
   return (
     <div id="projects" className="section projectSection">
-      <Paper className="projectContainer sectionContainer" elevation={8}>
-        <Box className="sectionHeader">
-          <Typography variant="h6" className="sectionHeading">
-            Projects
-          </Typography>
-        </Box>
+      <Box className="sectionHeader">
+        <Typography variant="h6" className="sectionHeading">
+          Projects
+        </Typography>
+      </Box>
 
-        <Grid container spacing={3} className="projectGrid">
-          {PROJECTS.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
-          ))}
-        </Grid>
-      </Paper>
+      <Grid container spacing={3} className="projectGrid">
+        {PROJECTS.map((project, index) => (
+          <ProjectCard key={index} project={project} index={index} />
+        ))}
+      </Grid>
     </div>
   );
 }

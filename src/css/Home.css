@@ -10,32 +10,21 @@ div.homeContainer .quickLinks {
   left: 95%;
 }
 
+/* Base section layout */
 div.homeContainer .section {
   display: flex;
-  min-height: 100vh;
   width: 100%;
   flex-direction: column;
-  /* Ensure column direction */
   align-items: center;
-  /* Horizontally center */
   justify-content: flex-start;
-  /* vertical start, let margins handle centering */
-  padding: 80px 2rem 1rem 2rem;
-  /* Reduced top padding to 80px, bottom to 1rem */
+  padding: 4rem 2rem;
   position: relative;
   box-sizing: border-box;
 }
 
-div.homeContainer .section .sectionContainer {
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 100%;
-  max-width: 1400px;
-}
-
-/* Section-specific gradient backgrounds removed for smoother transition */
+/* Alternating band backgrounds */
 div.homeContainer .experienceSection {
-  background: transparent;
+  background: rgba(19, 26, 42, 0.3);
 }
 
 div.homeContainer .educationSection {
@@ -43,7 +32,7 @@ div.homeContainer .educationSection {
 }
 
 div.homeContainer .projectSection {
-  background: transparent;
+  background: rgba(19, 26, 42, 0.3);
 }
 
 div.homeContainer .publicationsSection {
@@ -51,301 +40,59 @@ div.homeContainer .publicationsSection {
 }
 
 div.homeContainer .photographySection {
-  background: transparent;
+  background: rgba(19, 26, 42, 0.3);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 div.homeContainer .contactSection {
   background: transparent;
 }
 
-/* Experience full-viewport slides */
-div.experienceSection .experienceFull {
-  display: block;
-  height: 100vh;
+/* Section heading with gradient underline */
+div.homeContainer .section .sectionHeader {
   width: 100%;
-  scroll-snap-type: y mandatory;
-  overscroll-behavior: contain;
+  max-width: 1200px;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-div.experienceSection .experienceFull .experienceSlide {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-  padding: 2em 0;
-}
-
-div.experienceSection .experienceFull .experienceSlide .experienceSlideCard {
-  width: min(1100px, 92%);
-  height: 80vh;
-  background: rgba(19, 26, 42, 0.5);
-  backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 2em;
-  border-radius: 1em;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-
-div.experienceSection .experienceFull .experienceSlide .experienceSlideCard .experienceBullets {
-  margin: 0;
-  padding-left: 1.2em;
-}
-
-/* Bullets fade-in */
-div.experienceSection .experienceFull .experienceSlide .experienceSlideCard .experienceBullets {
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    opacity 400ms ease,
-    transform 400ms ease;
-}
-
-div.experienceSection .experienceFull .experienceSlide .experienceSlideCard .experienceBullets.visible {
-  opacity: 1;
-  transform: translateY(0px);
-}
-
-/* Sticky year marker */
-/* Progress dots */
-div.experienceSection .experienceDots {
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: 2em;
-  right: 1.5em;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6em;
-  align-items: flex-end;
-  z-index: 6;
-}
-
-div.experienceSection .experienceDots .dot {
-  color: rgba(255, 255, 255, 0.4);
-  transition:
-    transform 200ms ease,
-    color 200ms ease;
-}
-
-div.experienceSection .experienceDots .dot:hover {
-  color: var(--accent-color);
-  transform: scale(1.1);
-}
-
-div.experienceSection .experienceDots .dotRow {
-  display: flex;
-  align-items: center;
-}
-
-div.experienceSection .experienceDots .yearPill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  min-width: 60px;
-  padding: 0 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: linear-gradient(45deg,
-      rgba(110, 231, 242, 0.15),
-      rgba(167, 139, 250, 0.15));
-  color: white;
-  cursor: pointer;
-  transition:
-    filter 200ms ease,
-    transform 200ms ease;
-}
-
-div.experienceSection .experienceDots .yearPill:hover {
-  filter: brightness(1.2);
-  transform: translateX(-2px);
-}
-
-div.experienceSection .experienceDots .yearText {
-  font-family: monospace;
-  font-weight: 700;
-}
-
-@media screen and (max-width: 900px) {
-  div.experienceSection .experienceFull .experienceSlide .experienceSlideCard {
-    height: auto;
-    min-height: 75vh;
-  }
-}
-
-div.homeContainer .section .sectionContainer {
-  display: flex;
-  width: 100%;
-  max-width: 1400px;
-  align-items: center;
-  align-self: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 0;
-}
-
-div.homeContainer .section .sectionContainer .sectionAccordion {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: #122f5947;
-  opacity: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: normal;
-  overflow: auto;
-}
-
-div.homeContainer .section .sectionContainer .sectionAccordion .sectionHeader {
-  background-color: var(--secondary-color);
-  box-shadow:
-    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
-    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
-    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
-  border-radius: 0.5em;
-}
-
-div.homeContainer .section .sectionContainer .sectionAccordion .sectionHeader h6 {
-  white-space: wrap;
-}
-
-div.homeContainer .section .sectionContainer .sectionAccordion .sectionAccordionDetails {
-  display: flex;
-  max-height: 36em;
-  flex-direction: column;
-  align-items: center;
-  overflow: auto;
-}
-
-div.homeContainer .section .sectionContainer .sectionHeading {
-  display: flex;
-  align-self: center;
+div.homeContainer .section .sectionHeading {
+  display: inline-block;
   color: var(--accent-color);
   font-family: monospace;
   font-weight: 700;
-  font-size: 2.5rem;
-  text-shadow: 0 0 20px rgba(110, 231, 242, 0.3);
+  font-size: 2rem;
+  text-shadow: 0 0 20px rgba(110, 231, 242, 0.2);
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+div.homeContainer .section .sectionHeading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+  border-radius: 2px;
+}
+
+/* Content constraint */
+div.homeContainer .section .timelineContainer,
+div.homeContainer .section .educationGrid,
+div.homeContainer .section .projectGrid,
+div.homeContainer .section .publicationsContent,
+div.homeContainer .section .contactLayout {
+  max-width: 1200px;
   width: 100%;
-  justify-content: center;
-}
-
-div.section .informationCardContainer {
-  display: flex;
-  width: 90%;
-  height: fit-content;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 1em;
-  border-radius: 0.7em;
-}
-
-div.section .informationCardContainer .informationCard {
-  display: flex;
-  height: fit-content;
-  flex-flow: column;
-  width: 100%;
-  border-radius: 0.7em;
-}
-
-div.section .informationCardContainer .informationCard .informationCardTitle {
-  display: flex;
-  background-color: var(--secondary-color);
-  color: white;
-  box-shadow:
-    0em 0.2em 0.2em -0.1em rgba(0, 0, 0, 0.2),
-    0em 0.3em 0.4em 0.5em rgba(0, 0, 0, 0.14),
-    0em 0.1em 0.4em 0.4em rgba(0, 0, 0, 0.12);
-  border-radius: 0.5em;
-}
-
-div.section .informationCardContainer .informationCard .informationCardTitle.active {
-  border-bottom-left-radius: 0em;
-  border-bottom-right-radius: 0em;
-}
-
-div.section .informationCardContainer .informationCard .informationCardTitle svg {
-  color: white;
-}
-
-div.section .informationCardContainer .informationCard .informationCardDetails {
-  display: flex;
-  color: white;
-  background-color: rgba(19, 26, 42, 0.9);
-  opacity: 0.8;
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  flex-direction: column;
-}
-
-.informationCardContainer .informationCard .informationCardDetails div.cardHighlights {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.informationCardContainer .informationCard .informationCardDetails div.cardHighlights>div {
-  display: flex;
-  flex-direction: row;
-  font-style: italic;
-  height: 3em;
-  align-items: center;
-}
-
-.informationCardContainer .informationCard .informationCardDetails div.cardHighlights>div>h6,
-.informationCardContainer .informationCard .informationCardDetails div.cardHighlights>div>p {
-  display: flex;
-  font-weight: 800;
-  align-self: center;
-  margin: 0.3em;
-}
-
-.informationCardContainer .informationCard .informationCardDetails .bulletPoint {
-  width: 0.4m;
-  height: 0.4em;
-  align-self: center;
-}
-
-.informationCardContainer .informationCard .informationCardDetails div.cardHighlights img {
-  border-radius: 0.5em;
-}
-
-.informationCardContainer .informationCard .informationCardDetails .gpa {
-  margin-left: 2em;
-  font-weight: 600;
-}
-
-.informationCardContainer .informationCard .informationCardDetails .githubButton {
-  border-radius: 1.5em;
-  margin-left: 2em;
-  background: linear-gradient(45deg,
-      var(--accent-color),
-      var(--accent-secondary));
-}
-
-.informationCardContainer .informationCard .informationCardDetails .githubButton:hover {
-  filter: brightness(1.1);
-}
-
-div.section .sectionContainer .imageContainer {
-  display: flex;
-  width: 80%;
-  align-content: center;
-}
-
-div.section .sectionContainer .imageContainer img {
-  cursor: pointer;
-  border-radius: 1em;
-}
-
-div.section .sectionContainer .imageContainer .imageTitle {
-  opacity: 0;
-}
-
-div.section .sectionContainer .imageContainer .imageTitle:hover {
-  opacity: 1;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 900px) {
@@ -359,24 +106,14 @@ div.section .sectionContainer .imageContainer .imageTitle:hover {
 
   div.section h6 {
     font-size: small;
-    /* white-space: nowrap; */
   }
 
   div.section p {
     font-size: x-small;
   }
 
-  div.section .informationCardContainer div {
-    font-size: x-small;
-  }
-
   div.section ul li {
     font-size: x-small;
-  }
-
-  div.section .sectionContainer .imageContainer>ul {
-    column-count: 2 !important;
-    column-gap: 0.5em !important;
   }
 
   div.homeContainer .quickLinks {

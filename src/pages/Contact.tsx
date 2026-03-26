@@ -71,14 +71,13 @@ function Contact() {
 
   return (
     <div id="contact" className="section contactSection">
-      <Paper className="contactContainer sectionContainer" elevation={8}>
-        <Box className="sectionHeader">
-          <Typography variant="h6" className="sectionHeading">
-            Get In Touch
-          </Typography>
-        </Box>
+      <Box className="sectionHeader">
+        <Typography variant="h6" className="sectionHeading">
+          Get In Touch
+        </Typography>
+      </Box>
 
-        <Box className="contactLayout">
+      <Box className="contactLayout">
           {/* Left Side - Contact Info */}
           <Box className="contactIntro">
             <Typography variant="h4" className="contactTitle">
@@ -304,17 +303,15 @@ function Contact() {
           </Paper>
         </Box>
 
-        <Divider className="contactDivider" />
+      <Divider className="contactDivider" />
 
-        {/* Footer */}
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          className="contactFooter"
-        >
-          © {new Date().getFullYear()} Sreekar Siddula. Built with React & ❤️
-        </Typography>
-      </Paper>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        className="contactFooter"
+      >
+        © {new Date().getFullYear()} Sreekar Siddula. Built with React & ❤️
+      </Typography>
     </div>
   );
 }

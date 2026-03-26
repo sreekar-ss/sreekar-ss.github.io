@@ -1,21 +1,12 @@
 /* Projects page styles */
 
-.projectSection .sectionHeader {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 0.5em;
-  /* Reduced from 1em */
-}
-
 .projectSection .projectGrid {
-  padding-left: 1em;
-  /* Reduced from 2em */
-  padding-right: 1em;
-  /* Reduced from 2em */
+  padding: 0;
   align-items: flex-start;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .projectSection .projectGridItem {
@@ -140,9 +131,11 @@
 }
 
 .projectSection .projectGithubButton {
-  background: linear-gradient(45deg,
-      var(--accent-color),
-      var(--accent-secondary));
+  background: linear-gradient(
+    45deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
   color: white;
   font-weight: 600;
   text-transform: none;

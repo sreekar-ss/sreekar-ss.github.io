@@ -1,29 +1,20 @@
 /* Contact page styles */
 
-.contactSection .sectionHeader {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 1em;
-}
-
 .contactSection .contactLayout {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3em;
-  padding-left: 2em;
-  padding-right: 2em;
-  max-width: 1400px;
+  padding: 0;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: 900px) {
   .contactSection .contactLayout {
     grid-template-columns: 1fr 1.2fr;
   }
-}
-
-.contactSection .contactIntro {
 }
 
 .contactSection .contactTitle {
@@ -36,16 +27,13 @@
   line-height: 1.6;
 }
 
-.contactSection .contactLinks {
-}
-
 .contactSection .contactCard {
   display: flex;
   align-items: center;
   gap: 2em;
   padding: 1.5em;
   background-color: rgba(110, 231, 242, 0.05);
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgba(110, 231, 242, 0.2);
   text-decoration: none;
   color: inherit;
@@ -68,14 +56,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .contactSection .contactCardIcon svg {
   color: white;
   font-size: 1.2rem;
-}
-
-.contactSection .contactCardInfo {
 }
 
 .contactSection .contactCardLabel {
@@ -98,12 +84,6 @@
   font-weight: 700;
 }
 
-.contactSection .contactForm {
-}
-
-.contactSection .contactFormGroup {
-}
-
 .contactSection .contactFormLabel {
   margin-bottom: 1em;
   font-weight: 600;
@@ -117,7 +97,10 @@
   border-color: var(--accent-color);
 }
 
-.contactSection .contactFormField .MuiOutlinedInput-root.Mui-focused fieldset {
+.contactSection
+  .contactFormField
+  .MuiOutlinedInput-root.Mui-focused
+  fieldset {
   border-color: var(--accent-color);
 }
 
@@ -153,12 +136,16 @@
 }
 
 .contactSection .contactDivider {
-  margin-top: 1em;
+  margin-top: 2em;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 .contactSection .contactFooter {
-  margin-top: 1em;
+  margin-top: 1.5em;
   margin-bottom: 1em;
   text-align: center;
 }
