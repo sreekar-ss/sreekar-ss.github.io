@@ -51,15 +51,39 @@ const theme = createTheme({
   },
 });
 
+// Redesign candidates, each loaded as its own chunk so the current site at "/"
+// doesn't download them. GitHub Pages serves /v1/ and /v2/ from copies of
+// index.html that scripts/postbuild.js writes into the build folder.
+const ContactSheet = React.lazy(() => import("./redesign/ContactSheet"));
+const CommandPalette = React.lazy(() => import("./redesign/CommandPalette"));
+const VersionSwitcher = React.lazy(() => import("./redesign/VersionSwitcher"));
+
+const route = window.location.pathname.replace(/\/+$/, "") || "/";
+
+function Root() {
+  if (route === "/v1" || route === "/v2") {
+    const version = route === "/v1" ? "v1" : "v2";
+    return (
+      <React.Suspense fallback={null}>
+        {version === "v1" ? <ContactSheet /> : <CommandPalette />}
+        <VersionSwitcher current={version} />
+      </React.Suspense>
+    );
+  }
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  );
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <Root />
   </React.StrictMode>,
 );
 

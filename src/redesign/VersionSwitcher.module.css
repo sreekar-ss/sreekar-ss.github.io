@@ -1,0 +1,41 @@
+.bar {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 4px 4px 12px;
+  background: rgba(12, 12, 14, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font: 500 12px/1 ui-monospace, "IBM Plex Mono", "Geist Mono", monospace;
+  color: #e8e6e1;
+}
+.label { margin-right: 6px; color: #a9a6a0; }
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #e8e6e1 !important;
+  text-decoration: none;
+}
+.link:hover { background: rgba(255, 255, 255, 0.1); }
+.link[aria-current="page"] { background: #e8e6e1; color: #111 !important; }
+.close {
+  width: 32px;
+  height: 32px;
+  margin-left: 2px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #a9a6a0;
+  font-size: 16px;
+  cursor: pointer;
+}
+.close:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.link:focus-visible, .close:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
