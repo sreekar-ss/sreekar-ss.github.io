@@ -124,7 +124,7 @@ function Points({ items }: { items: string[] }) {
 }
 
 export default function CommandPalette() {
-  usePageChrome("Sreekar Siddula · Portfolio", "#15132B");
+  usePageChrome("Sai Sreekar Siddula · Senior Software Engineer", "#15132B");
   const catalog = useMemo(buildCatalog, []);
   const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -160,7 +160,7 @@ export default function CommandPalette() {
   useEffect(() => {
     if (!sel) return;
     const el = listRef.current?.querySelector<HTMLElement>(`[data-id="${sel.id}"]`);
-    el?.scrollIntoView({ block: "nearest" });
+    el?.scrollIntoView?.({ block: "nearest" });
   }, [sel]);
 
   useEffect(() => {

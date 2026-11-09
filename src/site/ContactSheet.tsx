@@ -147,7 +147,7 @@ function Points({ items }: { items: string[] }) {
 }
 
 export default function ContactSheet() {
-  usePageChrome("Sreekar Siddula · Contact sheet", "#141311");
+  usePageChrome("Sai Sreekar Siddula · Contact sheet (v1)", "#141311");
   const allFrames = useMemo(buildFrames, []);
   const [filter, setFilter] = useState<FilterId>("all");
   const [pickedId, setPickedId] = useState("cvs");
@@ -425,7 +425,9 @@ export default function ContactSheet() {
             <a href={person.github} target="_blank" rel="noopener noreferrer"><span>GitHub</span>{person.githubHandle} ↗</a>
             <a href={resume} download="Sreekar-Resume.pdf"><span>Resume</span>Download PDF ↓</a>
           </div>
-          <p className={s.colophon}>© {new Date().getFullYear()} {person.name} · Built in React · Based in {person.location}</p>
+          <p className={s.colophon}>
+            © {new Date().getFullYear()} {person.name} · An earlier design of this site · <a href="/">See the main site →</a>
+          </p>
         </footer>
       </div>
     </div>

@@ -1,14 +1,31 @@
-// GitHub Pages only serves real files, so a visit to /v1 or /v2 would 404.
-// Copying the built index.html into build/v1/ and build/v2/ makes both routes
-// real pages; the app then picks the version from window.location.pathname.
+// GitHub Pages only serves real files, so routes need real index.html files.
+//   build/v1/index.html → copy of the app; it renders the contact sheet design
+//   build/v2/index.html → tiny redirect, since the v2 design is now the main site at "/"
 const fs = require("fs");
 const path = require("path");
 
 const build = path.join(__dirname, "..", "build");
-const html = fs.readFileSync(path.join(build, "index.html"));
-
-for (const route of ["v1", "v2"]) {
+const write = (route, contents) => {
   fs.mkdirSync(path.join(build, route), { recursive: true });
-  fs.writeFileSync(path.join(build, route, "index.html"), html);
-}
-console.log("postbuild: wrote build/v1/index.html and build/v2/index.html");
+  fs.writeFileSync(path.join(build, route, "index.html"), contents);
+};
+
+write("v1", fs.readFileSync(path.join(build, "index.html")));
+
+write(
+  "v2",
+  `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="/">
+<meta http-equiv="refresh" content="0; url=/">
+<script>location.replace("/" + location.search + location.hash);</script>
+</head>
+<body><a href="/">Continue to the site</a></body>
+</html>
+`,
+);
+
+console.log("postbuild: wrote build/v1/index.html and the build/v2 redirect");

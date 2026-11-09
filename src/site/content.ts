@@ -1,4 +1,5 @@
-// Shared content for the /v1 (contact sheet) and /v2 (command palette) redesigns.
+// Shared content for the main site (command palette design, at /) and the
+// contact sheet design (at /v1).
 // Both versions read from this one file, so copy edits only need to happen here.
 
 import aurora from "../images/web/aurora.jpg";
