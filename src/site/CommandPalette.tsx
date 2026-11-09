@@ -19,6 +19,7 @@ import {
   Photo,
 } from "./content";
 import { usePageChrome } from "./usePageChrome";
+import { trackLink, trackSearch } from "./analytics";
 
 type Item = {
   id: string;
@@ -137,6 +138,11 @@ export default function CommandPalette() {
   const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
 
   const results = useMemo(() => search(catalog, query), [catalog, query]);
+
+  // Count searches that matched real content; the "Ask" row doesn't count as a match.
+  useEffect(() => {
+    trackSearch(query, results.filter((r) => r.id !== "ask").length);
+  }, [query, results]);
   const sel = results.find((x) => x.id === activeId) ?? results[0];
   const groups = useMemo(() => {
     const names: string[] = [];
@@ -182,6 +188,8 @@ export default function CommandPalette() {
     a.href = item.href;
     if (item.download) a.download = resumeFileName;
     if (isExternal(item.href)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    // This link never joins the page, so the page-wide click listener can't see it.
+    trackLink(item.href, item.download);
     a.click();
   };
 
