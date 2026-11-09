@@ -6,7 +6,7 @@ import "@fontsource/geist-mono/400.css";
 import "@fontsource/geist-mono/500.css";
 import s from "./CommandPalette.module.css";
 import {
-  headshot,
+  headshotSmall,
   jobs,
   papers,
   person,
@@ -135,7 +135,10 @@ export default function CommandPalette() {
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
+  // Pre-rendered HTML says "Ctrl K"; switch to "⌘K" after hydration on Apple devices,
+  // so the server and first client render match.
+  const [isMac, setIsMac] = useState(false);
+  useEffect(() => setIsMac(/Mac|iPhone|iPad/.test(navigator.platform)), []);
 
   const results = useMemo(() => search(catalog, query), [catalog, query]);
 
@@ -232,7 +235,7 @@ export default function CommandPalette() {
 
         <section id="top" className={s.hero}>
           <div className={s.who}>
-            <img src={headshot} alt="" />
+            <img src={headshotSmall} alt="" width={52} height={52} />
             <div>
               <div>{person.name}</div>
               <div className={s.dim}>{person.role} · {person.location}</div>
@@ -313,7 +316,7 @@ export default function CommandPalette() {
                       aria-label={`Open ${p.title}`}
                       onClick={() => setLightbox(photos.indexOf(p))}
                     >
-                      <img src={p.src} alt="" loading="lazy" />
+                      <img src={p.small} alt="" loading="lazy" />
                     </button>
                   ))}
                 </div>
@@ -434,7 +437,16 @@ export default function CommandPalette() {
             {photos.map((p, i) => (
               <li key={p.id}>
                 <button type="button" onClick={() => setLightbox(i)} aria-label={`Open ${p.title}`}>
-                  <img src={p.src} alt="" loading="lazy" />
+                  <img
+                    src={p.small}
+                    srcSet={p.srcSet}
+                    sizes="(min-width: 1000px) 370px, (min-width: 600px) 50vw, 100vw"
+                    width={p.width}
+                    height={p.height}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </button>
                 <p className={s.caption}><span className={s.bright}>{p.id}.jpg</span><span>{p.title}</span></p>
               </li>

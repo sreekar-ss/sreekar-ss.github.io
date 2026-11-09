@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# sreekar-ss.github.io
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal site of Sai Sreekar Siddula: https://sreekar-ss.github.io
 
-## Available Scripts
+| Route | What's there |
+|---|---|
+| `/` | Main site: a searchable command palette (⌘K, Ctrl+K, or `/`) |
+| `/v1/` | Earlier "contact sheet" design, with the same content |
+| `/v2/` | Redirects to `/` |
 
-In the project directory, you can run:
+## Editing content
 
-### `npm start`
+All copy lives in **`src/site/content.ts`**: experience, projects, papers, education, photos, and links. Both designs, `llms.txt`, the JSON-LD Person schema, and the search index read from it, so edit it in one place.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Photos: web-sized copies in `src/images/web/`
+- Resume: `src/resume/Sai-Sreekar-Siddula-Resume.pdf`
+- Link preview image: `public/og-image.png` (1200×630)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Scripts
 
-### `npm test`
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server at http://localhost:3000 |
+| `npm test` | Unit tests (Vitest) |
+| `npm run typecheck` | TypeScript check |
+| `npm run build` | Production build into `build/` (see below) |
+| `npm run preview` | Serve the production build locally |
+| `npm run deploy` | Manual deploy to GitHub Pages (normally automatic) |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How the build works
 
-### `npm run build`
+1. `vite build` bundles the app into `build/`.
+2. `vite build --ssr src/entry-server.tsx` bundles a server version into `build-ssr/`.
+3. `scripts/prerender.mjs` uses it to:
+   - write full HTML for `/` and `/v1`, so search engines, link previews, and AI tools see real content before JavaScript runs (React then hydrates it)
+   - write `/v2/index.html` as a redirect to `/`
+   - generate `llms.txt`, the JSON-LD Person schema, and `sitemap.xml` from `content.ts`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deploying
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Merging to `master` deploys automatically: `.github/workflows/deploy.yml` type-checks, tests, builds, and publishes `build/` to the `gh-pages` branch. Pull requests run the same checks without deploying.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Analytics
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Privacy-friendly [GoatCounter](https://sreekar-ss.goatcounter.com): no cookies, no consent banner. Page views plus named events (resume downloads, contact clicks, outbound links, and searches that match site content). See `src/site/analytics.ts`.
