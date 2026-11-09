@@ -1,0 +1,106 @@
+# Sai Sreekar Siddula
+
+> Senior Software Engineer in Boston, MA. One React codebase that runs on desktop workstations and Zebra Android handhelds, with 30+ long-running workflows that branch, pause, and pick up where they left off, even when the backend, the hardware, or another person gets in the way.
+
+## Links
+- [Website](https://sreekar-ss.github.io/)
+- [Resume (PDF)](https://sreekar-ss.github.io/static/Sai-Sreekar-Siddula-Resume-Drce4tbv.pdf)
+- [LinkedIn](https://linkedin.com/in/sreekarsiddula)
+- [GitHub](https://github.com/sreekar-ss)
+- Email: ssiddula.jobs@gmail.com
+
+## Experience
+
+### Senior Software Engineer, Branding Brand, for CVS Health (Feb 2025 – present)
+Boston, MA
+
+One React codebase that runs on desktop workstations and Zebra Android handhelds, with 30+ long-running workflows that branch, pause, and pick up where they left off, even when the backend, the hardware, or another person gets in the way.
+
+- Designed a scheduling engine for multi-dose vaccine series, where moving one appointment reshuffles the ones after it
+- Built record locking so two staff can never edit the same record at once, with recovery across page reloads and devices
+- Brought four kinds of hardware into the browser: barcode scanning, dual camera streams for OCR, label printers, and biometric sign-in
+- Wrapped 60+ endpoints in Zod-validated contracts and designed recovery paths for 69 distinct API failure scenarios, each one tested
+- Shipped every major feature behind runtime flags and per-location config, so rollouts reach thousands of pharmacies without a redeploy
+- Cut redundant re-renders for about 30% better page performance, and built keyboard navigation that lets technicians work 30% faster
+
+Skills: React, TypeScript, Zod, Nx, OpenTelemetry
+
+### Software Engineer II, Ductus, for Crown Castle (Jun 2021 – Aug 2024)
+Maynard, MA
+
+Led frontend delivery for Crown Castle's legacy modernization, from requirements and Figma wireframes through to deployment.
+
+- Shipped 10+ React and Angular projects, backed by Python microservices behind a gRPC backend-for-frontend layer
+- Redesigned the frontend architecture so a large app shipped in 4 months instead of 6
+- Built a Material UI component library used across 7 projects, cutting new-feature time by 30%
+- Raised test coverage to 90% with Testing Library and Jest, and cut reported bugs by 30%
+- Added Swagger mock servers, GitHub Copilot, and Figma dev mode, saving another 20% of development time
+
+Skills: React, Angular, Python, gRPC, Testing
+
+### Software Engineer Co-op, Ductus (May – Dec 2020)
+Maynard, MA
+
+Tooling that sped up AWS deployments, and web components that work in any framework.
+
+- Built a CLI that generates CloudFormation templates, cutting AWS deployment time by 40%
+- Built a set of vanilla JS web components reused across 5 client projects
+
+Skills: AWS, CLI, Web Components
+
+### Technical Writer, Smartprix (Sep 2018 – Jan 2019)
+Noida, India
+
+Tech news and in-depth product reviews, including explainers on 5G and Wi-Fi 6.
+
+- Covered tech news and wrote in-depth product reviews, including explainers on 5G and Wi-Fi 6
+
+Skills: Writing, Research
+
+## Projects
+
+### thevector.dev (Now)
+A developer blog built to be read by people and by AI agents. Full-stack Next.js 15 with sub-second page loads, plus llms.txt endpoints and JSON-LD so LLM crawlers can read it properly.
+
+- App Router, server-side MDX, and GitHub sign-in
+- Sub-second loads from incremental static regeneration and edge caching
+- llms.txt endpoints and JSON-LD schemas for crawlers like GPTBot and Claude-Web
+
+Skills: Next.js, MDX, AI, SEO
+Link: https://thevector.dev
+
+### AI players for Sushi Go (2021)
+Game-playing agents built with Minimax and Q-learning, benchmarked against rule-based and random players at each stage of training.
+
+- Minimax with alpha-beta pruning
+- Q-learning, including linear function approximation
+
+Skills: Python, AI/ML, Q-Learning
+Link: https://github.com/Ryan-Newell/CS5100_SushiGo_AI
+
+### Flood control with IoT (2020)
+Raspberry Pi sensors send readings over CoAP to Java gateways, which relay them to the cloud and trigger actuators over MQTT.
+
+- Python on constrained devices, Java on the gateways
+- Ubidots cloud aggregation, with email alerts to users over SMTP
+
+Skills: Python, Java, MQTT, CoAP
+Link: https://bitbucket.org/sreekar_ss/iot-device/src/master/apps/project/
+
+### A learning management system, built twice (2020)
+The faculty side runs on React, Redux, and Spring with MySQL. The student side runs on Angular, Node.js, and MongoDB. Both deployed on Heroku.
+
+- Same product, two complete stacks, side by side
+
+Skills: React, Angular, Node.js, Spring Boot
+
+## Publications
+- Water Level Monitoring and Management of Dams using IoT. Sai Sreekar Siddula, Phaneendra Babu, P.C. Jain. IEEE IoT-SIU 2018. Cited 113 times. https://scholar.google.com/scholar?q=%22Water%20Level%20Monitoring%20and%20Management%20of%20Dams%20using%20IoT%22
+- Real Time Monitoring and Controlling of Water Level in Dams using IoT. Sai Sreekar Siddula, P.C. Jain, Madhur Deo Upadhayay. IEEE IACC 2018. Cited 22 times. https://scholar.google.com/scholar?q=%22Real%20Time%20Monitoring%20and%20Controlling%20of%20Water%20Level%20in%20Dams%20using%20IoT%22
+
+## Education
+- MS, Computer Systems Engineering (IoT), Northeastern University (2019 – 2021), GPA 4.0. President of NU IoTConnect, graduate student ambassador for the College of Engineering.
+- BTech, Electronics and Communication, Shiv Nadar University (2014 – 2018), GPA 3.7. Minor in computer science, chairperson of the food committee.
+
+## Optional
+- [Contact sheet design of this site](https://sreekar-ss.github.io/v1/): the same content in an earlier design
