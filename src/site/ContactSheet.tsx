@@ -15,6 +15,7 @@ import {
   photoById,
   projects,
   resume,
+  resumeFileName,
   schools,
   totalCitations,
 } from "./content";
@@ -194,7 +195,7 @@ export default function ContactSheet() {
             <a href="#projects">Projects</a>
             <a href="#papers">Papers</a>
             <a href="#contact">Contact</a>
-            <a href={resume} download="Sreekar-Resume.pdf" className={s.navCta}>Resume ↓</a>
+            <a href={resume} download={resumeFileName} className={s.navCta}>Resume ↓</a>
           </nav>
         </header>
 
@@ -423,7 +424,7 @@ export default function ContactSheet() {
             <a href={`mailto:${person.email}`}><span>Email</span>{person.email}</a>
             <a href={person.linkedin} target="_blank" rel="noopener noreferrer"><span>LinkedIn</span>{person.linkedinHandle} ↗</a>
             <a href={person.github} target="_blank" rel="noopener noreferrer"><span>GitHub</span>{person.githubHandle} ↗</a>
-            <a href={resume} download="Sreekar-Resume.pdf"><span>Resume</span>Download PDF ↓</a>
+            <a href={resume} download={resumeFileName}><span>Resume</span>Download PDF ↓</a>
           </div>
           <p className={s.colophon}>
             © {new Date().getFullYear()} {person.name} · An earlier design of this site · <a href="/">See the main site →</a>

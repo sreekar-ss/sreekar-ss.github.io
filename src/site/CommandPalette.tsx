@@ -13,6 +13,7 @@ import {
   photos,
   projects,
   resume,
+  resumeFileName,
   schools,
   totalCitations,
   Photo,
@@ -178,7 +179,7 @@ export default function CommandPalette() {
     }
     const a = document.createElement("a");
     a.href = item.href;
-    if (item.download) a.download = "Sreekar-Resume.pdf";
+    if (item.download) a.download = resumeFileName;
     if (isExternal(item.href)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
     a.click();
   };
@@ -313,7 +314,7 @@ export default function CommandPalette() {
                 <a
                   href={sel.href}
                   className={s.go}
-                  {...(sel.download ? { download: "Sreekar-Resume.pdf" } : {})}
+                  {...(sel.download ? { download: resumeFileName } : {})}
                   {...(isExternal(sel.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
                   {sel.hrefLabel} <kbd>↵</kbd>
@@ -425,7 +426,7 @@ export default function CommandPalette() {
             <div><dt>linkedin</dt><dd><a href={person.linkedin} target="_blank" rel="noopener noreferrer">in/{person.linkedinHandle}</a></dd></div>
             <div><dt>github</dt><dd><a href={person.github} target="_blank" rel="noopener noreferrer">{person.githubHandle}</a></dd></div>
             <div><dt>location</dt><dd>{person.location}</dd></div>
-            <div><dt>resume</dt><dd><a href={resume} download="Sreekar-Resume.pdf">Sreekar-Resume.pdf</a></dd></div>
+            <div><dt>resume</dt><dd><a href={resume} download={resumeFileName}>{resumeFileName}</a></dd></div>
           </dl>
           <p className={s.cursorLine} aria-hidden="true"><span className={s.accent}>$</span> <span className={s.cursor} /></p>
           <p className={s.colophon}>© {new Date().getFullYear()} {person.name} · built with React · press {isMac ? "⌘K" : "Ctrl K"} anywhere</p>

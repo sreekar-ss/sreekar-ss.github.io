@@ -15,10 +15,11 @@ import pier from "../images/web/pier.jpg";
 import skyline from "../images/web/skyline.jpg";
 import train from "../images/web/train.jpg";
 import headshotImg from "../icons/sreekar.jpeg";
-import resumePdf from "../resume/Sreekar-Resume.pdf";
+import resumePdf from "../resume/Sai-Sreekar-Siddula-Resume.pdf";
 
 export const headshot: string = headshotImg;
 export const resume: string = resumePdf;
+export const resumeFileName = "Sai-Sreekar-Siddula-Resume.pdf";
 
 export const person = {
   name: "Sai Sreekar Siddula",
@@ -73,7 +74,7 @@ export const jobs: Job[] = [
     title: "Senior Software Engineer",
     org: "Branding Brand, for CVS Health",
     location: "Boston, MA",
-    period: "Jan 2025 – present",
+    period: "Feb 2025 – present",
     years: "2025 → now",
     headline: "Modernizing a pharmacy app used in 10,000 stores",
     summary:
