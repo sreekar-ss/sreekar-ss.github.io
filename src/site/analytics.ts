@@ -10,7 +10,7 @@
 // (the part before .goatcounter.com). Leave it empty to disable everything.
 // GoatCounter ignores localhost on its own, so local development isn't counted.
 
-export const GOATCOUNTER_CODE = "";
+export const GOATCOUNTER_CODE = "sreekar-ss";
 
 type GoatCounter = {
   count: (vars: { path: string; title?: string; event?: boolean }) => void;
