@@ -65,7 +65,7 @@
 
 .self { flex: 1 1 260px; max-width: 340px; position: relative; margin: 0 auto 32px; }
 .selfFrame { background: #000; padding: 14px 14px 8px; }
-.selfFrame img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.selfFrame img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
 .selfMarker {
   position: absolute; inset: -14px; width: calc(100% + 28px); height: calc(100% + 28px);
   pointer-events: none; overflow: visible;

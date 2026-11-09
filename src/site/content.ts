@@ -2,22 +2,15 @@
 // contact sheet design (at /v1).
 // Both versions read from this one file, so copy edits only need to happen here.
 
-import aurora from "../images/web/aurora.jpg";
-import bikes from "../images/web/bikes.jpg";
-import bridge from "../images/web/bridge.jpg";
-import dawn from "../images/web/dawn.jpg";
-import dusk from "../images/web/dusk.jpg";
-import flower from "../images/web/flower.jpg";
-import fog from "../images/web/fog.jpg";
-import lighthouse from "../images/web/lighthouse.jpg";
-import milkyway from "../images/web/milkyway.jpg";
-import pier from "../images/web/pier.jpg";
-import skyline from "../images/web/skyline.jpg";
-import train from "../images/web/train.jpg";
-import headshotImg from "../icons/sreekar.jpeg";
+import headshotLarge from "../images/web/headshot.webp";
+import headshotSmallImg from "../images/web/headshot-160.webp";
+import photoSizes from "../images/web/sizes.json";
 import resumePdf from "../resume/Sai-Sreekar-Siddula-Resume.pdf";
 
-export const headshot: string = headshotImg;
+/** 400px-wide headshot (the original's full size). */
+export const headshot: string = headshotLarge;
+/** 160px headshot for small avatars. */
+export const headshotSmall: string = headshotSmallImg;
 export const resume: string = resumePdf;
 export const resumeFileName = "Sai-Sreekar-Siddula-Resume.pdf";
 
@@ -33,21 +26,44 @@ export const person = {
   githubHandle: "sreekar-ss",
 };
 
-export type Photo = { id: string; title: string; src: string };
+// Each photo comes in two WebP sizes: 640px for thumbnails and 1280px for full
+// views. `srcSet` lets the browser pick, so phones never download the large one
+// for a thumbnail.
+const small = import.meta.glob<string>("../images/web/*-640.webp", { eager: true, import: "default" });
+const large = import.meta.glob<string>("../images/web/*-1280.webp", { eager: true, import: "default" });
+
+export type Photo = {
+  id: string;
+  title: string;
+  /** 1280px version */
+  src: string;
+  /** 640px version */
+  small: string;
+  srcSet: string;
+  width: number;
+  height: number;
+};
+
+const photo = (id: string, title: string): Photo => {
+  const big = large[`../images/web/${id}-1280.webp`];
+  const sm = small[`../images/web/${id}-640.webp`];
+  const [width, height] = (photoSizes as Record<string, number[]>)[id];
+  return { id, title, src: big, small: sm, srcSet: `${sm} 640w, ${big} 1280w`, width, height };
+};
 
 export const photos: Photo[] = [
-  { id: "aurora", title: "Aurora", src: aurora },
-  { id: "dawn", title: "Nubble at Dawn", src: dawn },
-  { id: "milkyway", title: "Milky Way", src: milkyway },
-  { id: "lighthouse", title: "Portland Head Light", src: lighthouse },
-  { id: "bridge", title: "Brooklyn Bridge", src: bridge },
-  { id: "skyline", title: "Boston", src: skyline },
-  { id: "fog", title: "Manhattan Bridge", src: fog },
-  { id: "train", title: "Conway Scenic Railroad", src: train },
-  { id: "dusk", title: "Dusk", src: dusk },
-  { id: "pier", title: "Quincy Pier", src: pier },
-  { id: "bikes", title: "Biker Gang", src: bikes },
-  { id: "flower", title: "Daisy", src: flower },
+  photo("aurora", "Aurora"),
+  photo("dawn", "Nubble at Dawn"),
+  photo("milkyway", "Milky Way"),
+  photo("lighthouse", "Portland Head Light"),
+  photo("bridge", "Brooklyn Bridge"),
+  photo("skyline", "Boston"),
+  photo("fog", "Manhattan Bridge"),
+  photo("train", "Conway Scenic Railroad"),
+  photo("dusk", "Dusk"),
+  photo("pier", "Quincy Pier"),
+  photo("bikes", "Biker Gang"),
+  photo("flower", "Daisy"),
 ];
 
 export const photoById = (id: string): Photo =>

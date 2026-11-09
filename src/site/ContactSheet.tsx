@@ -33,6 +33,8 @@ type Frame = {
   tags: string[];
   // photo frames
   img?: string;
+  imgSmall?: string;
+  srcSet?: string;
   // work frames
   short?: string;
   tag?: string;
@@ -48,7 +50,7 @@ const project = (id: string) => projects.find((p) => p.id === id)!;
 
 function photoFrame(id: string, note = "keeper"): Frame {
   const p = photoById(id);
-  return { id, kind: "photo", img: p.src, title: p.title, kicker: "Photograph", note, points: [], tags: [] };
+  return { id, kind: "photo", img: p.src, imgSmall: p.small, srcSet: p.srcSet, title: p.title, kicker: "Photograph", note, points: [], tags: [] };
 }
 
 function buildFrames(): Frame[] {
@@ -219,7 +221,7 @@ export default function ContactSheet() {
           </div>
           <figure className={s.self}>
             <div className={s.selfFrame}>
-              <img src={headshot} alt={`${person.shortName} standing on a lawn, smiling`} />
+              <img src={headshot} width={400} height={600} alt={`${person.shortName} standing on a lawn, smiling`} />
               <figcaption className={s.edgeRow}><span>00A</span><span>Self</span></figcaption>
             </div>
             <Marker className={s.selfMarker} />
@@ -277,7 +279,7 @@ export default function ContactSheet() {
                       onClick={() => pick(f.id, true)}
                     >
                       {f.kind === "photo" ? (
-                        <img src={f.img} alt="" loading="lazy" />
+                        <img src={f.imgSmall} alt="" loading="lazy" decoding="async" />
                       ) : (
                         <span className={s.workFace}>
                           <span className={s.workTag}>{f.tag}</span>
@@ -301,7 +303,7 @@ export default function ContactSheet() {
           <div className={s.loupeVisual}>
             <div className={s.loupeFrame}>
               {sel.kind === "photo" ? (
-                <img src={sel.img} alt={sel.title} />
+                <img src={sel.img} srcSet={sel.srcSet} sizes="(min-width: 900px) 640px, 100vw" alt={sel.title} />
               ) : (
                 <div className={s.loupeWork} style={{ background: sel.color }}>
                   <span className={s.workTag}>{sel.tag}</span>

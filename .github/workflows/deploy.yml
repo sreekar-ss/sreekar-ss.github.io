@@ -37,13 +37,13 @@ jobs:
         run: npm ci
 
       - name: Type-check
-        run: npx tsc --noEmit -p .
+        run: npm run typecheck
 
       - name: Test
-        run: npm test -- --watchAll=false
+        run: npm test
 
       - name: Build
-        run: npm run build # postbuild writes build/v1 and the build/v2 redirect
+        run: npm run build # Vite build, SSR build, then scripts/prerender.mjs
 
       - name: Deploy to GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
