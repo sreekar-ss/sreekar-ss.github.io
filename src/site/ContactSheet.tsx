@@ -363,13 +363,14 @@ export default function ContactSheet() {
           </div>
           <div className={s.cards}>
             {projects.map((p, i) => (
-              <article key={p.id} className={s.card}>
+              <article key={p.id} className={`${s.card} ${i === 0 ? s.cardFeatured : ""}`}>
                 <div className={s.edgeRow}>
-                  <span>OT-{String(i + 1).padStart(2, "0")}</span>
+                  <span>OT-{String(i + 1).padStart(2, "0")}{i === 0 ? " · Pick of the roll" : ""}</span>
                   <span>{p.when}</span>
                 </div>
-                <h3 className={s.h3}>{p.title}</h3>
+                <h3 className={i === 0 ? s.h2 : s.h3}>{p.title}</h3>
                 <p className={s.cardBody}>{p.summary}</p>
+                {i === 0 && <Points items={p.points} />}
                 <Tags items={p.tags} />
                 {p.link && (
                   <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>
@@ -378,6 +379,12 @@ export default function ContactSheet() {
                 )}
               </article>
             ))}
+            <a href={person.github} target="_blank" rel="noopener noreferrer" className={s.cardMore}>
+              <span className={s.edgeRow}><span>OT-{String(projects.length + 1).padStart(2, "0")}</span><span>Contact sheet</span></span>
+              <span className={s.h3}>More on GitHub</span>
+              <span className={s.cardBody}>Experiments, coursework, and the source for this site.</span>
+              <span className={s.textLink}>github.com/{person.githubHandle} ↗</span>
+            </a>
           </div>
         </section>
 

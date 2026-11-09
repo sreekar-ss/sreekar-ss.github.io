@@ -371,17 +371,30 @@ export default function CommandPalette() {
           <p className={s.cmd}><span className={s.accent}>$</span> ls ~/projects</p>
           <h2 id="proj-h" className={s.h2}>Projects</h2>
           <div className={s.cards}>
-            {projects.map((p) => (
-              <article key={p.id} className={s.card}>
-                <div className={s.cardTop}><span className={s.accent}>{p.slug}/</span><span>{p.when}</span></div>
-                <h3 className={s.h3}>{p.title}</h3>
-                <p className={s.cardBody}>{p.summary}</p>
-                <Tags items={p.tags} />
-                {p.link && (
-                  <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>{p.linkLabel} ↗</a>
-                )}
-              </article>
-            ))}
+            {projects.map((p, i) => {
+              const featured = i === 0;
+              return (
+                <article key={p.id} className={`${s.card} ${featured ? s.cardFeatured : ""}`}>
+                  <div className={s.cardTop}>
+                    <span className={s.accent}>{p.slug}/</span>
+                    <span>{featured ? "featured · " : ""}{p.when}</span>
+                  </div>
+                  <h3 className={featured ? s.h3Big : s.h3}>{p.title}</h3>
+                  <p className={s.cardBody}>{p.summary}</p>
+                  {featured && <Points items={p.points} />}
+                  <Tags items={p.tags} />
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>{p.linkLabel} ↗</a>
+                  )}
+                </article>
+              );
+            })}
+            <a href={person.github} target="_blank" rel="noopener noreferrer" className={s.cardMore}>
+              <span className={s.cardTop}><span className={s.accent}>$ ls ~/projects --all</span></span>
+              <span className={s.h3}>More on GitHub</span>
+              <span className={s.cardBody}>Experiments, coursework, and the source for this site.</span>
+              <span className={s.moreCta}>github.com/{person.githubHandle} ↗</span>
+            </a>
           </div>
         </section>
 

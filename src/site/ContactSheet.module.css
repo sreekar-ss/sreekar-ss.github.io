@@ -176,7 +176,18 @@
 .rollBody .muted { margin-top: 4px; }
 
 /* Outtakes */
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 20px; }
+/* 3 / 2 / 1 columns; the featured card spans two and the GitHub card closes the grid. */
+.cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cardFeatured { grid-column: span 2; } }
+@media (min-width: 1000px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.cardFeatured { background: #241f19; border-color: #6b665c; }
+.cardFeatured .points { margin-top: 0; }
+.page .cardMore {
+  display: flex; flex-direction: column; gap: 12px; padding: 24px; text-decoration: none;
+  border: 1px dashed #6b665c; transition: border-color 0.2s ease;
+}
+.page .cardMore:hover { border-color: var(--amber); color: var(--ink); }
+.cardMore .edgeRow { padding-top: 0; font-size: 12px; }
 .card { display: flex; flex-direction: column; gap: 12px; padding: 24px; background: #1d1b18; border: 1px solid var(--line); }
 .card .edgeRow { padding-top: 0; font-size: 12px; }
 .card .tags { margin-top: 0; }
