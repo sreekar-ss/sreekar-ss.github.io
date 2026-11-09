@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import CommandPalette from "./site/CommandPalette";
 import reportWebVitals from "./reportWebVitals";
+import { initAnalytics } from "./site/analytics";
 
 // "/"   → main site (command palette design)
 // "/v1" → earlier contact sheet design, loaded as its own chunk
@@ -20,6 +21,8 @@ function Root() {
   }
   return <CommandPalette />;
 }
+
+initAnalytics();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
