@@ -1,0 +1,54 @@
+# Checks every pull request, and deploys the site whenever master changes.
+#
+# - Pull requests: install, type-check, test, build. Nothing is deployed.
+# - Push to master (including a merged PR): the same checks, then the build
+#   folder is published to the gh-pages branch, which GitHub Pages serves.
+#
+# `npm run deploy` still works for a manual deploy from your machine.
+
+name: Test and deploy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+# Never let two deploys race each other; a newer push cancels an older run.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed to push the build to the gh-pages branch
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Type-check
+        run: npx tsc --noEmit -p .
+
+      - name: Test
+        run: npm test -- --watchAll=false
+
+      - name: Build
+        run: npm run build # postbuild writes build/v1 and the build/v2 redirect
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          commit_message: "Deploy ${{ github.sha }}"

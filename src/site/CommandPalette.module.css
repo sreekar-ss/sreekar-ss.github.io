@@ -210,6 +210,14 @@
 }
 .lbControls button:hover { border-color: var(--accent); }
 
+/* Wide screens: list and preview share one fixed height and scroll independently,
+   so a long preview never pushes results out of view. */
+@media (min-width: 900px) {
+  .paletteBody { flex-wrap: nowrap; height: 640px; }
+  .list { max-height: none; }
+  .preview { overflow-y: auto; scrollbar-color: var(--line) transparent; }
+}
+
 @media (max-width: 720px) {
   .list { max-height: 360px; }
   .preview { border-left: 0; margin-left: 0; }

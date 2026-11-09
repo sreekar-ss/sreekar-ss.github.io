@@ -17,6 +17,7 @@ import {
   resume,
   resumeFileName,
   schools,
+  scholarLink,
   totalCitations,
 } from "./content";
 import { usePageChrome } from "./usePageChrome";
@@ -58,16 +59,16 @@ function buildFrames(): Frame[] {
   const lms = project("lms");
   return [
     {
-      id: "cvs", kind: "work", short: "Rebuilding a pharmacy app", tag: "CVS Health", color: "#7A2E25",
+      id: "cvs", kind: "work", short: "Pharmacy workflows at scale", tag: "CVS Health", color: "#7A2E25",
       big: cvs.big, bigLabel: cvs.bigLabel, note: "start here", kicker: "Branding Brand · for CVS Health · 2025 → now",
-      title: cvs.headline, summary: cvs.summary, points: cvs.points.slice(1), tags: cvs.tags,
+      title: cvs.headline, summary: cvs.summary, points: cvs.points, tags: cvs.tags,
     },
     photoFrame("aurora"),
     photoFrame("dawn"),
     {
       id: "ductus", kind: "work", short: "10+ apps, one client", tag: "Ductus", color: "#2B3A36",
-      big: ductus.big, bigLabel: ductus.bigLabel, note: "three good years", kicker: "Ductus · 2020 → 2024",
-      title: ductus.headline, summary: ductus.summary, points: ductus.points.slice(1), tags: ductus.tags,
+      big: ductus.big, bigLabel: ductus.bigLabel, note: "three good years", kicker: "Ductus · for Crown Castle · 2020 → 2024",
+      title: ductus.headline, summary: ductus.summary, points: ductus.points, tags: ductus.tags,
     },
     photoFrame("bridge"),
     {
@@ -76,6 +77,7 @@ function buildFrames(): Frame[] {
       title: "Monitoring dam water levels with IoT",
       summary: "First-author research on collecting real-time water-level data and sending it to a central command center that decides when to open the gates.",
       points: papers.map((p) => `${p.title}, ${p.venue}, cited ${p.cites} times`), tags: ["IoT", "Sensors", "Research"],
+      link: scholarLink, linkLabel: "Find on Google Scholar",
     },
     photoFrame("lighthouse"),
     photoFrame("milkyway", "long exposure"),
@@ -206,9 +208,9 @@ export default function ContactSheet() {
               I build software.<br />I photograph<br /><span className={s.amber}>everything else.</span>
             </h1>
             <p className={s.lede}>
-              I build user-centric web applications in React, with a focus on frontend architecture,
-              accessibility, and mentoring the people around me. Right now I’m helping modernize the
-              pharmacy software CVS Health uses in 10,000 stores.
+              I build large, production React and TypeScript apps, and I like the hard parts: long-running
+              workflows, concurrency, and getting hardware to talk to a browser. Right now I lead the most
+              complex app on CVS Health’s pharmacy platform, used in 10,000 stores.
             </p>
             <div className={s.ctas}>
               <a href="#sheet" className={s.btnSolid}>See the contact sheet</a>
@@ -396,6 +398,7 @@ export default function ContactSheet() {
                   <h3 className={s.printTitle}>{p.title}</h3>
                   <p className={s.printBody}>{p.summary}</p>
                   <p className={s.printAuthors}>{p.authors}</p>
+                  <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.printLink}>Find on Google Scholar ↗</a>
                 </div>
               </article>
             ))}
