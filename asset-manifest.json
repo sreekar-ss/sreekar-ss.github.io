@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/static/css/main.11ead356.css",
-    "main.js": "/static/js/main.193d7577.js",
+    "main.js": "/static/js/main.8991f224.js",
     "static/css/325.12e91beb.chunk.css": "/static/css/325.12e91beb.chunk.css",
-    "static/js/325.801c7b14.chunk.js": "/static/js/325.801c7b14.chunk.js",
+    "static/js/325.73fc6b1e.chunk.js": "/static/js/325.73fc6b1e.chunk.js",
     "static/js/453.93d0e2a7.chunk.js": "/static/js/453.93d0e2a7.chunk.js",
     "static/media/milkyway.jpg": "/static/media/milkyway.960a2790ffa66ab14bbf.jpg",
     "static/media/train.jpg": "/static/media/train.d22b03c40a24c6ceafb7.jpg",
@@ -12,12 +12,12 @@
     "static/media/skyline.jpg": "/static/media/skyline.b54da0d2e45c3c7420d2.jpg",
     "static/media/pier.jpg": "/static/media/pier.27ef3cc0f997aea44b02.jpg",
     "static/media/lighthouse.jpg": "/static/media/lighthouse.4a0ba6b587c70d328f50.jpg",
-    "static/media/Sreekar-Resume.pdf": "/static/media/Sreekar-Resume.6719df8528abc0dcde95.pdf",
     "static/media/flower.jpg": "/static/media/flower.dec91bfb9d7af06477b4.jpg",
     "static/media/aurora.jpg": "/static/media/aurora.3b7cf677f70a80973ab4.jpg",
     "static/media/dusk.jpg": "/static/media/dusk.4721c8ad47a605eaed15.jpg",
     "static/media/dawn.jpg": "/static/media/dawn.257af5a758e525284769.jpg",
     "static/media/fog.jpg": "/static/media/fog.32a5ae9a130af2e8156a.jpg",
+    "static/media/Sai-Sreekar-Siddula-Resume.pdf": "/static/media/Sai-Sreekar-Siddula-Resume.c452edf9d5d0ffe6a8ee.pdf",
     "static/media/sreekar.jpeg": "/static/media/sreekar.fe10d04044681a3dd8c0.jpeg",
     "static/media/geist-sans-latin-600-normal.woff": "/static/media/geist-sans-latin-600-normal.c69cc7699f80165da433.woff",
     "static/media/geist-sans-latin-500-normal.woff": "/static/media/geist-sans-latin-500-normal.9b60f3f595d88aa06b8c.woff",
@@ -109,13 +109,13 @@
     "static/media/geist-mono-cyrillic-ext-400-normal.woff2": "/static/media/geist-mono-cyrillic-ext-400-normal.532b570c32b087a811b7.woff2",
     "index.html": "/index.html",
     "main.11ead356.css.map": "/static/css/main.11ead356.css.map",
-    "main.193d7577.js.map": "/static/js/main.193d7577.js.map",
+    "main.8991f224.js.map": "/static/js/main.8991f224.js.map",
     "325.12e91beb.chunk.css.map": "/static/css/325.12e91beb.chunk.css.map",
-    "325.801c7b14.chunk.js.map": "/static/js/325.801c7b14.chunk.js.map",
+    "325.73fc6b1e.chunk.js.map": "/static/js/325.73fc6b1e.chunk.js.map",
     "453.93d0e2a7.chunk.js.map": "/static/js/453.93d0e2a7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.11ead356.css",
-    "static/js/main.193d7577.js"
+    "static/js/main.8991f224.js"
   ]
 }
