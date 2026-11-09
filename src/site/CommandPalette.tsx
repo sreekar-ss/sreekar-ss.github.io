@@ -44,24 +44,25 @@ function buildCatalog(): Item[] {
   const items: Item[] = [];
   jobs.forEach((j) =>
     items.push({
-      id: j.id, group: "Experience", label: j.title, hint: `${j.org.replace("Branding Brand, for ", "")} · ${j.years}`,
+      id: j.id, group: "Experience", label: j.title, hint: `${j.company} · ${j.years}`,
       kicker: `Experience · ${j.period}`, title: j.headline, meta: `${j.org} · ${j.location}`,
-      big: j.big, bigLabel: j.bigLabel, summary: j.summary, points: j.points.slice(j.big ? 1 : 0), tags: j.tags,
-      words: `${j.org} ${j.title} job work experience ${j.tags.join(" ")}`,
+      big: j.big, bigLabel: j.bigLabel, summary: j.summary, points: j.points, tags: j.tags,
+      words: `${j.org} ${j.title} job work experience ${j.tags.join(" ")} ${j.summary} ${j.points.join(" ")}`,
     }),
   );
   projects.forEach((p) =>
     items.push({
       id: p.id, group: "Projects", label: p.title, hint: `${p.tags[0]} · ${p.when}`,
       kicker: `Project · ${p.context} · ${p.when}`, title: p.title, summary: p.summary, points: p.points, tags: p.tags,
-      href: p.link, hrefLabel: p.linkLabel, words: `${p.slug} project built ${p.tags.join(" ")} ${p.summary}`,
+      href: p.link, hrefLabel: p.linkLabel, words: `${p.slug} project built ${p.tags.join(" ")} ${p.summary} ${p.points.join(" ")}`,
     }),
   );
   papers.forEach((p) =>
     items.push({
       id: p.id, group: "Publications", label: p.title, hint: `${p.cites} cites`,
       kicker: p.venue, title: p.title, meta: `First author · ${p.authors}`, big: p.cites, bigLabel: "citations",
-      summary: p.summary, points: [], tags: ["IoT", "Research"], words: "paper papers publication research ieee dam water iot citations",
+      summary: p.summary, points: [], tags: ["IoT", "Research"], href: p.link, hrefLabel: "Find on Google Scholar",
+      words: "paper papers publication research ieee dam water iot citations scholar",
     }),
   );
   items.push({
@@ -197,7 +198,7 @@ export default function CommandPalette() {
   const stats = [
     { value: "6+ yrs", label: "shipping React in production" },
     { value: "10,000", label: "stores run code I work on" },
-    { value: "−40%", label: "duplicate UI logic at CVS" },
+    { value: "69", label: "API failure paths, each one tested" },
     { value: String(totalCitations), label: "citations on two IEEE papers" },
   ];
 
@@ -231,8 +232,9 @@ export default function CommandPalette() {
           </div>
           <h1 className={s.h1}>I build the frontends people <span className={s.accent}>rely on all day.</span></h1>
           <p className={s.lede}>
-            Six-plus years in React and frontend architecture. Right now I’m rebuilding the pharmacy
-            software CVS Health runs in 10,000 stores. Search for anything below, or just scroll.
+            Six-plus years building large, production React and TypeScript apps. Right now I lead the
+            most complex app on CVS Health’s pharmacy platform, used in 10,000 stores. Search for anything
+            below, or just scroll.
           </p>
         </section>
 
@@ -393,7 +395,8 @@ export default function CommandPalette() {
                 <div className={s.field}>title = {"{"}<span className={s.bright}>{p.title}</span>{"}"},</div>
                 <div className={s.field}>venue = {"{"}{p.venue}{"}"},</div>
                 <div className={s.field}>author = {"{"}{p.shortAuthors}{"}"},</div>
-                <div className={s.field}>cited_by = <span className={s.cites}>{p.cites}</span></div>
+                <div className={s.field}>cited_by = <span className={s.cites}>{p.cites}</span>,</div>
+                <div className={s.field}>url = {"{"}<a href={p.link} target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>{"}"}</div>
                 <div>{"}"}</div>
               </article>
             ))}

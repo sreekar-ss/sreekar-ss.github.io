@@ -56,6 +56,7 @@ export const photoById = (id: string): Photo =>
 export type Job = {
   id: string;
   title: string;
+  company: string;
   org: string;
   location: string;
   period: string;
@@ -68,66 +69,75 @@ export type Job = {
   tags: string[];
 };
 
+// Written from the latest resume (src/resume), in a shorter, more
+// conversational voice for the site.
 export const jobs: Job[] = [
   {
     id: "cvs",
     title: "Senior Software Engineer",
+    company: "CVS Health",
     org: "Branding Brand, for CVS Health",
     location: "Boston, MA",
     period: "Feb 2025 – present",
     years: "2025 → now",
-    headline: "Modernizing a pharmacy app used in 10,000 stores",
+    headline: "Leading the most complex app on a pharmacy platform used in 10,000 stores",
     summary:
-      "Helping rebuild the legacy Java pharmacy application CVS Health stores run on, in React, on workflows behind millions of prescriptions a day.",
+      "One React codebase that runs on desktop workstations and Zebra Android handhelds, with 30+ long-running workflows that branch, pause, and pick up where they left off, even when the backend, the hardware, or another person gets in the way.",
     big: "10,000",
-    bigLabel: "stores use this app",
+    bigLabel: "stores",
     points: [
-      "Rebuilding core workflows of CVS Health’s legacy Java pharmacy app in React, used across 10,000 stores",
-      "Improved workflow efficiency by about 30% in high-traffic areas by cutting component re-renders",
-      "Reduced duplicate UI logic by 40% across prescriber flows with reusable, accessible patterns",
-      "Mentor 2–3 junior developers weekly on architecture, code quality, and best practices",
+      "Designed a scheduling engine for multi-dose vaccine series, where moving one appointment reshuffles the ones after it",
+      "Built record locking so two staff can never edit the same record at once, with recovery across page reloads and devices",
+      "Brought four kinds of hardware into the browser: barcode scanning, dual camera streams for OCR, label printers, and biometric sign-in",
+      "Wrapped 60+ endpoints in Zod-validated contracts and designed recovery paths for 69 distinct API failure scenarios, each one tested",
+      "Shipped every major feature behind runtime flags and per-location config, so rollouts reach thousands of pharmacies without a redeploy",
+      "Cut redundant re-renders for about 30% better page performance, and built keyboard navigation that lets technicians work 30% faster",
     ],
-    tags: ["React", "Accessibility", "Mentorship", "Scalability"],
+    tags: ["React", "TypeScript", "Zod", "Nx", "OpenTelemetry"],
   },
   {
     id: "ductus",
     title: "Software Engineer II",
-    org: "Ductus",
+    company: "Ductus",
+    org: "Ductus, for Crown Castle",
     location: "Maynard, MA",
     period: "Jun 2021 – Aug 2024",
     years: "2021 → 2024",
-    headline: "Ten-plus apps for network automation",
+    headline: "Modernizing a telecom company's network software, ten-plus apps deep",
     summary:
-      "Built React and Angular applications for a client automating its network operations, and brought the UX design lifecycle into how the team planned work.",
+      "Led frontend delivery for Crown Castle's legacy modernization, from requirements and Figma wireframes through to deployment.",
     big: "10+",
     bigLabel: "projects delivered",
     points: [
-      "Delivered 10+ React and Angular projects for a client automating its network",
-      "Led frontend architecture discussions and raised testing standards with Jest and Testing Library",
-      "Brought the UX lifecycle into planning: user flows, Figma wireframes, and usability testing",
-      "Introduced Swagger mock servers, GitHub Copilot, and Figma dev mode to cut development time",
+      "Shipped 10+ React and Angular projects, backed by Python microservices behind a gRPC backend-for-frontend layer",
+      "Redesigned the frontend architecture so a large app shipped in 4 months instead of 6",
+      "Built a Material UI component library used across 7 projects, cutting new-feature time by 30%",
+      "Raised test coverage to 90% with Testing Library and Jest, and cut reported bugs by 30%",
+      "Added Swagger mock servers, GitHub Copilot, and Figma dev mode, saving another 20% of development time",
     ],
-    tags: ["React", "Angular", "Testing", "UX"],
+    tags: ["React", "Angular", "Python", "gRPC", "Testing"],
   },
   {
     id: "coop",
     title: "Software Engineer Co-op",
+    company: "Ductus",
     org: "Ductus",
     location: "Maynard, MA",
     period: "May – Dec 2020",
     years: "2020",
     headline: "Co-op at Ductus",
     summary:
-      "An internal CLI that generates AWS CloudFormation templates, and reusable web components that work in any framework.",
+      "Tooling that sped up AWS deployments, and web components that work in any framework.",
     points: [
-      "Built an internal CLI that generates AWS CloudFormation templates",
-      "Developed reusable vanilla JS web components that work across frameworks",
+      "Built a CLI that generates CloudFormation templates, cutting AWS deployment time by 40%",
+      "Built a set of vanilla JS web components reused across 5 client projects",
     ],
-    tags: ["AWS", "CLI", "Angular"],
+    tags: ["AWS", "CLI", "Web Components"],
   },
   {
     id: "writer",
     title: "Technical Writer",
+    company: "Smartprix",
     org: "Smartprix",
     location: "Noida, India",
     period: "Sep 2018 – Jan 2019",
@@ -162,9 +172,14 @@ export const projects: Project[] = [
     title: "thevector.dev",
     when: "Now",
     context: "Personal project",
-    summary: "An AI-friendly developer blog platform, built with Next.js 15.",
-    points: [],
-    tags: ["Next.js", "AI"],
+    summary:
+      "A developer blog built to be read by people and by AI agents. Full-stack Next.js 15 with sub-second page loads, plus llms.txt endpoints and JSON-LD so LLM crawlers can read it properly.",
+    points: [
+      "App Router, server-side MDX, and GitHub sign-in",
+      "Sub-second loads from incremental static regeneration and edge caching",
+      "llms.txt endpoints and JSON-LD schemas for crawlers like GPTBot and Claude-Web",
+    ],
+    tags: ["Next.js", "MDX", "AI", "SEO"],
     link: "https://thevector.dev",
     linkLabel: "Visit site",
   },
@@ -211,29 +226,14 @@ export const projects: Project[] = [
     points: ["Same product, two complete stacks, side by side"],
     tags: ["React", "Angular", "Node.js", "Spring Boot"],
   },
-  {
-    id: "alexa",
-    slug: "alexa-daycare",
-    title: "Alexa voice interface for day care",
-    when: "2019",
-    context: "Northeastern University",
-    summary:
-      "A Java MVC app for running a day care, with Alexa intents in Python that answer from its MySQL data.",
-    points: [],
-    tags: ["Java", "Python", "Alexa Skills"],
-  },
-  {
-    id: "network",
-    slug: "global-network",
-    title: "Network for a global company",
-    when: "2019",
-    context: "Northeastern University",
-    summary:
-      "A simulated multinational network with VLANs, DHCP, OSPF routing, and RSTP and HSRP for redundancy.",
-    points: [],
-    tags: ["Cisco", "OSPF", "VLAN"],
-  },
 ];
+
+// Google Scholar search for the exact title: shows the paper and its live
+// citation count. Swap for a Scholar profile URL if you want one link instead.
+const scholar = (title: string) =>
+  `https://scholar.google.com/scholar?q=${encodeURIComponent(`"${title}"`)}`;
+
+export const scholarLink = "https://scholar.google.com/scholar?q=" + encodeURIComponent('"Sai Sreekar Siddula"');
 
 export type Paper = {
   id: string;
@@ -245,6 +245,7 @@ export type Paper = {
   authors: string;
   shortAuthors: string;
   summary: string;
+  link: string;
 };
 
 export const papers: Paper[] = [
@@ -252,6 +253,7 @@ export const papers: Paper[] = [
     id: "p1",
     key: "siddula2018monitoring",
     title: "Water Level Monitoring and Management of Dams using IoT",
+    link: scholar("Water Level Monitoring and Management of Dams using IoT"),
     venue: "IEEE IoT-SIU 2018",
     year: "2018",
     cites: "113",
@@ -264,6 +266,7 @@ export const papers: Paper[] = [
     id: "p2",
     key: "siddula2018realtime",
     title: "Real Time Monitoring and Controlling of Water Level in Dams using IoT",
+    link: scholar("Real Time Monitoring and Controlling of Water Level in Dams using IoT"),
     venue: "IEEE IACC 2018",
     year: "2018",
     cites: "22",
