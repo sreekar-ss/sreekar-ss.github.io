@@ -29,3 +29,25 @@ test("arrow keys move the highlighted result and Escape clears", () => {
   fireEvent.keyDown(input, { key: "Escape" });
   expect(input).toHaveValue("");
 });
+
+test("hero offers resume download and email directly", () => {
+  render(<CommandPalette />);
+  const main = screen.getByRole("main");
+  expect(main).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "Download resume" })).toHaveAttribute("download");
+  expect(screen.getByRole("link", { name: "Email me" }).getAttribute("href")).toMatch(/^mailto:/);
+});
+
+test("result count appears only once someone searches", () => {
+  render(<CommandPalette />);
+  const input = screen.getByRole("combobox", { name: /search/i });
+  expect(screen.queryByText(/\d+ results/)).not.toBeInTheDocument();
+  fireEvent.change(input, { target: { value: "react" } });
+  expect(screen.getByText(/\d+ results/)).toBeInTheDocument();
+});
+
+test("preview details can be expanded", () => {
+  render(<CommandPalette />);
+  fireEvent.click(screen.getByRole("button", { name: "Show details" }));
+  expect(screen.queryByRole("button", { name: "Show details" })).not.toBeInTheDocument();
+});

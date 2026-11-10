@@ -126,6 +126,49 @@ function Points({ items }: { items: string[] }) {
   );
 }
 
+const DEFAULT_PLACEHOLDER = "Search or ask a question";
+const EXAMPLES = ["react", "vaccine scheduling", "papers", "photos", "resume"];
+
+/**
+ * Types example searches into the placeholder so visitors see the box is
+ * searchable. Runs only while the box is empty and unfocused, stops after two
+ * rounds on the default text, and never runs for people who prefer reduced motion.
+ */
+function useTypingPlaceholder(query: string, inputRef: React.RefObject<HTMLInputElement>) {
+  const [text, setText] = useState(DEFAULT_PLACEHOLDER);
+  useEffect(() => {
+    if (query) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const input = inputRef.current;
+    if (input && document.activeElement === input) return;
+    let timer = 0;
+    let stopped = false;
+    const stop = () => { stopped = true; window.clearTimeout(timer); setText(DEFAULT_PLACEHOLDER); };
+    input?.addEventListener("focus", stop);
+
+    const frames: [string, number][] = [];
+    for (let round = 0; round < 2; round++) {
+      for (const word of EXAMPLES) {
+        const full = `Try “${word}”`;
+        for (let i = 5; i <= full.length; i++) frames.push([full.slice(0, i), 70]);
+        frames.push([full, 1400]);
+      }
+    }
+    frames.push([DEFAULT_PLACEHOLDER, 0]);
+
+    let i = 0;
+    const tick = () => {
+      if (stopped || i >= frames.length) return;
+      const [value, wait] = frames[i++];
+      setText(value);
+      timer = window.setTimeout(tick, wait);
+    };
+    timer = window.setTimeout(tick, 1800);
+    return () => { stopped = true; window.clearTimeout(timer); input?.removeEventListener("focus", stop); };
+  }, [query, inputRef]);
+  return text;
+}
+
 export default function CommandPalette() {
   usePageChrome("Sai Sreekar Siddula · Senior Software Engineer", "#15132B");
   const catalog = useMemo(buildCatalog, []);
@@ -167,12 +210,26 @@ export default function CommandPalette() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Keep the highlighted row visible inside the scrolling list.
+  // Keep the highlighted row visible inside the list when arrow keys move it.
+  // This scrolls the list box directly: element.scrollIntoView() would also move
+  // the browser's keyboard starting point, so the first Tab would skip the header.
+  const arrowMoved = useRef(false);
   useEffect(() => {
-    if (!sel) return;
-    const el = listRef.current?.querySelector<HTMLElement>(`[data-id="${sel.id}"]`);
-    el?.scrollIntoView?.({ block: "nearest" });
+    const list = listRef.current;
+    if (!sel || !list || !arrowMoved.current) return;
+    const el = list.querySelector<HTMLElement>(`[data-id="${sel.id}"]`);
+    if (!el) return;
+    const box = list.getBoundingClientRect();
+    const row = el.getBoundingClientRect();
+    if (row.top < box.top) list.scrollTop -= box.top - row.top + 8;
+    else if (row.bottom > box.bottom) list.scrollTop += row.bottom - box.bottom + 8;
   }, [sel]);
+
+  // On phones the preview stacks under the list; its details start collapsed.
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  useEffect(() => setDetailsOpen(false), [sel?.id]);
+
+  const placeholder = useTypingPlaceholder(query, inputRef);
 
   useEffect(() => {
     const d = dialogRef.current;
@@ -201,6 +258,7 @@ export default function CommandPalette() {
     if (e.key === "Enter") { e.preventDefault(); if (sel) open(sel); return; }
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
     e.preventDefault();
+    arrowMoved.current = true;
     const at = Math.max(0, results.findIndex((x) => x.id === sel.id));
     const next = results[(at + (e.key === "ArrowDown" ? 1 : -1) + results.length) % results.length];
     setActiveId(next.id);
@@ -222,17 +280,19 @@ export default function CommandPalette() {
         <header className={s.header}>
           <a href="#top" className={s.brand}><span className={s.accent}>~/</span>sreekar</a>
           <nav aria-label="Main" className={s.nav}>
-            <a href="#log">experience</a>
-            <a href="#projects">projects</a>
-            <a href="#papers">papers</a>
-            <a href="#photos">photos</a>
+            <a href="#log" className={s.navWide}>experience</a>
+            <a href="#projects" className={s.navWide}>projects</a>
+            <a href="#papers" className={s.navWide}>papers</a>
+            <a href="#photos" className={s.navWide}>photos</a>
             <a href="#contact">contact</a>
+            <a href={resume} download={resumeFileName}>resume</a>
             <button type="button" className={s.kbdBtn} onClick={() => inputRef.current?.focus()}>
               search <kbd>{isMac ? "⌘K" : "Ctrl K"}</kbd>
             </button>
           </nav>
         </header>
 
+        <main id="main">
         <section id="top" className={s.hero}>
           <div className={s.who}>
             <img src={headshotSmall} alt="" width={52} height={52} />
@@ -247,6 +307,10 @@ export default function CommandPalette() {
             most complex app on CVS Health’s pharmacy platform, used in 10,000 stores. Search for anything
             below, or just scroll.
           </p>
+          <div className={s.ctas}>
+            <a href={resume} download={resumeFileName} className={s.ctaPrimary}>Download resume</a>
+            <a href={`mailto:${person.email}`} className={s.ctaSecondary}>Email me</a>
+          </div>
         </section>
 
         <div className={s.palette}>
@@ -263,12 +327,14 @@ export default function CommandPalette() {
               aria-activedescendant={sel ? `opt-${sel.id}` : undefined}
               autoComplete="off"
               spellCheck={false}
-              placeholder="Search my work, or ask a question"
+              placeholder={placeholder}
               value={query}
               onChange={(e) => { setQuery(e.target.value); setActiveId(null); }}
               onKeyDown={onInputKey}
             />
-            <span className={s.count} aria-live="polite">{results.length} results</span>
+            <span className={s.count} aria-live="polite">
+              {query.trim() ? `${results.filter((r) => r.id !== "ask").length} results` : ""}
+            </span>
           </div>
 
           <div className={s.paletteBody}>
@@ -299,7 +365,14 @@ export default function CommandPalette() {
               ))}
             </div>
 
-            <aside aria-label="Preview" aria-live="polite" className={s.preview}>
+            {/* tabIndex lets keyboard users scroll the preview when it overflows. */}
+            <aside
+              aria-label="Preview"
+              aria-live="polite"
+              tabIndex={0}
+              className={s.preview}
+              data-collapsed={!detailsOpen && (sel.points.length > 0 || sel.tags.length > 0) ? "true" : undefined}
+            >
               <p className={s.kicker}>{sel.kicker}</p>
               <h2 className={s.previewTitle}>{sel.title}</h2>
               {sel.meta && <p className={s.previewMeta}>{sel.meta}</p>}
@@ -321,8 +394,15 @@ export default function CommandPalette() {
                   ))}
                 </div>
               )}
-              <Points items={sel.points} />
-              <Tags items={sel.tags} />
+              {(sel.points.length > 0 || sel.tags.length > 0) && !detailsOpen && (
+                <button type="button" className={s.moreBtn} onClick={() => setDetailsOpen(true)}>
+                  Show details
+                </button>
+              )}
+              <div className={s.details}>
+                <Points items={sel.points} />
+                <Tags items={sel.tags} />
+              </div>
               {sel.href && (
                 <a
                   href={sel.href}
@@ -467,6 +547,7 @@ export default function CommandPalette() {
           <p className={s.cursorLine} aria-hidden="true"><span className={s.accent}>$</span> <span className={s.cursor} /></p>
           <p className={s.colophon}>© {new Date().getFullYear()} {person.name} · built with React · press {isMac ? "⌘K" : "Ctrl K"} anywhere</p>
         </section>
+        </main>
       </div>
 
       <dialog

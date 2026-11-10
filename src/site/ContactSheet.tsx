@@ -191,17 +191,19 @@ export default function ContactSheet() {
       <div className={s.wrap}>
         <header className={s.header}>
           <a href="#top" className={s.brand}>
-            {person.name} <span className={s.amber}>/ Roll 26</span>
+            {person.name} <span className={`${s.amber} ${s.hideSm}`}>/ Roll 26</span>
           </a>
           <nav aria-label="Main" className={s.nav}>
-            <a href="#sheet">Sheet</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#papers">Papers</a>
+            <a href="#sheet" className={s.navWide}>Sheet</a>
+            <a href="#experience" className={s.navWide}>Experience</a>
+            <a href="#projects" className={s.navWide}>Projects</a>
+            <a href="#papers" className={s.navWide}>Papers</a>
             <a href="#contact">Contact</a>
             <a href={resume} download={resumeFileName} className={s.navCta}>Resume ↓</a>
           </nav>
         </header>
+
+        <main id="main">
 
         <section id="top" className={s.hero}>
           <div className={s.heroText}>
@@ -273,7 +275,8 @@ export default function ContactSheet() {
                     <button
                       type="button"
                       aria-pressed={active}
-                      aria-label={`Frame ${f.edge}: ${f.title}`}
+                      // Work frames are named by their visible text; photos have none, so they get a label.
+                      aria-label={f.kind === "photo" ? `Frame ${f.edge}: ${f.title}` : undefined}
                       className={`${s.frame} ${active ? s.frameActive : ""}`}
                       style={f.kind === "work" ? { background: f.color } : undefined}
                       onClick={() => pick(f.id, true)}
@@ -428,6 +431,8 @@ export default function ContactSheet() {
             ))}
           </div>
         </section>
+
+        </main>
 
         <footer id="contact" className={s.footer}>
           <p className={s.note} aria-hidden="true">open to good conversations</p>
