@@ -17,6 +17,7 @@ import {
   schools,
   totalCitations,
   Photo,
+  Shot,
 } from "./content";
 import { usePageChrome } from "./usePageChrome";
 import { trackLink, trackSearch } from "./analytics";
@@ -35,7 +36,9 @@ type Item = {
   points: string[];
   tags: string[];
   images?: Photo[];
+  shots?: Shot[];
   href?: string;
+  source?: string;
   hrefLabel?: string;
   download?: boolean;
   words: string;
@@ -55,7 +58,7 @@ function buildCatalog(): Item[] {
     items.push({
       id: p.id, group: "Projects", label: p.title, hint: `${p.tags[0]} · ${p.when}`,
       kicker: `Project · ${p.context} · ${p.when}`, title: p.title, summary: p.summary, points: p.points, tags: p.tags,
-      href: p.link, hrefLabel: p.linkLabel, words: `${p.slug} project built ${p.tags.join(" ")} ${p.summary} ${p.points.join(" ")}`,
+      href: p.link, hrefLabel: p.linkLabel, source: p.source, shots: p.shots, words: `${p.slug} project built ${p.tags.join(" ")} ${p.summary} ${p.points.join(" ")}`,
     }),
   );
   papers.forEach((p) =>
@@ -394,6 +397,13 @@ export default function CommandPalette() {
                   ))}
                 </div>
               )}
+              {sel.shots && sel.shots.length > 0 && (
+                <div className={s.shots}>
+                  {sel.shots.slice(0, 3).map((shot) => (
+                    <img key={shot.src} src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
+                  ))}
+                </div>
+              )}
               {(sel.points.length > 0 || sel.tags.length > 0) && !detailsOpen && (
                 <button type="button" className={s.moreBtn} onClick={() => setDetailsOpen(true)}>
                   Show details
@@ -411,6 +421,11 @@ export default function CommandPalette() {
                   {...(isExternal(sel.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
                   {sel.hrefLabel} <kbd>↵</kbd>
+                </a>
+              )}
+              {sel.source && (
+                <a href={sel.source} target="_blank" rel="noopener noreferrer" className={s.sourceLink}>
+                  Source on GitHub ↗
                 </a>
               )}
             </aside>
@@ -474,9 +489,14 @@ export default function CommandPalette() {
                   <p className={s.cardBody}>{p.summary}</p>
                   {featured && <Points items={p.points} />}
                   <Tags items={p.tags} />
-                  {p.link && (
-                    <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>{p.linkLabel} ↗</a>
-                  )}
+                  <div className={s.cardLinks}>
+                    {p.link && (
+                      <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>{p.linkLabel} ↗</a>
+                    )}
+                    {p.source && (
+                      <a href={p.source} target="_blank" rel="noopener noreferrer" className={s.textLink}>Source ↗</a>
+                    )}
+                  </div>
                 </article>
               );
             })}

@@ -106,6 +106,15 @@
 .big { margin-top: 18px !important; font-weight: 600; font-size: 52px; line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
 .big span { font-family: var(--mono); font-weight: 400; font-size: 13px; letter-spacing: 0; color: var(--dim); }
 .previewBody { margin-top: 16px !important; color: var(--body); }
+/* Phone screenshots in the preview: up to three, side by side, top of each screen. */
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.shots img {
+  display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; object-position: top;
+  border-radius: 10px; border: 1px solid var(--line-soft); background: var(--deep);
+}
+.page .sourceLink { display: inline-flex; align-items: center; min-height: 44px; margin: 18px 0 0 16px; font-family: var(--mono); font-size: 13px; color: var(--dim); }
+.page .sourceLink:hover { color: var(--accent); }
+.cardLinks { display: flex; flex-wrap: wrap; gap: 0 20px; }
 .thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 16px; }
 .thumbs button { padding: 0; border: 0; background: none; border-radius: 6px; overflow: hidden; }
 .thumbs img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.3s ease; }
@@ -163,17 +172,23 @@
 .commitBody .points li { font-size: 16px; }
 
 /* Projects */
-/* 3 / 2 / 1 columns. The featured card spans two, and the GitHub card closes the
-   grid, so every row is full at every width (4 projects + 1 link = 6 cells). */
+/* 3 / 2 / 1 columns. The featured card spans two columns and the GitHub card spans
+   the full width, so every row is full whatever the number of projects. */
 .cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
 @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cardFeatured { grid-column: span 2; } }
 @media (min-width: 1000px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .cardFeatured { background: linear-gradient(135deg, #24204a, var(--card) 60%); border-color: var(--line) !important; }
 .cardFeatured .points { margin-top: 0 !important; }
 .h3Big { font-weight: 600; font-size: clamp(24px, 2.6vw, 30px); line-height: 1.2; letter-spacing: -0.01em; }
+/* Full width, so rows stay full whatever the number of projects. */
 .page .cardMore {
+  grid-column: 1 / -1;
   display: flex; flex-direction: column; gap: 10px; padding: 22px; text-decoration: none;
   border: 1px dashed var(--line); border-radius: 12px; transition: border-color 0.2s ease, background 0.2s ease;
+}
+@media (min-width: 640px) {
+  .page .cardMore { flex-direction: row; align-items: center; gap: 24px; }
+  .cardMore .cardBody { flex: 1; }
 }
 .page .cardMore:hover { border-color: var(--accent); background: rgba(200, 241, 105, 0.04); color: var(--ink); }
 .moreCta { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--mono); font-size: 13px; color: var(--accent); }

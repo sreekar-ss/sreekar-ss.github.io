@@ -19,6 +19,7 @@ import {
   schools,
   scholarLink,
   totalCitations,
+  Shot,
 } from "./content";
 import { usePageChrome } from "./usePageChrome";
 
@@ -43,6 +44,8 @@ type Frame = {
   bigLabel?: string;
   link?: string;
   linkLabel?: string;
+  source?: string;
+  shots?: Shot[];
 };
 
 const job = (id: string) => jobs.find((j) => j.id === id)!;
@@ -59,6 +62,7 @@ function buildFrames(): Frame[] {
   const sushi = project("sushi");
   const flood = project("flood");
   const lms = project("lms");
+  const billsplit = project("billsplit");
   return [
     {
       id: "cvs", kind: "work", short: "Pharmacy workflows at scale", tag: "CVS Health", color: "#7A2E25",
@@ -73,6 +77,12 @@ function buildFrames(): Frame[] {
       title: ductus.headline, summary: ductus.summary, points: ductus.points, tags: ductus.tags,
     },
     photoFrame("bridge"),
+    {
+      id: "billsplit", kind: "work", short: "Splitting bills to the cent", tag: "BillSplit · 2026", color: "#1F4A3F",
+      big: "¢", bigLabel: "every split adds up", note: "my app!", kicker: `${billsplit.context} · ${billsplit.when}`,
+      title: billsplit.title, summary: billsplit.summary, points: billsplit.points, tags: billsplit.tags,
+      link: billsplit.link, linkLabel: billsplit.linkLabel, source: billsplit.source, shots: billsplit.shots,
+    },
     {
       id: "papers", kind: "work", short: `Dams, sensors, and ${papers[0].cites} citations`, tag: "IEEE · 2018", color: "#2F3442",
       big: String(totalCitations), bigLabel: "citations across two papers", note: "first author", kicker: "IEEE IoT-SIU and IACC · 2018",
@@ -307,6 +317,12 @@ export default function ContactSheet() {
             <div className={s.loupeFrame}>
               {sel.kind === "photo" ? (
                 <img src={sel.img} srcSet={sel.srcSet} sizes="(min-width: 900px) 640px, 100vw" alt={sel.title} />
+              ) : sel.shots && sel.shots.length > 0 ? (
+                <div className={s.loupeShots} style={{ background: sel.color }}>
+                  {sel.shots.slice(0, 3).map((shot) => (
+                    <img key={shot.src} src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
+                  ))}
+                </div>
               ) : (
                 <div className={s.loupeWork} style={{ background: sel.color }}>
                   <span className={s.workTag}>{sel.tag}</span>
@@ -327,11 +343,18 @@ export default function ContactSheet() {
             {sel.summary && <p className={s.body}>{sel.summary}</p>}
             <Points items={sel.points} />
             <Tags items={sel.tags} />
-            {sel.link && (
-              <a href={sel.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>
-                {sel.linkLabel} ↗
-              </a>
-            )}
+            <div className={s.cardLinks}>
+              {sel.link && (
+                <a href={sel.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>
+                  {sel.linkLabel} ↗
+                </a>
+              )}
+              {sel.source && (
+                <a href={sel.source} target="_blank" rel="noopener noreferrer" className={s.textLink}>
+                  Source on GitHub ↗
+                </a>
+              )}
+            </div>
             <div className={s.stepper}>
               <button type="button" aria-label="Previous frame" onClick={() => step(-1)}>←</button>
               <button type="button" aria-label="Next frame" onClick={() => step(1)}>→</button>
@@ -377,11 +400,18 @@ export default function ContactSheet() {
                 <p className={s.cardBody}>{p.summary}</p>
                 {i === 0 && <Points items={p.points} />}
                 <Tags items={p.tags} />
-                {p.link && (
-                  <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>
-                    {p.linkLabel} ↗
-                  </a>
-                )}
+                <div className={s.cardLinks}>
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className={s.textLink}>
+                      {p.linkLabel} ↗
+                    </a>
+                  )}
+                  {p.source && (
+                    <a href={p.source} target="_blank" rel="noopener noreferrer" className={s.textLink}>
+                      Source ↗
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
             <a href={person.github} target="_blank" rel="noopener noreferrer" className={s.cardMore}>

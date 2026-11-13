@@ -150,6 +150,16 @@
   width: 100%; height: 100%; padding: clamp(20px, 3vw, 36px);
   display: flex; flex-direction: column; justify-content: space-between;
 }
+/* Phone screenshots in the loupe: three screens on the frame's color. */
+.loupeShots {
+  width: 100%; height: 100%; padding: 6% 7%;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5%; align-items: start;
+}
+.loupeShots img {
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: top;
+  border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.cardLinks { display: flex; flex-wrap: wrap; gap: 0 20px; }
 .loupeBig { font-family: var(--display); font-weight: 600; font-size: clamp(56px, 9vw, 112px); line-height: 0.9; }
 .loupeText { flex: 1 1 380px; min-width: 0; }
 .loupeTitle { margin-top: 8px !important; font-family: var(--display); font-weight: 600; font-size: clamp(38px, 4.6vw, 58px); line-height: 1; text-transform: uppercase; }
@@ -182,9 +192,15 @@
 @media (min-width: 1000px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .cardFeatured { background: #241f19; border-color: #6b665c; }
 .cardFeatured .points { margin-top: 0; }
+/* Full width, so rows stay full whatever the number of projects. */
 .page .cardMore {
+  grid-column: 1 / -1;
   display: flex; flex-direction: column; gap: 12px; padding: 24px; text-decoration: none;
   border: 1px dashed #6b665c; transition: border-color 0.2s ease;
+}
+@media (min-width: 640px) {
+  .page .cardMore { flex-direction: row; align-items: center; gap: 24px; }
+  .cardMore .cardBody { flex: 1; }
 }
 .page .cardMore:hover { border-color: var(--amber); color: var(--ink); }
 .cardMore .edgeRow { padding-top: 0; font-size: 12px; }

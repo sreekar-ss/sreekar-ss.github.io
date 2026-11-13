@@ -51,3 +51,13 @@ test("preview details can be expanded", () => {
   fireEvent.click(screen.getByRole("button", { name: "Show details" }));
   expect(screen.queryByRole("button", { name: "Show details" })).not.toBeInTheDocument();
 });
+
+test("BillSplit is searchable and links to the live app and its source", () => {
+  render(<CommandPalette />);
+  const input = screen.getByRole("combobox", { name: /search/i });
+  fireEvent.change(input, { target: { value: "split" } });
+  fireEvent.click(screen.getByRole("option", { name: /BillSplit/ }));
+  const preview = screen.getByRole("complementary", { name: "Preview" });
+  expect(preview.querySelector('a[href="https://billsplit.thevector.dev"]')).not.toBeNull();
+  expect(preview.querySelector('a[href="https://github.com/sreekar-ss/bill-split"]')).not.toBeNull();
+});
