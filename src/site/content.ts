@@ -179,7 +179,28 @@ export type Project = {
   tags: string[];
   link?: string;
   linkLabel?: string;
+  /** Source code, when it's separate from `link` (for example a live app). */
+  source?: string;
+  /** Phone screenshots, shown in the search preview and on /v1. */
+  shots?: Shot[];
 };
+
+export type Shot = { src: string; alt: string };
+
+// BillSplit screenshots: real screens captured from the app's own Playwright
+// screenshot test, then resized to WebP. Files are named NN-description.webp.
+const billsplitFiles = import.meta.glob<string>("../images/billsplit/*.webp", { eager: true, import: "default" });
+const BILLSPLIT_ALT: Record<string, string> = {
+  home: "BillSplit home: your balance with each friend and group",
+  group: "A group page with the balance beam showing who gets back and who owes",
+  settle: "Settle up, with Venmo and PayPal buttons pre-filled with the amount",
+};
+const billsplitShots: Shot[] = Object.keys(billsplitFiles)
+  .sort()
+  .map((file) => {
+    const key = file.replace(/^.*\/\d+-/, "").replace(/\.webp$/, "");
+    return { src: billsplitFiles[file], alt: BILLSPLIT_ALT[key] ?? "BillSplit screen" };
+  });
 
 export const projects: Project[] = [
   {
@@ -198,6 +219,28 @@ export const projects: Project[] = [
     tags: ["Next.js", "MDX", "AI", "SEO"],
     link: "https://thevector.dev",
     linkLabel: "Visit site",
+  },
+  {
+    id: "billsplit",
+    slug: "bill-split",
+    title: "BillSplit",
+    when: "2026",
+    context: "Personal project",
+    summary:
+      "A shared-expense app for groups and friends that's correct to the cent. Log who paid, split it equally, by exact amounts, percentages, or shares, and settle up in a tap. It installs like a phone app and keeps working offline.",
+    points: [
+      "Money is stored in whole cents and balances are calculated from history, never stored, so every split adds up",
+      "Debt simplification turns a tangle of IOUs into the fewest payments",
+      "Invite links, plus placeholder members who inherit their history when they sign up",
+      "Settle-up links open Venmo, PayPal, Cash App, or UPI with the amount filled in",
+      "Recurring expenses, push notifications, and offline saves that sync when you're back online",
+      "29 Playwright end-to-end suites on phone and desktop, run in CI on every change",
+    ],
+    tags: ["Next.js 16", "TypeScript", "PostgreSQL", "Prisma", "PWA"],
+    link: "https://billsplit.thevector.dev",
+    linkLabel: "Try it",
+    source: "https://github.com/sreekar-ss/bill-split",
+    shots: billsplitShots,
   },
   {
     id: "sushi",
