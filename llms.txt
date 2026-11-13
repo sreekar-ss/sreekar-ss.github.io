@@ -69,6 +69,19 @@ A developer blog built to be read by people and by AI agents. Full-stack Next.js
 Skills: Next.js, MDX, AI, SEO
 Link: https://thevector.dev
 
+### BillSplit (2026)
+A shared-expense app for groups and friends that's correct to the cent. Log who paid, split it equally, by exact amounts, percentages, or shares, and settle up in a tap. It installs like a phone app and keeps working offline.
+
+- Money is stored in whole cents and balances are calculated from history, never stored, so every split adds up
+- Debt simplification turns a tangle of IOUs into the fewest payments
+- Invite links, plus placeholder members who inherit their history when they sign up
+- Settle-up links open Venmo, PayPal, Cash App, or UPI with the amount filled in
+- Recurring expenses, push notifications, and offline saves that sync when you're back online
+- 29 Playwright end-to-end suites on phone and desktop, run in CI on every change
+
+Skills: Next.js 16, TypeScript, PostgreSQL, Prisma, PWA
+Link: https://billsplit.thevector.dev
+
 ### AI players for Sushi Go (2021)
 Game-playing agents built with Minimax and Q-learning, benchmarked against rule-based and random players at each stage of training.
 
